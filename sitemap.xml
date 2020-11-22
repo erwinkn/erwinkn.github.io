@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://erwinkn.github.io/about/</loc>
+    <lastmod>2020-10-21T10:13:17+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://erwinkn.github.io/archives/</loc>
+  </url>
+  
+  <url>
+    <loc>https://erwinkn.github.io/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://erwinkn.github.io/</loc>
+  </url>
+  
+  <url>
+    <loc>https://erwinkn.github.io/tags/</loc>
+  </url>
+  
+</urlset>
