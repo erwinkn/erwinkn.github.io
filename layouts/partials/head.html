@@ -1,0 +1,28 @@
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Can use a block if we want additional customization by pages -->
+    <title>{{ if not .IsHome }}{{- .Title }} - {{ end }}{{ .Site.Title }}</title>
+    <!-- Meta -->
+    {{- if .Description }}
+    <meta name="description" content="{{ .Description }}" />
+    {{ end -}}
+    {{- if .Keywords }}
+    <meta name="keywords" content="{{ delimit .Keywords "," }}" />
+    {{ end -}}
+    {{- if .Params.Author }}
+    <meta name="author" content="{{ .Params.Author}}" />
+    {{ end -}}
+    <!-- Generator -->
+    {{ hugo.Generator }}
+    <!-- Styles -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    {{- $styles := resources.Get "css/styles.css" | postCSS (dict "config" "./assets/css/postcss.config.js") -}}
+    {{- if .Site.IsServer }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
+    {{ else }}
+    {{- $styles := $styles | minify | fingerprint | resources.PostProcess -}}
+    <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}">
+    {{ end -}}
+</head>

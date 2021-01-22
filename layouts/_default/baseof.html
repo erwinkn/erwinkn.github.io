@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang='{{ .Site.Language }}'>
+{{- partial "head.html" . -}}
+
+<body class="flex flex-col min-h-screen bg-lightBeige">
+    {{- partial "dev-size-indicator.html" . -}}
+    {{- partial "header.html" . -}}
+    <main class="w-full flex-1">
+        {{- block "main" . }}{{- end }}
+    </main>
+    {{- partialCached "footer.html" . -}}
+    <!-- {{- partial "dev-parameters.html" . -}} -->
+</body>
+<!-- KaTeX include -->
+{{ if or .Params.math .Site.Params.math }}
+{{ partial "math.html" . }}
+{{ end }}
+
+</html>

@@ -1,0 +1,515 @@
+@layer base {
+    /* Space Grotesk (sans serif, nearly mono) */
+    @font-face {
+        font-family: 'SpaceGrotesk';
+        font-weight: 300;
+        src: url('/fonts/SpaceGrotesk/woff2/static/SpaceGrotesk-Light.woff2') format("woff2");
+    }
+    @font-face {
+        font-family: 'SpaceGrotesk';
+        font-weight: 400;
+        src: url('/fonts/SpaceGrotesk/woff2/static/SpaceGrotesk-Regular.woff2') format("woff2");
+    }
+    @font-face {
+        font-family: 'SpaceGrotesk';
+        font-weight: 500;
+        src: url('/fonts/SpaceGrotesk/woff2/static/SpaceGrotesk-Medium.woff2') format("woff2");
+    }
+    @font-face {
+        font-family: 'SpaceGrotesk';
+        font-weight: 600;
+        src: url('/fonts/SpaceGrotesk/woff2/static/SpaceGrotesk-Bold.woff2') format("woff2");
+    }
+
+    /* Charter (serif, used for OpenAI articles) */
+    @font-face {
+        font-family: 'Charter';
+        font-weight: 400;
+        font-style: normal;
+        src: url('/fonts/charter/webfonts/charter_regular-webfont.woff') format("woff");
+    }
+    @font-face {
+        font-family: 'Charter';
+        font-weight: 400;
+        font-style: italic;
+        src: url('/fonts/charter/webfonts/charter_italic-webfont.woff') format("woff");
+    }
+    @font-face {
+        font-family: 'Charter';
+        font-weight: 700;
+        font-style: normal;
+        src: url('/fonts/charter/webfonts/charter_bold-webfont.woff') format("woff");
+    }
+    @font-face {
+        font-family: 'Charter';
+        font-weight: 700;
+        font-style: italic;
+        src: url('/fonts/charter/webfonts/charter_bold_italic-webfont.woff') format("woff");
+    }
+
+    /* Neue Haas Grotesk (taken from The Engine) */
+    @font-face {
+        font-family: 'Neue Haas Grotesk';
+        font-weight: 400;
+        font-style: normal;
+        src: url('/fonts/NeueHaasGrotesk/NHaasGrotesk-Regular.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Neue Haas Grotesk';
+        font-weight: 500;
+        font-style: normal;
+        src: url('/fonts/NeueHaasGrotesk/NHaasGrotesk-Medium.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Neue Haas Grotesk';
+        font-weight: 600;
+        font-style: normal;
+        src: url('/fonts/NeueHaasGrotesk/NHaasGrotesk-Bold.ttf') format('truetype');
+    }
+
+    /* Neue Haas Grotesk 2 (taken from The Engine) */
+    @font-face {
+        font-family: 'Neue Haas Grotesk 2';
+        font-weight: 400;
+        font-style: normal;
+        src: url('/fonts/NeueHaasGrotesk2/NHaasGroteskTXPro-55Rg.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Neue Haas Grotesk 2';
+        font-weight: 500;
+        font-style: normal;
+        src: url('/fonts/NeueHaasGrotesk2/NHaasGroteskTXPro-65Md.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Neue Haas Grotesk 2';
+        font-weight: 600;
+        font-style: normal;
+        src: url('/fonts/NeueHaasGrotesk2/NHaasGroteskTXPro-75Bd.ttf') format('truetype');
+    }
+
+    /* Aktiv Grotesk */
+    @font-face {
+        font-family: 'Aktiv Grotesk Corp';
+        src: url('/fonts/AktivGrotesk/AktivGroteskCorp-Medium.eot');
+        src: local('/fonts/AktivGrotesk/AktivGroteskCorp-Medium'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Medium.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Medium.woff2') format('woff2'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Medium.woff') format('woff'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Medium.ttf') format('truetype');
+        font-weight: 500;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'Aktiv Grotesk Corp';
+        src: url('/fonts/AktivGrotesk/AktivGroteskCorp-Bold.eot');
+        src: local('/fonts/AktivGrotesk/AktivGroteskCorp-Bold'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Bold.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Bold.woff2') format('woff2'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Bold.woff') format('woff'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Bold.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'Aktiv Grotesk Corp';
+        src: url('/fonts/AktivGrotesk/AktivGroteskCorp-Italic.eot');
+        src: local('/fonts/AktivGrotesk/AktivGroteskCorp-Italic'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Italic.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Italic.woff2') format('woff2'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Italic.woff') format('woff'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Italic.ttf') format('truetype');
+        font-weight: normal;
+        font-style: italic;
+    }
+    
+    @font-face {
+        font-family: 'Aktiv Grotesk Corp';
+        src: url('/fonts/AktivGrotesk/AktivGroteskCorp-LightItalic.eot');
+        src: local('/fonts/AktivGrotesk/AktivGroteskCorp-LightItalic'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-LightItalic.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-LightItalic.woff2') format('woff2'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-LightItalic.woff') format('woff'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-LightItalic.ttf') format('truetype');
+        font-weight: 300;
+        font-style: italic;
+    }
+    
+    @font-face {
+        font-family: 'Aktiv Grotesk Corp';
+        src: url('/fonts/AktivGrotesk/AktivGroteskCorp-MediumItalic.eot');
+        src: local('/fonts/AktivGrotesk/AktivGroteskCorp-MediumItalic'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-MediumItalic.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-MediumItalic.woff2') format('woff2'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-MediumItalic.woff') format('woff'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-MediumItalic.ttf') format('truetype');
+        font-weight: 500;
+        font-style: italic;
+    }
+    
+    @font-face {
+        font-family: 'Aktiv Grotesk Corp';
+        src: url('/fonts/AktivGrotesk/AktivGroteskCorp-Light.eot');
+        src: local('/fonts/AktivGrotesk/AktivGroteskCorp-Light'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Light.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Light.woff2') format('woff2'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Light.woff') format('woff'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Light.ttf') format('truetype');
+        font-weight: 300;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'Aktiv Grotesk Corp';
+        src: url('/fonts/AktivGrotesk/AktivGroteskCorp-Regular.eot');
+        src: local('/fonts/AktivGrotesk/AktivGroteskCorp-Regular'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Regular.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Regular.woff2') format('woff2'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Regular.woff') format('woff'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-Regular.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'Aktiv Grotesk Corp';
+        src: url('/fonts/AktivGrotesk/AktivGroteskCorp-BoldItalic.eot');
+        src: local('/fonts/AktivGrotesk/AktivGroteskCorp-BoldItalic'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-BoldItalic.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-BoldItalic.woff2') format('woff2'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-BoldItalic.woff') format('woff'),
+            url('/fonts/AktivGrotesk/AktivGroteskCorp-BoldItalic.ttf') format('truetype');
+        font-weight: bold;
+        font-style: italic;
+    }
+    
+    /* Neue Haas Display */
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Mediu.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-Mediu'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Mediu.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Mediu.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Mediu.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Mediu.ttf') format('truetype');
+        font-weight: 500;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-RomanItalic.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-RomanItalic'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-RomanItalic.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-RomanItalic.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-RomanItalic.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-RomanItalic.ttf') format('truetype');
+        font-weight: 400;
+        font-style: italic;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Black.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-Black'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Black.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Black.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Black.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Black.ttf') format('truetype');
+        font-weight: 900;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-MediumItalic.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-MediumItalic'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-MediumItalic.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-MediumItalic.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-MediumItalic.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-MediumItalic.ttf') format('truetype');
+        font-weight: 500;
+        font-style: italic;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-BlackItalic.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-BlackItalic'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-BlackItalic.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-BlackItalic.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-BlackItalic.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-BlackItalic.ttf') format('truetype');
+        font-weight: 900;
+        font-style: italic;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Roman.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-Roman'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Roman.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Roman.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Roman.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Roman.ttf') format('truetype');
+        font-weight: 400;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-BoldItalic.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-BoldItalic'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-BoldItalic.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-BoldItalic.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-BoldItalic.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-BoldItalic.ttf') format('truetype');
+        font-weight: 700;
+        font-style: italic;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-LightItalic.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-LightItalic'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-LightItalic.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-LightItalic.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-LightItalic.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-LightItalic.ttf') format('truetype');
+        font-weight: 400;
+        font-style: italic;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Bold.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-Bold'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Bold.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Bold.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Bold.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Bold.ttf') format('truetype');
+        font-weight: 700;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Light.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-Light'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Light.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Light.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Light.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Light.ttf') format('truetype');
+        font-weight: 400;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XXThin.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-XXThin'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XXThin.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XXThin.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XXThin.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XXThin.ttf') format('truetype');
+        font-weight: 100;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XThinItalic.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-XThinItalic'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XThinItalic.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XThinItalic.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XThinItalic.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XThinItalic.ttf') format('truetype');
+        font-weight: 200;
+        font-style: italic;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XXThinItalic.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-XXThinItalic'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XXThinItalic.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XXThinItalic.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XXThinItalic.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XXThinItalic.ttf') format('truetype');
+        font-weight: 100;
+        font-style: italic;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XThin.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-XThin'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XThin.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XThin.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XThin.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-XThin.ttf') format('truetype');
+        font-weight: 200;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Thin.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-Thin'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Thin.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Thin.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Thin.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-Thin.ttf') format('truetype');
+        font-weight: 300;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/NeueHaasDisplay/NeueHaasDisplay-ThinItalic.eot');
+        src: local('/fonts/NeueHaasDisplay/NeueHaasDisplay-ThinItalic'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-ThinItalic.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-ThinItalic.woff2') format('woff2'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-ThinItalic.woff') format('woff'),
+            url('/fonts/NeueHaasDisplay/NeueHaasDisplay-ThinItalic.ttf') format('truetype');
+        font-weight: 300;
+        font-style: italic;
+    }
+
+    /* Work Sans */
+    @font-face {
+        font-family: 'Work Sans';
+        font-weight: 400;
+        font-style: normal;
+        src: url('/fonts/work-sans/WorkSans-Regular.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'Work Sans';
+        font-weight: 400;
+        font-style: italic;
+        src: url('/fonts/work-sans/WorkSans-Italic.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'Work Sans';
+        font-weight: 500;
+        font-style: normal;
+        src: url('/fonts/work-sans/WorkSans-Medium.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'Work Sans';
+        font-weight: 500;
+        font-style: italic;
+        src: url('/fonts/work-sans/WorkSans-MediumItalic.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'Work Sans';
+        font-weight: 600;
+        font-style: normal;
+        src: url('/fonts/work-sans/WorkSans-SemiBold.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'Work Sans';
+        font-weight: 600;
+        font-style: italic;
+        src: url('/fonts/work-sans/WorkSans-SemiBoldItalic.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'Work Sans';
+        font-weight: 700;
+        font-style: normal;
+        src: url('/fonts/work-sans/WorkSans-Bold.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'Work Sans';
+        font-weight: 700;
+        font-style: italic;
+        src: url('/fonts/work-sans/WorkSans-BoldItalic.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'Work Sans';
+        font-weight: 800;
+        font-style: normal;
+        src: url('/fonts/work-sans/WorkSans-ExtraBold.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'Work Sans';
+        font-weight: 800;
+        font-style: italic;
+        src: url('/fonts/work-sans/WorkSans-ExtraBoldItalic.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'Work Sans';
+        font-weight: 900;
+        font-style: normal;
+        src: url('/fonts/work-sans/WorkSans-Black.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'Work Sans';
+        font-weight: 900;
+        font-style: italic;
+        src: url('/fonts/work-sans/WorkSans-BlackItalic.otf') format('opentype');
+    }
+
+    /* Fira Sans */
+    @font-face {
+        font-family: 'Fira Sans';
+        font-weight: 400;
+        font-style: normal;
+        src: url('/fonts/FiraSans/FiraSans-Regular.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Fira Sans';
+        font-weight: 400;
+        font-style: italic;
+        src: url('/fonts/FiraSans/FiraSans-Italic.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Fira Sans';
+        font-weight: 500;
+        font-style: normal;
+        src: url('/fonts/FiraSans/FiraSans-Medium.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Fira Sans';
+        font-weight: 500;
+        font-style: italic;
+        src: url('/fonts/FiraSans/FiraSans-MediumItalic.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Fira Sans';
+        font-weight: 600;
+        font-style: normal;
+        src: url('/fonts/FiraSans/FiraSans-SemiBold.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Fira Sans';
+        font-weight: 600;
+        font-style: italic;
+        src: url('/fonts/FiraSans/FiraSans-SemiBoldItalic.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Fira Sans';
+        font-weight: 700;
+        font-style: normal;
+        src: url('/fonts/FiraSans/FiraSans-Bold.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Fira Sans';
+        font-weight: 700;
+        font-style: italic;
+        src: url('/fonts/FiraSans/FiraSans-BoldItalic.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Fira Sans';
+        font-weight: 800;
+        font-style: normal;
+        src: url('/fonts/FiraSans/FiraSans-ExtraBold.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Fira Sans';
+        font-weight: 800;
+        font-style: italic;
+        src: url('/fonts/FiraSans/FiraSans-ExtraBoldItalic.ttf') format('truetype');
+    }
+}

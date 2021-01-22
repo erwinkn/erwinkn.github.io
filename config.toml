@@ -1,0 +1,30 @@
+baseURL = "https://erwinkn.github.io/"
+languageCode = "en-us"
+title = "Erwin Kuhn"
+sectionPagesMenu = "main"
+
+[params]
+description = "Erwin's Blog"
+math = true
+
+[[menu.main]]
+identifier = "blog"
+name = "Blog"
+url = "/blog/"
+
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
+
+[[menu.main]]
+identifier = "wiki"
+name = "Wiki"
+url = "/wiki/"
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+
+[build]
+writeStats = true
