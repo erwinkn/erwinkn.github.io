@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Erwin Kuhn</title>
+    <link>https://erwinkn.github.io/blog/</link>
+    <description>Recent content in Blog on Erwin Kuhn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://erwinkn.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Random article</title>
+      <link>https://erwinkn.github.io/blog/random/</link>
+      <pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://erwinkn.github.io/blog/random/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>There&#39;s no plan B for concrete</title>
+      <link>https://erwinkn.github.io/blog/cement/</link>
+      <pubDate>Wed, 21 Oct 2020 10:25:08 +0200</pubDate>
+      
+      <guid>https://erwinkn.github.io/blog/cement/</guid>
+      <description>This is the first post in a series about the cement &amp;amp; concrete industries and their place in the climate fight. It provides a general introduction to the subject, with some surprising facts I discovered along the way.
+This is a personal perspective and is subject to change based on feedback and further discussions. Feel free to reach out!
+I&amp;rsquo;ve been working for the past few months with Vicat.sidenote__button::after{ content: &#39;\002a&#39; } .</description>
+    </item>
+    
+  </channel>
+</rss>

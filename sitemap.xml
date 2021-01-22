@@ -4,26 +4,26 @@
   
   <url>
     <loc>https://erwinkn.github.io/</loc>
-    <lastmod>2020-10-21T10:25:08+02:00</lastmod>
+    <lastmod>2020-12-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://erwinkn.github.io/posts/</loc>
-    <lastmod>2020-10-21T10:25:08+02:00</lastmod>
+    <loc>https://erwinkn.github.io/blog/</loc>
+    <lastmod>2020-12-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://erwinkn.github.io/posts/cement/</loc>
+    <loc>https://erwinkn.github.io/blog/random/</loc>
+    <lastmod>2020-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://erwinkn.github.io/blog/cement/</loc>
     <lastmod>2020-10-21T10:25:08+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://erwinkn.github.io/about/</loc>
-    <lastmod>2020-10-21T10:13:17+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://erwinkn.github.io/archives/</loc>
   </url>
   
   <url>
@@ -31,7 +31,23 @@
   </url>
   
   <url>
+    <loc>https://erwinkn.github.io/wiki/ecosystem-restoration/</loc>
+  </url>
+  
+  <url>
+    <loc>https://erwinkn.github.io/wiki/reading-list/</loc>
+  </url>
+  
+  <url>
     <loc>https://erwinkn.github.io/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://erwinkn.github.io/wiki/ui-design/</loc>
+  </url>
+  
+  <url>
+    <loc>https://erwinkn.github.io/wiki/</loc>
   </url>
   
 </urlset>
