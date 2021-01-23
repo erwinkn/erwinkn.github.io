@@ -7,7 +7,7 @@
 
 @layer utilities {
     .text-container {
-        @apply container mx-auto px-4 sm:px-6 lg:px-8;
+        @apply container mx-auto px-4 sm:px-8 md:px-10 lg:px-14 xl:px-20;
     }
 
     .smol-padding {
@@ -24,16 +24,6 @@
     }
     .prose {
         @apply text-darkGreenBlue;
-    }
-
-    @variants {
-        .underline-dotted {
-            text-decoration-style: dotted;
-        }
-
-        .thick-decoration {
-            text-decoration-thickness: 0.2em;
-        }
     }
 
     /* CSS below mostly used for sidenotes */

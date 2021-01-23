@@ -4,14 +4,14 @@
   <label tabindex="0" title="{{- with (.Page.Scratch.Get $key) -}}{{ truncate 35 . }}{{- end -}}"
     aria-describedby='sidenote-{{ .Get "id"}}' for='sn_check-{{ .Get "id" }}'
     class=" text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
-           lg:cursor-default lg:border-none">
+           lg:cursor-default lg:border-none lg:text-current">
     {{- .Inner -}}
   </label>
   <small id='sidenote-{{ .Get "id" }}'
          class="sn_content ast-before sr-only
                 lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
-                lg:w-52 lg:-mr-60
-                xl:w-80 xl:-mr-104">
+                lg:w-64  lg:-mr-80
+                xl:w-88 xl:-mr-110">
     <span class="sr-only">
       (sidenote:
     </span>
