@@ -7,10 +7,10 @@
     
     <meta name="author" content="Erwin Kuhn" />
     
-    <meta name="generator" content="Hugo 0.79.0" />
+    <meta name="generator" content="Hugo 0.80.0" />
     
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://erwinkn.github.io/css/styles.min.f55c243cf4a2c68c28eb61192d21cdd0cafaabb3f074b21e616d29c5470b4259.css" integrity="sha256-9VwkPPSixowo62EZLSHN0Mr6q7PwdLIeYW0pxUcLQlk=">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://erwinkn.github.io/css/styles.min.658b5ee806a7cf83020ef5e4ee804f7f85138279a40cf97aceb6366e5d1afb6e.css" integrity="sha256-ZYte6Aanz4MCDvXk7oBPf4UTgnmkDPl6zrY2bl0a+24=">
     </head><body class="flex flex-col min-h-screen bg-lightBeige">
 <header class="flex flex-col justify-between bg-darkGray">
     <nav class="text-container mt-12 pb-4 text-lightBeige">
@@ -24,7 +24,7 @@
             
             
             <li class="transform duration-300 hover:scale-110">
-                <a class="underline-beige " href="/about/">About</a>
+                <a class="underline-beige  underline " href="/">About</a>
             </li>
             
             
@@ -114,21 +114,23 @@
                     (as well as ideas I'm working on right now, since this website is still very young!)
                 </p>
             </div>
-            <div class="mt-12 max-w-max flex flex-col items-start">
+            <div class="mt-12 max-w-max flex flex-col items-start group " href="/blog/cement/">
                 <span class="text-base text-darkSanguine font-semibold uppercase p-2">
                     Blog post
                 </span>
-                <h3
-                    class="bg-darkGreenBlue w-full text-lightBeige text-3xl lg:text-4xl font-playfair font-semibold smol-padding py-4 rounded-t-lg shadow-lg">
-                    There's no plan B for concrete
-                </h3>
-                <p
-                    class="bg-lightBeige w-full text-lg border-darkGreenBlue shadow-lg font-medium smol-padding py-4 rounded-b-lg">
-                    Why net-zero concrete is both one of the most challenging<br>
-                    and most interesting climate problems
-                </p>
+                <a href="/blog/cement/">
+                    <h3
+                        class="bg-darkGreenBlue w-full text-lightBeige text-3xl lg:text-4xl font-playfair font-semibold smol-padding py-4 rounded-t-lg shadow-sm group-hover:shadow-lg transition duration-300">
+                        There's no plan B for concrete
+                    </h3>
+                    <p
+                        class="bg-lightBeige w-full text-lg border-darkGreenBlue font-medium smol-padding py-4 rounded-b-lg shadow-sm group-hover:shadow-lg transition duration-300">
+                        Why net-zero concrete is both one of the most challenging<br>
+                        and most interesting climate problems
+                    </p>
+                </a>
             </div>
-            <div class="mt-12 max-w-max flex flex-col items-start">
+            <!-- <div class="mt-12 max-w-max flex flex-col items-start">
                 <span class="text-base text-darkSanguine font-semibold uppercase p-2">
                     Explorable explanation
                 </span>
@@ -141,18 +143,18 @@
                     A technical complement to "There's no plan B for concrete",<br>
                     featuring an interactive model of a concrete supply chain
                 </p>
-            </div>
+            </div> -->
 
             <div class="h-96">
-
+                <!-- Filler for now -->
             </div>
         </section>
     </div>
 
 </article>
 
-    </main><footer class="w-full mt-20 text-center border-t border-gray-200 p-4 pin-b text-xs text-gray-400">
-    <p>made with <a href="https://gohugo.io" class="underline hover:text-blue-400">Hugo</a> and <a href="https://tailwindcss.com" class="underline hover:text-blue-400">TailwindCSS</a></p>
+    </main><footer class="w-full mt-20 text-center border-t border-darkGreenBlue border-opacity-10 p-4 pin-b text-xs text-darkGreenBlue text-opacity-60">
+    <p>made with <a href="https://gohugo.io" class="thick-underline-highlight hover:highlight-highlight">Hugo</a> and <a href="https://tailwindcss.com" class="thick-underline-highlight hover:highlight-highlight">TailwindCSS</a></p>
 </footer>
 
 </body>
