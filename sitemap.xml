@@ -26,11 +26,15 @@
   </url>
   
   <url>
-    <loc>https://erwinkn.github.io/wiki/ecosystem-restoration/</loc>
+    <loc>https://erwinkn.github.io/garden/</loc>
   </url>
   
   <url>
-    <loc>https://erwinkn.github.io/wiki/reading-list/</loc>
+    <loc>https://erwinkn.github.io/garden/ecosystem-restoration/</loc>
+  </url>
+  
+  <url>
+    <loc>https://erwinkn.github.io/garden/reading-list/</loc>
   </url>
   
   <url>
@@ -38,11 +42,7 @@
   </url>
   
   <url>
-    <loc>https://erwinkn.github.io/wiki/ui-design/</loc>
-  </url>
-  
-  <url>
-    <loc>https://erwinkn.github.io/wiki/</loc>
+    <loc>https://erwinkn.github.io/garden/ui-design/</loc>
   </url>
   
 </urlset>
