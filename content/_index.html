@@ -13,10 +13,10 @@ author: Erwin Kuhn
                 <p class="text-xl md:text-2xl lg:text-3xl self-center">
                     It's nice to have you here! <br>
                     You've reached my
-                    <a class="thick-underline-highlight hover:highlight-highlight" href="/blog/">blog</a>,
-                    <a class="thick-underline-highlight hover:highlight-highlight" href="#">digital garden</a>
+                    <a class="thick-underline-70 hover:highlight" href="/blog/">blog</a>,
+                    <a class="thick-underline-70 hover:highlight" href="#">digital garden</a>
                     and all around
-                    <a class="thick-underline-highlight hover:highlight-highlight" href="#">playground</a>.
+                    <a class="thick-underline-70 hover:highlight" href="#">playground</a>.
                 </p>
             </div>
         </div>
@@ -41,18 +41,16 @@ author: Erwin Kuhn
                 </p>
                 <p class="mt-6">
                     I promise it
-                    <a href="/about/" class="thick-underline-highlight hover:highlight-highlight">all makes sense</a>.
+                    <a href="/about/" class="thick-underline-70 hover:highlight">all makes sense</a>.
                 </p>
             </div>
         </div>
     </section>
     <div class="bg-darkBeige">
         <!--- Second SVG wave, vertically symmetrical to the one in header -->
-        <svg class="wave text-lightBeige" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
-            viewBox="0 0 1440 320">
-            <path fill="currentColor" fill-opacity="1"
-                d="M0 192 48 176C96 160 192 128 288 138.7 384 149 480 203 576 229.3 672 256 768 256 864 240 960 224 1056 192 1152 186.7 1248 181 1344 203 1392 213.3L1440 224 1440 0 1392 0C1344 0 1248 0 1152 0 1056 0 960 0 864 0 768 0 672 0 576 0 480 0 384 0 288 0 192 0 96 0 48 0L0 0Z" />
-        </svg>
+        <div class="text-lightBeige">
+            {{< wave-bottom >}}
+        </div>
         <!-- Content -->
         <section class="text-container mt-16 text-xl md:text-2xl lg:text-3xl">
             <div class="max-w-xl lg:max-w-3xl">
@@ -67,19 +65,19 @@ author: Erwin Kuhn
                     (as well as ideas I'm working on right now, since this website is still very young!)
                 </p>
             </div>
-            <div class="mt-12 max-w-max flex flex-col items-start group " href="/blog/cement/">
-                <span class="text-base text-darkSanguine font-semibold uppercase p-2">
+            <div class="mt-12 max-w-max">
+                <div class="text-base text-darkSanguine font-semibold uppercase mb-1">
                     Blog post
-                </span>
-                <a href="/blog/cement/">
+                </div>
+                <a href="/blog/cement/" class="block hover:shadow-lg transition duration-300">
                     <h3
-                        class="bg-darkGreenBlue w-full text-lightBeige text-3xl lg:text-4xl font-playfair font-semibold smol-padding py-4 rounded-t-lg shadow-sm group-hover:shadow-lg transition duration-300">
+                        class="bg-darkGreenBlue w-full text-lightBeige text-3xl lg:text-4xl font-playfair font-semibold smol-padding py-4 rounded-t-lg">
                         There's no plan B for concrete
                     </h3>
                     <p
-                        class="bg-lightBeige w-full text-lg border-darkGreenBlue font-medium smol-padding py-4 rounded-b-lg shadow-sm group-hover:shadow-lg transition duration-300">
-                        Why net-zero concrete is both one of the most challenging<br>
-                        and most interesting climate problems
+                        class="bg-lightBeige w-full text-lg font-medium smol-padding py-4 rounded-b-lg">
+                        We can't replace it and we can't take the CO<sub>2</sub> out of it.<br>
+                        How do we deal with it?
                     </p>
                 </a>
             </div>

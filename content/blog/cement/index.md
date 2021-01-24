@@ -1,5 +1,6 @@
 +++
 title = "There's no plan B for concrete"
+description = """We can't replace it and we can't take the CO2 out of it.<br/> How do we deal with it?"""
 date = 2020-10-21T10:25:08+02:00
 math = true
 +++

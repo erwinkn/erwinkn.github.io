@@ -5,11 +5,11 @@
 <body class="flex flex-col min-h-screen bg-lightBeige">
     {{- partial "dev-size-indicator.html" . -}}
     {{- partial "header.html" . -}}
-    <main class="w-full flex-1">
+    <main class="w-full flex-1 text-darkGreenBlue">
         {{- block "main" . }}{{- end }}
     </main>
     {{- partialCached "footer.html" . -}}
-    <!-- {{- partial "dev-parameters.html" . -}} -->
+    {{- partial "dev-parameters.html" . -}}
 </body>
 <!-- KaTeX include -->
 {{ if or .Params.math .Site.Params.math }}

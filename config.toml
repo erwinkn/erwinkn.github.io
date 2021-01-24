@@ -7,6 +7,11 @@ sectionPagesMenu = "main"
 description = "Erwin's Blog"
 math = true
 
+[markup]
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+            unsafe=true
+
 [[menu.main]]
 identifier = "blog"
 name = "Blog"
@@ -18,9 +23,9 @@ name = "About"
 url = "/"
 
 [[menu.main]]
-identifier = "wiki"
-name = "Wiki"
-url = "/wiki/"
+identifier = "garden"
+name = "Garden"
+url = "/garden/"
 
 [taxonomies]
 category = "categories"

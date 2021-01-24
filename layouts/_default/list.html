@@ -1,31 +1,54 @@
 {{- define "main" }}
 <!-- Has to be kept at the same base text-size as the blog post template, which uses typography plugin-->
-<div class="text-container text-darkGreenBlue">
-    <div class="max-w-3xl prose lg:prose-lg">
+<div class="text-container py-10">
+    <div class="prose xl:prose-lg">
         <h1 class="font-playfair">{{ .Title }}</h1>
-        <div class="">
+        <p class="">
             {{ .Content }}
-        </div>
+        </p>
     </div>
-    {{- range .Pages.GroupByPublishDate "2006"}}
-    <div class="pt-8 max-w-prose">
-        <div class="font-siteTitle   text-4xl text-darkSanguine font-bold">{{ .Key }}</div>
-        <div class="flex flex-col pt-4 space-y-10">
-            {{ range .Pages }}
-            <a href="{{ .RelPermalink }}" class="flex-1 group -mx-4 px-4 -my-2 py-2 rounded-lg transition duration-200 hover:bg-white hover:shadow">
-                <h3 class="text-gray-700 inline-block text-2xl">{{ .Title }}</h3> <br>
-                <div class="leading-5 text-xs text-gray-500">
-                    <time class="uppercase">{{ .Date.Format "January 2, 2006" }}</time>
-                    <span class="">&middot;</span>
-                    <span>{{ .ReadingTime }} min</span>
-                </div>
-                {{ with .Description }}
-                <p class="text-base leading-6 pt-1">{{ . }}</p>
-                {{ end }}   
-            </a>
-            {{ end }}
-        </div>
-    </div>
-    {{- end }}
 </div>
+<div class="bg-darkBeige">
+    <div class="text-lightBeige">
+        {{ partial "wave-bottom.html" . }}
+    </div>
+    <div class="text-container mt-16">
+        {{- range .Pages.GroupByPublishDate "2006"}}
+        <div class="max-w-prose xl:text-lg ">
+            <div class="font-siteTitle text-6xl text-darkSanguine font-bold">{{ .Key }}</div>
+            <div class="flex flex-col pt-4">
+                {{ range .Pages }}
+                <a href="{{ .RelPermalink }}"
+                    class="block max-w-max mb-10 rounded-xl overflow-hidden hover:shadow-lg transition duration-300">
+                    <div class="bg-darkGreenBlue text-lightBeige smol-padding py-4">
+                        <h3 class="-ml-0.5 font-playfair font-semibold text-3xl lg:text-4xl">
+                            {{ .Title }}
+                        </h3>
+                        <div class="text-sm text-darkBeige">
+                            <time class="uppercase">
+                                {{ .Date.Format "January 2, 2006" }}
+                            </time>
+                            <span class="">
+                                &middot;
+                            </span>
+                            <span>
+                                {{ .ReadingTime }} min
+                            </span>
+                        </div>
+                    </div>
+                    {{ with .Description }}
+                    <p class="bg-lightBeige py-2 smol-padding">
+                        {{ safeHTML . }}
+                    </p>
+                    {{ end }}
+                </a>
+                {{ end }}
+            </div>
+        </div>
+        {{- end }}
+    </div>
+</div>
+
+{{ .Scratch.Set "bgColor" "bg-darkBeige" }}
+
 {{- end }}

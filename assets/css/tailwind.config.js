@@ -6,6 +6,24 @@ module.exports = {
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    extend: {
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            color: theme('colors.darkGreenBlue'),
+            a: {
+              color: theme('colors.darkGreenBlue')
+            },
+            h1: {
+              color: theme('colors.darkGreenBlue')
+            },
+            h2: {
+              color: theme('colors.darkGreenBlue')
+            },
+          },
+        },
+      }),
+    },
     screens: {
       sm: '640px',
       md: '768px',
@@ -43,6 +61,7 @@ module.exports = {
       // Following taken from https://laracon.net/ (once again designed by Jack McDade I think)
       lightBeige: '#fdf6e3', // base3 from Solarized
       beige: '#f4e6cc',
+      base2: '#eee8d5',
       darkBeige: '#f3ddb8',
       highlight: '#ffbe59', // jackmcdade.com
       lightOrange: '#f37752',
@@ -942,14 +961,12 @@ module.exports = {
             }
             // Thick underline
             newUtils['.thick-underline-' + exactName] = {
-              transform: 'rotate(6deg)',
               backgroundImage: "linear-gradient(180deg, transparent 70%, " + exactColor + " 0)",
               backgroundPosition: "0.2em bottom",
               backgroundRepeat: "no-repeat",
             }
             // Highlighted
             newUtilsWithVariants['.highlight-' + exactName] = {
-              transform: 'rotate(6deg)',
               backgroundImage: "linear-gradient(180deg, transparent 20%, " + exactColor + " 0)",
               backgroundPosition: "0.2em bottom",
               backgroundRepeat: "no-repeat",

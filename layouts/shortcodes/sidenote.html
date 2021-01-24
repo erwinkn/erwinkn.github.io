@@ -8,14 +8,16 @@
     {{- .Inner -}}
   </label>
   <small id='sidenote-{{ .Get "id" }}'
-         class="sn_content ast-before sr-only
+         class="sn_content ast-before sr-only flex
                 lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
                 lg:w-64  lg:-mr-80
                 xl:w-88 xl:-mr-110">
     <span class="sr-only">
       (sidenote:
     </span>
-    {{- with (.Page.Scratch.Get $key) -}}{{- . -}}{{- end -}}
+    <span class="lg:ml-1.5">
+      {{- with (.Page.Scratch.Get $key) -}}{{- . -}}{{- end -}}
+    </span>
     <span class="sr-only">
       )
     </span>
