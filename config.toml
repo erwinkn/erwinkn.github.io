@@ -22,10 +22,10 @@ identifier = "about"
 name = "About"
 url = "/"
 
-[[menu.main]]
-identifier = "garden"
-name = "Garden"
-url = "/garden/"
+# [[menu.main]]
+# identifier = "garden"
+# name = "Garden"
+# url = "/garden/"
 
 [taxonomies]
 category = "categories"

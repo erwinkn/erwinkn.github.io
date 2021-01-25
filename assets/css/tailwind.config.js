@@ -15,10 +15,20 @@ module.exports = {
               color: theme('colors.darkGreenBlue')
             },
             h1: {
-              color: theme('colors.darkGreenBlue')
+              color: theme('colors.darkGreenBlue'),
+              fontFamily: 'Playfair Display'
             },
             h2: {
-              color: theme('colors.darkGreenBlue')
+              color: theme('colors.darkGreenBlue'),
+              fontFamily: 'Playfair Display'
+            },
+            h3: {
+              color: theme('colors.darkGreenBlue'),
+              fontFamily: 'Playfair Display'
+            },
+            h4: {
+              color: theme('colors.darkGreenBlue'),
+              fontFamily: 'Playfair Display'
             },
           },
         },

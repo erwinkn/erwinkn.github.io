@@ -1,9 +1,10 @@
-<span class="inline">
+<span>
   {{- $key := print "sidenote-" (string (.Get "id")) -}}
-  <input aria-label="Show sidenote" type="checkbox" id='sn_check-{{ .Get "id" }}' class="sn_check hidden">
+  <input aria-label="Show sidenote" type="checkbox" id='sn_check-{{ .Get "id" }}'
+         class="sn_check hidden">
   <label tabindex="0" title="{{- with (.Page.Scratch.Get $key) -}}{{ truncate 35 . }}{{- end -}}"
     aria-describedby='sidenote-{{ .Get "id"}}' for='sn_check-{{ .Get "id" }}'
-    class=" text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
+    class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
            lg:cursor-default lg:border-none lg:text-current">
     {{- .Inner -}}
   </label>

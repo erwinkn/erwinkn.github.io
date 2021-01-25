@@ -100,6 +100,7 @@
       "hover:scale-110",
       "hover:shadow-lg",
       "inline",
+      "inline-block",
       "italic",
       "items-center",
       "items-start",
