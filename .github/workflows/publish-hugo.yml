@@ -30,5 +30,10 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          cname: erwinkn.com
+          cname: 
+            "erwinkn.com\n
+            www.erwinkn.com"
           publish_branch: publish
+
+      - name: Check multiline string
+        run: echo $
