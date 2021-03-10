@@ -40,46 +40,12 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      black: colors.black,
-      white: colors.white,
-      blueGray: colors.blueGray,
       gray: colors.coolGray,
-      // red: colors.red,
-      // orange: colors.orange,
-      // yellow: colors.yellow,
-      amber: colors.amber,
-      lime: colors.lime,
-      // green: colors.green,
-      emerald: colors.emerald,
-      teal: colors.teal,
-      cyan: colors.cyan,
-      lightBlue: colors.lightBlue,  
-      blue: colors.blue,
-      indigo: colors.indigo,
-      // violet: colors.violet,
-      // purple: colors.purple,
-      pink: colors.pink,
-      // rose: colors.rose,
-      infiniteRed: '#ea215a',
-      hotPink: '#fd2d78', // taken from https://jackmcdade.com/what-i-change-on-every-tailwindcss-project
-      cactus: '#2bbc8a',
-      brightYellow: '#f7f474', // from jackmcdade.com
-      softYellow: '#fcf0a2',
-      // Following taken from https://laracon.net/ (once again designed by Jack McDade I think)
       lightBeige: '#fdf6e3', // base3 from Solarized
-      beige: '#f4e6cc',
-      base2: '#eee8d5',
       darkBeige: '#f3ddb8',
       highlight: '#ffbe59', // jackmcdade.com
-      lightOrange: '#f37752',
-      orange: '#FF6154',
-      orangeSol: '#cb4b16',
-      sanguine: '#e74f43',
       darkSanguine: '#C54238',
-      red: '#db2a1c',
       darkGreenBlue: '#112c4a',
-      darkGray: '#142C4A',
-      lightGreen: '#34F5B9'
     },
     spacing: {
       px: '1px',

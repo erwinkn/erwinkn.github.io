@@ -32,11 +32,6 @@ description = "Erwin's Blog"
     name = "Tricks"
     url = "/tricks/"
 
-    # [[menu.main]]
-    # identifier = "garden"
-    # name = "Garden"
-    # url = "/garden/"
-
 [taxonomies]
 category = "categories"
 tag = "tags"
