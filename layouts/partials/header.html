@@ -1,19 +1,17 @@
 <header class="flex flex-col justify-between bg-darkGray">
     <nav class="text-container mt-12 pb-4 text-lightBeige">
-        <a href="{{ .Site.Home.Permalink }}" class="font-semibold font-spacegrotesk tracking-wider text-5xl md:text-6xl">
+        <a href="{{ .Site.Home.Permalink }}" class="font-semibold font-display tracking-wider text-5xl md:text-6xl">
             {{ .Site.Title }}
         </a>
         <!-- pl-0.5 is needed for proper alignment with the site title -->
-        <ul class="font-medium pl-0.5 text-xl md:text-2xl flex flex-wrap space-x-6 my-2 justify-items-center text-beige">
+        <div class="font-medium pl-0.5 text-xl md:text-2xl flex flex-wrap space-x-6 my-2 justify-items-center text-beige">
             {{ $currentPage := . }}
             {{ range .Site.Menus.main }}
             {{ $isSection := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
             {{ $underline := or $isSection (eq (lower $currentPage.Name) .Identifier )}}
-            <li class="transform duration-300 hover:scale-110">
-                <a class="underline-beige {{if $underline }} underline {{end}}" href="{{ .URL }}">{{ .Name }}</a>
-            </li>
+            <a class="block underline-beige {{if $underline }} underline {{end}}" href="{{ .URL }}">{{ .Name }}</a>
             {{ end }}
-        </ul>
+        </div>
     </nav>
     <!-- SVG wave -->
     <div class="text-lightBeige">

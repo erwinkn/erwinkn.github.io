@@ -1,54 +1,47 @@
 {{- define "main" }}
-<!-- Has to be kept at the same base text-size as the blog post template, which uses typography plugin-->
-<div class="text-container py-10">
-    <div class="prose lg:prose-lg xl:prose-xl">
-        <h1 class="font-display">{{ .Title }}</h1>
-        <p class="">
-            {{ .Content }}
-        </p>
-    </div>
-</div>
-<div class="bg-darkBeige">
-    <div class="text-lightBeige">
-        {{ partial "wave-bottom.html" . }}
-    </div>
-    <div class="text-container mt-16">
-        {{- range .Pages.GroupByPublishDate "2006"}}
-        <div class="max-w-prose lg:text-lg xl:text-xl ">
-            <div class="font-spacegrotesk text-6xl text-darkSanguine font-bold">{{ .Key }}</div>
-            <div class="flex flex-col pt-4">
-                {{ range .Pages }}
-                <a href="{{ .RelPermalink }}"
-                    class="block max-w-max mb-10 rounded-xl overflow-hidden hover:shadow-lg transition duration-300">
-                    <div class="bg-darkGreenBlue text-lightBeige smol-padding py-4">
-                        <h3 class="-ml-0.5 font-display font-semibold text-3xl lg:text-4xl">
-                            {{ .Title }}
-                        </h3>
-                        <div class="text-sm text-darkBeige">
-                            <time class="uppercase">
-                                {{ .Date.Format "January 2, 2006" }}
-                            </time>
-                            <span class="">
-                                &middot;
-                            </span>
-                            <span>
-                                {{ .ReadingTime }} min
-                            </span>
-                        </div>
-                    </div>
-                    {{ with .Description }}
-                    <p class="bg-lightBeige py-2 smol-padding">
-                        {{ safeHTML . }}
-                    </p>
-                    {{ end }}
-                </a>
-                {{ end }}
-            </div>
-        </div>
-        {{- end }}
-    </div>
-</div>
 
-{{ .Scratch.Set "bgColor" "bg-darkBeige" }}
+<!-- Has to be kept at the same base text-size as the blog post template, which uses typography plugin-->
+<div class="text-container mt-10">
+        <h1 class="text-4xl lg:text-6xl font-extrabold">{{ .Title }}</h1>
+        <p class="mt-3">{{ .Content }}</p>
+</div>
+<div class="text-container mt-16">
+    {{- range .Pages.GroupByPublishDate "2006"}}
+    <div class="max-w-prose">
+        {{ if $.Params.showYear }}
+            <div class="text-4xl lg:text-6xl text-darkSanguine font-bold">{{ .Key }}</div>
+        {{ end }}
+        <div class="flex flex-col mt-8">
+            {{ range .Pages }}
+            <a href="{{ .RelPermalink }}" class="block group max-w-max mb-10">
+                <h3 class="font-semibold text-xl lg:text-2xl inline thick-underline-80 hover-highlight">
+                    {{ .Title }}
+                </h3>
+                {{ with .Params.subtitle }}
+                <div class="font-semibold opacity-80 text-gray-600">
+                    {{ . }}
+                </div>
+                {{ end }}
+                {{ with .Description }}
+                <p class="bg-lightBeige pt-4">
+                    {{ safeHTML . }}
+                    <svg class="inline text-highlight group-hover:animate-bounce-h"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </p>
+                {{ end }}
+            </a>
+            {{ end }}
+        </div>
+    </div>
+    {{- end }}
+</div>
+<div class="h-96">
+    <!-- Filler -->
+</div>
 
 {{- end }}

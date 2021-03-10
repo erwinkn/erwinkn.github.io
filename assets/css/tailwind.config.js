@@ -16,23 +16,17 @@ module.exports = {
             },
             h1: {
               color: theme('colors.darkGreenBlue'),
-              // fontFamily: 'SpaceGrotesk'
             },
             h2: {
               color: theme('colors.darkGreenBlue'),
-              // fontFamily: 'SpaceGrotesk'
             },
             h3: {
               color: theme('colors.darkGreenBlue'),
-              // fontFamily: 'SpaceGrotesk'
             },
             h4: {
               color: theme('colors.darkGreenBlue'),
-              // fontFamily: 'SpaceGrotesk'
             },
-            strong : {
-              color: theme('colors.darkSanguine')
-            }
+
           },
         },
       }),
@@ -257,23 +251,6 @@ module.exports = {
         '"Liberation Mono"',
         '"Courier New"',
         'monospace',
-      ],
-      spacegrotesk: [
-        'SpaceGrotesk',
-        'ui-sans-serif',
-        'system-ui',
-        '-apple-system',
-        'BlinkMacSystemFont',
-        '"Segoe UI"',
-        'Roboto',
-        '"Helvetica Neue"',
-        'Arial',
-        '"Noto Sans"',
-        'sans-serif',
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-        '"Noto Color Emoji"',
       ],
       display: [
         'SpaceGrotesk',

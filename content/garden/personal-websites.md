@@ -17,3 +17,4 @@ draft: true
 - [Chris Shiflett](https://shiflett.org/)
 - [Danny de Vries](https://www.dandevri.es/writing/). Black & white squared programmer elegance.
 - [Jay George](https://jaygeorge.co.uk/). Black & white designer elegance.
+- [Tobias Ahlin](https://tobiasahlin.com/blog/). Tons of animations

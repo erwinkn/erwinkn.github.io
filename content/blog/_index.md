@@ -1,6 +1,7 @@
 ---
 title: 'Blog'
 author: 'Erwin Kuhn'
+showYear: true
 ---
 
-**I try to only write things that I'd like to read.**
+Here is some content for the index page of my blog posts list.

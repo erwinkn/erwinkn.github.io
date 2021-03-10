@@ -27,6 +27,11 @@ description = "Erwin's Blog"
     name = "Now"
     url = "/now/"
 
+    [[menu.main]]
+    identifier="tricks"
+    name = "Tricks"
+    url = "/tricks/"
+
     # [[menu.main]]
     # identifier = "garden"
     # name = "Garden"
