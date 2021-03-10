@@ -1,7 +1,7 @@
 {{ define "main" }}
 <article class="text-container">
-    <div class="prose xl:prose-lg">
-        <h1 class="font-playfair font-extrabold">{{ .Title }}</h1>
+    <div class="prose lg:prose-lg xl:prose-xl">
+        <h1 class="font-extrabold">{{ if not .Params.hideTitle }}{{ .Title }}{{ end }}</h1>
         {{ .Content }}
     </div>
 </article>

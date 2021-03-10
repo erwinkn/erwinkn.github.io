@@ -24,11 +24,11 @@
             background-position: 0.2em bottom;
             background-repeat: no-repeat;
         }
-        .thick-underline-80 {
+        /* .thick-underline-80 {
             background-image: linear-gradient(180deg, transparent 80%, #ffbe59 0);
             background-position: 0.2em bottom;
             background-repeat: no-repeat;
-        }
+        } */
         .highlight {
             background-image: linear-gradient(180deg, transparent 20%, #ffbe59 0);
             background-position: 0.2em bottom;
@@ -40,16 +40,12 @@
     .prose a {
         @apply no-underline thick-underline-70 hover:highlight;
     }
-    .prose {
-        @apply text-darkGreenBlue;
-    }
 
     /* CSS below mostly used for sidenotes */
     .ast-before::before {
         color: theme('colors.darkSanguine');
         content: '\002a';
     }
-
     .ast-after::after {
         color: theme('colors.darkSanguine');
         display: inline-block;

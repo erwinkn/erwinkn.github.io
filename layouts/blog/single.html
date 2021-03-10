@@ -1,0 +1,21 @@
+{{ define "main" }}
+<article class="text-container">
+    <div class="prose xl:prose-lg">
+        <h1>
+            {{ .Title }}
+        </h1>
+        <div class="-mt-8 text-gray-500 tracking-wide">
+            <time class="uppercase">
+                {{ .Date.Format "January 2, 2006" }}
+            </time>
+            <span class="">
+                &middot;
+            </span>
+            <span>
+                {{ .ReadingTime }} min
+            </span>
+        </div>
+        {{ .Content }}
+    </div>
+</article>
+{{ end }}

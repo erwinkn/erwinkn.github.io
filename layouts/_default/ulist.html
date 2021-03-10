@@ -2,7 +2,7 @@
 <!-- Has to be kept at the same base text-size as the blog post template, which uses typography plugin-->
 <div class="text-container py-10">
     <div class="prose xl:prose-lg">
-        <h1 class="font-playfair">{{ .Title }}</h1>
+        <h1 class="font-display">{{ .Title }}</h1>
         <p class="">
             {{ .Content }}
         </p>
@@ -19,7 +19,7 @@
                 <a href="{{ .RelPermalink }}"
                     class="block max-w-max mb-10 rounded-xl overflow-hidden hover:shadow-lg transition duration-300">
                     <div class="bg-darkGreenBlue text-lightBeige smol-padding py-4">
-                        <h3 class="-ml-0.5 font-playfair font-semibold text-3xl lg:text-4xl">
+                        <h3 class="-ml-0.5 font-display font-semibold text-3xl lg:text-4xl">
                             {{ .Title }}
                         </h3>
                     </div>

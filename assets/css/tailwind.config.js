@@ -16,20 +16,23 @@ module.exports = {
             },
             h1: {
               color: theme('colors.darkGreenBlue'),
-              fontFamily: 'Playfair Display'
+              // fontFamily: 'SpaceGrotesk'
             },
             h2: {
               color: theme('colors.darkGreenBlue'),
-              fontFamily: 'Playfair Display'
+              // fontFamily: 'SpaceGrotesk'
             },
             h3: {
               color: theme('colors.darkGreenBlue'),
-              fontFamily: 'Playfair Display'
+              // fontFamily: 'SpaceGrotesk'
             },
             h4: {
               color: theme('colors.darkGreenBlue'),
-              fontFamily: 'Playfair Display'
+              // fontFamily: 'SpaceGrotesk'
             },
+            strong : {
+              color: theme('colors.darkSanguine')
+            }
           },
         },
       }),
@@ -255,7 +258,7 @@ module.exports = {
         '"Courier New"',
         'monospace',
       ],
-      siteTitle: [
+      spacegrotesk: [
         'SpaceGrotesk',
         'ui-sans-serif',
         'system-ui',
@@ -272,8 +275,22 @@ module.exports = {
         '"Segoe UI Symbol"',
         '"Noto Color Emoji"',
       ],
-      playfair: [
-        'Playfair Display'
+      display: [
+        'SpaceGrotesk',
+        'ui-sans-serif',
+        'system-ui',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        '"Noto Sans"',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+        '"Noto Color Emoji"',
       ],
      },
     fontSize: {
@@ -955,52 +972,52 @@ module.exports = {
     require('@tailwindcss/typography'),
     // Add utility classes for text-decoration-color
     // + hand underlined feel using a background gradient
-    plugin(function({ addUtilities, theme }) {
-      const newUtils = {};
-      const newUtilsWithVariants = {}
-      const colors = theme('colors')
-      for(color in colors) {
-        if(typeof(colors[color]) === 'object') {
-          const colorName = color;
-          for(shade in colors[color]) {
-            const exactName = colorName + '-' + shade;
-            const exactColor = colors[color][shade];
-            // Simple underline
-            newUtils['.underline-' + exactName] = {
-              textDecorationColor: exactColor 
-            }
-            // Thick underline
-            newUtils['.thick-underline-' + exactName] = {
-              backgroundImage: "linear-gradient(180deg, transparent 70%, " + exactColor + " 0)",
-              backgroundPosition: "0.2em bottom",
-              backgroundRepeat: "no-repeat",
-            }
-            // Highlighted
-            newUtilsWithVariants['.highlight-' + exactName] = {
-              backgroundImage: "linear-gradient(180deg, transparent 20%, " + exactColor + " 0)",
-              backgroundPosition: "0.2em bottom",
-              backgroundRepeat: "no-repeat",
-            }
-          }
-        }
-        else {
-          newUtils['.underline-' + color] = { 
-            textDecorationColor: colors[color]
-          }
-          newUtils['.thick-underline-' + color] = {
-            backgroundImage: "linear-gradient(180deg, transparent 70%, " + colors[color] + " 0)",
-            backgroundPosition: "0.2em bottom",
-            backgroundRepeat: "no-repeat",
-          }
-          newUtilsWithVariants['.highlight-' + color] = {
-            backgroundImage: "linear-gradient(180deg, transparent 20%, " + colors[color] + " 0)",
-            backgroundPosition: "0.2em bottom",
-            backgroundRepeat: "no-repeat",
-          }
-        }
-      };
-      addUtilities(newUtils);
-      addUtilities(newUtilsWithVariants, ['hover']);
-    }),
+    // plugin(function({ addUtilities, theme }) {
+    //   const newUtils = {};
+    //   const newUtilsWithVariants = {}
+    //   const colors = theme('colors')
+    //   for(color in colors) {
+    //     if(typeof(colors[color]) === 'object') {
+    //       const colorName = color;
+    //       for(shade in colors[color]) {
+    //         const exactName = colorName + '-' + shade;
+    //         const exactColor = colors[color][shade];
+    //         // Simple underline
+    //         newUtils['.underline-' + exactName] = {
+    //           textDecorationColor: exactColor 
+    //         }
+    //         // Thick underline
+    //         newUtils['.thick-underline-' + exactName] = {
+    //           backgroundImage: "linear-gradient(180deg, transparent 70%, " + exactColor + " 0)",
+    //           backgroundPosition: "0.2em bottom",
+    //           backgroundRepeat: "no-repeat",
+    //         }
+    //         // Highlighted
+    //         newUtilsWithVariants['.highlight-' + exactName] = {
+    //           backgroundImage: "linear-gradient(180deg, transparent 20%, " + exactColor + " 0)",
+    //           backgroundPosition: "0.2em bottom",
+    //           backgroundRepeat: "no-repeat",
+    //         }
+    //       }
+    //     }
+    //     else {
+    //       newUtils['.underline-' + color] = { 
+    //         textDecorationColor: colors[color]
+    //       }
+    //       newUtils['.thick-underline-' + color] = {
+    //         backgroundImage: "linear-gradient(180deg, transparent 70%, " + colors[color] + " 0)",
+    //         backgroundPosition: "0.2em bottom",
+    //         backgroundRepeat: "no-repeat",
+    //       }
+    //       newUtilsWithVariants['.highlight-' + color] = {
+    //         backgroundImage: "linear-gradient(180deg, transparent 20%, " + colors[color] + " 0)",
+    //         backgroundPosition: "0.2em bottom",
+    //         backgroundRepeat: "no-repeat",
+    //       }
+    //     }
+    //   };
+    //   addUtilities(newUtils);
+    //   addUtilities(newUtilsWithVariants, ['hover']);
+    // }),
   ],
 }

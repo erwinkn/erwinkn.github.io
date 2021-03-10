@@ -1,8 +1,8 @@
 {{- define "main" }}
 <!-- Has to be kept at the same base text-size as the blog post template, which uses typography plugin-->
 <div class="text-container py-10">
-    <div class="prose xl:prose-lg">
-        <h1 class="font-playfair">{{ .Title }}</h1>
+    <div class="prose lg:prose-lg xl:prose-xl">
+        <h1 class="font-display">{{ .Title }}</h1>
         <p class="">
             {{ .Content }}
         </p>
@@ -14,14 +14,14 @@
     </div>
     <div class="text-container mt-16">
         {{- range .Pages.GroupByPublishDate "2006"}}
-        <div class="max-w-prose xl:text-lg ">
-            <div class="font-siteTitle text-6xl text-darkSanguine font-bold">{{ .Key }}</div>
+        <div class="max-w-prose lg:text-lg xl:text-xl ">
+            <div class="font-spacegrotesk text-6xl text-darkSanguine font-bold">{{ .Key }}</div>
             <div class="flex flex-col pt-4">
                 {{ range .Pages }}
                 <a href="{{ .RelPermalink }}"
                     class="block max-w-max mb-10 rounded-xl overflow-hidden hover:shadow-lg transition duration-300">
                     <div class="bg-darkGreenBlue text-lightBeige smol-padding py-4">
-                        <h3 class="-ml-0.5 font-playfair font-semibold text-3xl lg:text-4xl">
+                        <h3 class="-ml-0.5 font-display font-semibold text-3xl lg:text-4xl">
                             {{ .Title }}
                         </h3>
                         <div class="text-sm text-darkBeige">

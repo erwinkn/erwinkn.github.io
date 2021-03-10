@@ -4,7 +4,6 @@
 @import "node_modules/tailwindcss/components";
 /* Site Specific */
 @import "assets/css/site.css";
-@import "assets/css/inter.css";
 @import "assets/css/fonts.css";
 /* Tailwind's utility classes - generated based on config file */
 @import "node_modules/tailwindcss/utilities";

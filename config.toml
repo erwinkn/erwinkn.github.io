@@ -1,31 +1,36 @@
-baseURL = "https://erwinkn.github.io/"
+baseURL = "https://erwinkn.com/"
 languageCode = "en-us"
 title = "Erwin Kuhn"
 sectionPagesMenu = "main"
 
 [params]
 description = "Erwin's Blog"
-math = true
 
 [markup]
     [markup.goldmark]
         [markup.goldmark.renderer]
             unsafe=true
 
-[[menu.main]]
-identifier = "blog"
-name = "Blog"
-url = "/blog/"
+[menu]
+    [[menu.main]]
+    identifier = "blog"
+    name = "Blog"
+    url = "/blog/"
 
-[[menu.main]]
-identifier = "about"
-name = "About"
-url = "/"
+    [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
 
-# [[menu.main]]
-# identifier = "garden"
-# name = "Garden"
-# url = "/garden/"
+    [[menu.main]]
+    identifier = "now"
+    name = "Now"
+    url = "/now/"
+
+    # [[menu.main]]
+    # identifier = "garden"
+    # name = "Garden"
+    # url = "/garden/"
 
 [taxonomies]
 category = "categories"
