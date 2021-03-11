@@ -66,6 +66,7 @@
       "bg-gray-200",
       "bg-lightBeige",
       "block",
+      "body-link",
       "border-b-2",
       "border-darkGreenBlue",
       "border-darkSanguine",
@@ -113,7 +114,6 @@
       "lg:ml-1.5",
       "lg:mt-4",
       "lg:not-sr-only",
-      "lg:prose-lg",
       "lg:relative",
       "lg:text-2xl",
       "lg:text-4xl",
@@ -219,7 +219,6 @@
       "xl:block",
       "xl:hidden",
       "xl:prose-lg",
-      "xl:prose-xl",
       "xl:text-lg",
       "xl:w-88",
       "z-50"
@@ -276,7 +275,6 @@
       "summing-up",
       "the-difference-between-cement-and-concrete",
       "tips",
-      "tldr",
       "tools",
       "towards-net-zero"
     ]

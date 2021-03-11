@@ -4,6 +4,7 @@ subtitle: "We can't replace it and we can't take the CO2 out of it. How do we de
 description: "The concrete industry is fundamental for our civilisation, yet will be incredibly hard to decarbonise. Here's what I learned from working on long term roadmaps towards net-zero cement."
 date: 2020-10-21
 math: true
+layout: 'post'
 ---
 
 _This is the first post in a series about the cement & concrete industries and their place in the climate fight. It provides a general introduction to the subject, with some surprising facts I discovered along the way._
@@ -12,7 +13,7 @@ _This is a personal perspective and is subject to change based on feedback and f
 
 {{< sidenote-content id=1 >}}For the anecdote, Louis Vicat is the inventor of one of the first modern cement formulations in 1817! He also released his discovery to the world without any patent, which enabled tremendous improvements in construction efficiency at the time.{{< /sidenote-content >}}
 
-I've been working for the past few months with {{< sidenote id=1 >}}Vicat{{< /sidenote >}}, a large French cement group, on their climate strategy. Coming from the computer science world, I had to learn everything along the way and I quickly became fascinated. 
+I've been working for the past few months with {{< sidenote id=1 >}}Vicat,{{< /sidenote >}} a large French cement group, on their climate strategy. Coming from the computer science world, I had to learn everything along the way and I quickly became fascinated. 
 
 Whenever I talk about my work, people are quick to note that "it's great that the industry is making progress on the climate problem, but don't forget: *it's still concrete after all*." I mean, I even get stopped at organic food markets when I go there with a Vicat shopping bag.
 
@@ -39,7 +40,7 @@ First of all, it's hard to find accurate numbers for the global annual productio
 
 {{< sidenote-content id=2 >}}One gigatonne (Gt) is equal to 1 billion tonnes. It's a commonly used unit to talk about things like global cement production or CO<sub>2</sub> emissions. Every year, we put over 40Gt of CO<sub>2</sub> in the atmosphere.{{< /sidenote-content >}}
 
-Overall, the global production of cement is over {{< sidenote id=2 >}}4 Gt/year{{< /sidenote >}}. Taking 2015 numbers, that's 626 kg of cement per person on the planet - more than the annual food consumption! [^Scrivener18]
+Overall, the global production of cement is over {{< sidenote id=2 >}}4 Gt/year.{{< /sidenote >}} Taking 2015 numbers, that's 626 kg of cement per person on the planet - more than the annual food consumption! [^Scrivener18]
 
 Estimations for global concrete production put it at over 10 Gt/year.[^Chatham] Cementitious materials, which include a majority of concrete, represent around 30% of global materials use, including fossil fuels. Here's a chart from Scrivener et al.[^Scrivener18] that compares their use to that of other common materials:
     
