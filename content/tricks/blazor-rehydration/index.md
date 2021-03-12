@@ -5,3 +5,21 @@ description: "Blazor's server-side prerendering feels amazing, because you get s
 author: "Erwin Kuhn"
 date: "2021-03-10"
 ---
+
+Some code block:
+
+{{< code-block language="csharp" >}}
+@code {
+
+    private bool _darkMode = false;
+
+    [Parameter]
+    public EventCallback&lt;bool> OnDarkModeToggled { get; set; }
+
+    private void Toggle()
+    {
+        _darkMode = !_darkMode;
+        OnDarkModeToggled.InvokeAsync(_darkMode);
+    }
+}
+{{< /code-block >}}
