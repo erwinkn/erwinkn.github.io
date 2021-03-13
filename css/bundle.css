@@ -1,0 +1,2467 @@
+/* PrismJS 1.23.0
+https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+csharp+css-extras+julia+python&plugins=line-highlight+autolinker+inline-color+command-line+unescaped-markup+normalize-whitespace */
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal !important;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+pre[data-line] {
+	position: relative;
+	padding: 1em 0 1em 3em;
+}
+
+.line-highlight {
+	position: absolute;
+	left: 0;
+	right: 0;
+	padding: inherit 0;
+	margin-top: 1em; /* Same as .prism’s padding-top */
+
+	background: hsla(24, 20%, 50%,.08);
+	background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+
+	pointer-events: none;
+
+	line-height: inherit;
+	white-space: pre;
+}
+
+@media print {
+	.line-highlight {
+		/*
+		 * This will prevent browsers from replacing the background color with white.
+		 * It's necessary because the element is layered on top of the displayed code.
+		 */
+		-webkit-print-color-adjust: exact;
+		color-adjust: exact;
+	}
+}
+
+	.line-highlight:before,
+	.line-highlight[data-end]:after {
+		content: attr(data-start);
+		position: absolute;
+		top: .4em;
+		left: .6em;
+		min-width: 1em;
+		padding: 0 .5em;
+		background-color: hsla(24, 20%, 50%,.4);
+		color: hsl(24, 20%, 95%);
+		font: bold 65%/1.5 sans-serif;
+		text-align: center;
+		vertical-align: .3em;
+		border-radius: 999px;
+		text-shadow: none;
+		box-shadow: 0 1px white;
+	}
+
+	.line-highlight[data-end]:after {
+		content: attr(data-end);
+		top: auto;
+		bottom: .4em;
+	}
+
+.line-numbers .line-highlight:before,
+.line-numbers .line-highlight:after {
+	content: none;
+}
+
+pre[id].linkable-line-numbers span.line-numbers-rows {
+	pointer-events: all;
+}
+pre[id].linkable-line-numbers span.line-numbers-rows > span:before {
+	cursor: pointer;
+}
+pre[id].linkable-line-numbers span.line-numbers-rows > span:hover:before {
+	background-color: rgba(128, 128, 128, .2);
+}
+
+.token a {
+	color: inherit;
+}
+span.inline-color-wrapper {
+	/*
+	 * The background image is the following SVG inline in base 64:
+	 *
+	 * <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2">
+	 *     <path fill="gray" d="M0 0h2v2H0z"/>
+	 *     <path fill="white" d="M0 0h1v1H0zM1 1h1v1H1z"/>
+	 * </svg>
+	 *
+	 * SVG-inlining explained:
+	 * https://stackoverflow.com/a/21626701/7595472
+	 */
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyIDIiPjxwYXRoIGZpbGw9ImdyYXkiIGQ9Ik0wIDBoMnYySDB6Ii8+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0wIDBoMXYxSDB6TTEgMWgxdjFIMXoiLz48L3N2Zz4=");
+	/* This is to prevent visual glitches where one pixel from the repeating pattern could be seen. */
+	background-position: center;
+	background-size: 110%;
+
+	display: inline-block;
+	height: 1.333ch;
+	width: 1.333ch;
+	margin: 0 .333ch;
+	box-sizing: border-box;
+	border: 1px solid white;
+	outline: 1px solid rgba(0,0,0,.5);
+	overflow: hidden;
+}
+
+span.inline-color {
+	display: block;
+	/* To prevent visual glitches again */
+	height: 120%;
+	width: 120%;
+}
+
+.command-line-prompt {
+	border-right: 1px solid #999;
+	display: block;
+	float: left;
+	font-size: 100%;
+	letter-spacing: -1px;
+	margin-right: 1em;
+	pointer-events: none;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.command-line-prompt > span:before {
+	color: #999;
+	content: ' ';
+	display: block;
+	padding-right: 0.8em;
+}
+
+.command-line-prompt > span[data-user]:before {
+	content: "[" attr(data-user) "@" attr(data-host) "] $";
+}
+
+.command-line-prompt > span[data-user="root"]:before {
+	content: "[" attr(data-user) "@" attr(data-host) "] #";
+}
+
+.command-line-prompt > span[data-prompt]:before {
+	content: attr(data-prompt);
+}
+
+/* Fallback, in case JS does not run, to ensure the code is at least visible */
+[class*='lang-'] script[type='text/plain'],
+[class*='language-'] script[type='text/plain'],
+script[type='text/plain'][class*='lang-'],
+script[type='text/plain'][class*='language-'] {
+	display: block;
+	font: 100% Consolas, Monaco, monospace;
+	white-space: pre;
+	overflow: auto;
+}
+/* Tailwind base - put variables under: tailwind.config.js */
+
+/* ! tailwindcss v2.0.3 | MIT License | https://tailwindcss.com */
+
+/*! modern-normalize v1.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
+
+/*
+Document
+========
+*/
+
+/**
+Use a better box model (opinionated).
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/**
+Use a more readable tab size (opinionated).
+*/
+
+:root {
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+     tab-size: 4;
+}
+
+/**
+1. Correct the line height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+*/
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/*
+Sections
+========
+*/
+
+/**
+Remove the margin in all browsers.
+*/
+
+body {
+  margin: 0;
+}
+
+/**
+Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+*/
+
+body {
+  font-family:
+		system-ui,
+		-apple-system, /* Firefox supports this but not yet `system-ui` */
+		'Segoe UI',
+		Roboto,
+		Helvetica,
+		Arial,
+		sans-serif,
+		'Apple Color Emoji',
+		'Segoe UI Emoji';
+}
+
+/*
+Grouping content
+================
+*/
+
+/**
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+*/
+
+hr {
+  height: 0; /* 1 */
+  color: inherit; /* 2 */
+}
+
+/*
+Text-level semantics
+====================
+*/
+
+/**
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+/**
+Add the correct font weight in Edge and Safari.
+*/
+
+
+strong {
+  font-weight: bolder;
+}
+
+/**
+1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+2. Correct the odd 'em' font sizing in all browsers.
+*/
+
+code,
+pre {
+  font-family:
+		ui-monospace,
+		SFMono-Regular,
+		Consolas,
+		'Liberation Mono',
+		Menlo,
+		monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/**
+Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+Tabular data
+============
+*/
+
+/**
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+*/
+
+table {
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+}
+
+/*
+Forms
+=====
+*/
+
+/**
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+*/
+
+
+input {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+Remove the inheritance of text transform in Edge and Firefox.
+1. Remove the inheritance of text transform in Firefox.
+*/
+
+/**
+Correct the inability to style clickable types in iOS and Safari.
+*/
+
+/**
+Remove the inner border and padding in Firefox.
+*/
+
+/**
+Restore the focus styles unset by the previous rule.
+*/
+
+/**
+Remove the additional ':invalid' styles in Firefox.
+See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737
+*/
+
+/**
+Remove the padding so developers are not caught out when they zero out 'fieldset' elements in all browsers.
+*/
+
+/**
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+/**
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+/**
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+/**
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+/**
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to 'inherit' in Safari.
+*/
+
+/*
+Interactive
+===========
+*/
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+/**
+ * Manually forked from SUIT CSS Base: https://github.com/suitcss/base
+ * A thin layer on top of normalize.css that provides a starting point more
+ * suitable for web applications.
+ */
+
+/**
+ * Removes the default spacing and border for appropriate elements.
+ */
+
+blockquote,
+h1,
+h2,
+h3,
+h4,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+/**
+ * Work around a Firefox/IE bug where the transparent `button` background
+ * results in a loss of the default `button` focus styles.
+ */
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Tailwind custom reset styles
+ */
+
+/**
+ * 1. Use the user's configured `sans` font-family (with Tailwind's default
+ *    sans-serif font stack as a fallback) as a sane default.
+ * 2. Use Tailwind's default "normal" line-height so the user isn't forced
+ *    to override it to ensure consistency even when using the default theme.
+ */
+
+html {
+  font-family: Fira Sans, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 1 */
+  line-height: 1.5; /* 2 */
+}
+
+/**
+ * Inherit font-family and line-height from `html` so users can set them as
+ * a class directly on the `html` element.
+ */
+
+body {
+  font-family: inherit;
+  line-height: inherit;
+}
+
+/**
+ * 1. Prevent padding and border from affecting element width.
+ *
+ *    We used to set this in the html element and inherit from
+ *    the parent element for everything else. This caused issues
+ *    in shadow-dom-enhanced elements like <details> where the content
+ *    is wrapped by a div with box-sizing set to `content-box`.
+ *
+ *    https://github.com/mozdevs/cssremedy/issues/4
+ *
+ *
+ * 2. Allow adding a border to an element by just adding a border-width.
+ *
+ *    By default, the way the browser specifies that an element should have no
+ *    border is by setting it's border-style to `none` in the user-agent
+ *    stylesheet.
+ *
+ *    In order to easily add borders to elements by just setting the `border-width`
+ *    property, we change the default border-style for all elements to `solid`, and
+ *    use border-width to hide them instead. This way our `border` utilities only
+ *    need to set the `border-width` property instead of the entire `border`
+ *    shorthand, making our border utilities much more straightforward to compose.
+ *
+ *    https://github.com/tailwindcss/tailwindcss/pull/116
+ */
+
+*,
+::before,
+::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: #e5e7eb; /* 2 */
+}
+
+/*
+ * Ensure horizontal rules are visible by default
+ */
+
+hr {
+  border-top-width: 1px;
+}
+
+/**
+ * Undo the `border-style: none` reset that Normalize applies to images so that
+ * our `border-{width}` utilities have the expected effect.
+ *
+ * The Normalize reset is unnecessary for us since we default the border-width
+ * to 0 on all elements.
+ *
+ * https://github.com/tailwindcss/tailwindcss/issues/362
+ */
+
+img {
+  border-style: solid;
+}
+
+input::-moz-placeholder {
+  opacity: 1;
+  color: #9ca3af;
+}
+
+input:-ms-input-placeholder {
+  opacity: 1;
+  color: #9ca3af;
+}
+
+input::placeholder {
+  opacity: 1;
+  color: #9ca3af;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/**
+ * Reset links to optimize for opt-in styling instead of
+ * opt-out.
+ */
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/**
+ * Reset form element properties that are easy to forget to
+ * style explicitly so you don't inadvertently introduce
+ * styles that deviate from your design system. These styles
+ * supplement a partial reset that is already applied by
+ * normalize.css.
+ */
+
+
+input {
+  padding: 0;
+  line-height: inherit;
+  color: inherit;
+}
+
+/**
+ * Use the configured 'mono' font family for elements that
+ * are expected to be rendered with a monospace font, falling
+ * back to the system monospace stack if there is no configured
+ * 'mono' font family.
+ */
+
+pre,
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/**
+ * Make replaced elements `display: block` by default as that's
+ * the behavior you want almost all of the time. Inspired by
+ * CSS Remedy, with `svg` added as well.
+ *
+ * https://github.com/mozdevs/cssremedy/issues/14
+ */
+
+img,
+svg {
+  display: block;
+  vertical-align: middle;
+}
+
+/**
+ * Constrain images and videos to the parent width and preserve
+ * their instrinsic aspect ratio.
+ *
+ * https://github.com/mozdevs/cssremedy/issues/14
+ */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Space Grotesk (sans serif, nearly mono) */
+
+/* @font-face {
+        font-family: 'SpaceGrotesk';
+        font-style: normal;
+        font-display: swap;
+        src: url('/fonts/SpaceGrotesk/woff2/SpaceGrotesk[wght].woff2') format("woff2")
+             url('/fonts/SpaceGrotesk/otf/SpaceGrotesk[wght].ttf') format("truetype");
+    } */
+
+@font-face {
+  font-family: 'SpaceGrotesk';
+
+  font-weight: 300;
+
+  font-display: swap;
+
+  src: url('/fonts/SpaceGrotesk/woff2/static/SpaceGrotesk-Light.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk';
+
+  font-weight: 400;
+
+  font-display: swap;
+
+  src: url('/fonts/SpaceGrotesk/woff2/static/SpaceGrotesk-Regular.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk';
+
+  font-weight: 500;
+
+  font-display: swap;
+
+  src: url('/fonts/SpaceGrotesk/woff2/static/SpaceGrotesk-Medium.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk';
+
+  font-weight: 600;
+
+  font-display: swap;
+
+  src: url('/fonts/SpaceGrotesk/woff2/static/SpaceGrotesk-Bold.woff2') format("woff2");
+}
+
+/* Fira Sans */
+
+@font-face {
+  font-family: 'Fira Sans';
+
+  font-weight: 300;
+
+  font-style: normal;
+
+  font-display: swap;
+
+  src: url('/fonts/FiraSans/FiraSans-Light.woff2') format('woff2'),
+             url('/fonts/FiraSans/FiraSans-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+
+  font-weight: 300;
+
+  font-style: italic;
+
+  font-display: swap;
+
+  src: url('/fonts/FiraSans/FiraSans-LightItalic.woff2') format('woff2'),
+             url('/fonts/FiraSans/FiraSans-LightItalic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+
+  font-weight: 400;
+
+  font-style: normal;
+
+  font-display: swap;
+
+  src: url('/fonts/FiraSans/FiraSans-Regular.woff2') format('woff2'),
+             url('/fonts/FiraSans/FiraSans-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+
+  font-weight: 400;
+
+  font-style: italic;
+
+  font-display: swap;
+
+  src: url('/fonts/FiraSans/FiraSans-Italic.woff2') format('woff2'),
+             url('/fonts/FiraSans/FiraSans-Italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+
+  font-weight: 500;
+
+  font-style: normal;
+
+  font-display: swap;
+
+  src: url('/fonts/FiraSans/FiraSans-Medium.woff2') format('woff2'),
+             url('/fonts/FiraSans/FiraSans-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+
+  font-weight: 500;
+
+  font-style: italic;
+
+  font-display: swap;
+
+  src: url('/fonts/FiraSans/FiraSans-MediumItalic.woff2') format('woff2'),
+             url('/fonts/FiraSans/FiraSans-MediumItalic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+
+  font-weight: 600;
+
+  font-style: normal;
+
+  font-display: swap;
+
+  src: url('/fonts/FiraSans/FiraSans-SemiBold.woff2') format('woff2'),
+             url('/fonts/FiraSans/FiraSans-SemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+
+  font-weight: 600;
+
+  font-style: italic;
+
+  font-display: swap;
+
+  src: url('/fonts/FiraSans/FiraSans-SemiBoldItalic.woff2') format('woff2'),
+             url('/fonts/FiraSans/FiraSans-SemiBoldItalic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+
+  font-weight: 700;
+
+  font-style: normal;
+
+  font-display: swap;
+
+  src: url('/fonts/FiraSans/FiraSans-Bold.woff2') format('woff2'),
+             url('/fonts/FiraSans/FiraSans-BoldItalic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+
+  font-weight: 700;
+
+  font-style: italic;
+
+  font-display: swap;
+
+  src: url('/fonts/FiraSans/FiraSans-BoldItalic.woff2') format('woff2'),
+            url('/fonts/FiraSans/FiraSans-BoldItalic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+
+  font-weight: 800;
+
+  font-style: normal;
+
+  font-display: swap;
+
+  src: url('/fonts/FiraSans/FiraSans-ExtraBold.woff2') format('woff2'),
+             url('/fonts/FiraSans/FiraSans-ExtraBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+
+  font-weight: 800;
+
+  font-style: italic;
+
+  font-display: swap;
+
+  src: url('/fonts/FiraSans/FiraSans-ExtraBoldItalic.woff2') format('woff2'),
+             url('/fonts/FiraSans/FiraSans-ExtraBoldItalic.woff') format('woff');
+}
+
+/* Tailwind component classes registered by plugins*/
+
+.prose {
+  color: #112c4a;
+  max-width: 65ch;
+}
+
+.prose a {
+  color: #112c4a;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.prose strong {
+  color: #111827;
+  font-weight: 600;
+}
+
+.prose ol {
+  counter-reset: list-counter;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+
+.prose ol > li {
+  position: relative;
+  counter-increment: list-counter;
+  padding-left: 1.75em;
+}
+
+.prose ol > li::before {
+  content: counter(list-counter) ".";
+  position: absolute;
+  font-weight: 400;
+  color: #6b7280;
+  left: 0;
+}
+
+.prose ul > li {
+  position: relative;
+  padding-left: 1.75em;
+}
+
+.prose ul > li::before {
+  content: "";
+  position: absolute;
+  background-color: #d1d5db;
+  border-radius: 50%;
+  width: 0.375em;
+  height: 0.375em;
+  top: calc(0.875em - 0.1875em);
+  left: 0.25em;
+}
+
+.prose hr {
+  border-color: #e5e7eb;
+  border-top-width: 1px;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.prose blockquote {
+  font-weight: 500;
+  font-style: italic;
+  color: #111827;
+  border-left-width: 0.25rem;
+  border-left-color: #e5e7eb;
+  quotes: "\201C""\201D""\2018""\2019";
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+  padding-left: 1em;
+}
+
+.prose blockquote p:first-of-type::before {
+  content: open-quote;
+}
+
+.prose blockquote p:last-of-type::after {
+  content: close-quote;
+}
+
+.prose h1 {
+  color: #112c4a;
+  font-weight: 800;
+  font-size: 2.25em;
+  margin-top: 0;
+  margin-bottom: 0.8888889em;
+  line-height: 1.1111111;
+}
+
+.prose h2 {
+  color: #112c4a;
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  line-height: 1.3333333;
+}
+
+.prose h3 {
+  color: #112c4a;
+  font-weight: 600;
+  font-size: 1.25em;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  line-height: 1.6;
+}
+
+.prose h4 {
+  color: #112c4a;
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.5;
+}
+
+.prose figure figcaption {
+  color: #6b7280;
+  font-size: 0.875em;
+  line-height: 1.4285714;
+  margin-top: 0.8571429em;
+}
+
+.prose code {
+  color: inherit;
+  font-weight: inherit;
+  font-size: 0.875em;
+  background-color: #f3ddb8;
+  border-color: #fecdd3;
+  border-width: 1px;
+  padding: .2rem .3rem;
+  border-radius: 0.3em;
+}
+
+.prose code::before {
+  content: none;
+}
+
+.prose code::after {
+  content: none;
+}
+
+.prose a code {
+  color: #111827;
+}
+
+.prose pre {
+  color: #e5e7eb;
+  background-color: #1f2937;
+  overflow-x: auto;
+  font-size: 0.875em;
+  line-height: 1.7142857;
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+  border-radius: 0.375rem;
+  padding-top: 0.8571429em;
+  padding-right: 1.1428571em;
+  padding-bottom: 0.8571429em;
+  padding-left: 1.1428571em;
+}
+
+.prose pre code {
+  background-color: transparent;
+  border-width: 0;
+  border-radius: 0;
+  padding: 0;
+  font-weight: 400;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+.prose pre code::before {
+  content: "";
+}
+
+.prose pre code::after {
+  content: "";
+}
+
+.prose table {
+  width: 100%;
+  table-layout: auto;
+  text-align: left;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 0.875em;
+  line-height: 1.7142857;
+}
+
+.prose thead {
+  color: #111827;
+  font-weight: 600;
+  border-bottom-width: 1px;
+  border-bottom-color: #d1d5db;
+}
+
+.prose thead th {
+  vertical-align: bottom;
+  padding-right: 0.5714286em;
+  padding-bottom: 0.5714286em;
+  padding-left: 0.5714286em;
+}
+
+.prose tbody tr {
+  border-bottom-width: 1px;
+  border-bottom-color: #e5e7eb;
+}
+
+.prose tbody tr:last-child {
+  border-bottom-width: 0;
+}
+
+.prose tbody td {
+  vertical-align: top;
+  padding-top: 0.5714286em;
+  padding-right: 0.5714286em;
+  padding-bottom: 0.5714286em;
+  padding-left: 0.5714286em;
+}
+
+.prose {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.prose p {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+
+.prose img {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.prose figure {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.prose figure > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.prose h2 code {
+  font-size: 0.875em;
+}
+
+.prose h3 code {
+  font-size: 0.9em;
+}
+
+.prose ul {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+
+.prose li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose > ul > li p {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.prose > ul > li > *:first-child {
+  margin-top: 1.25em;
+}
+
+.prose > ul > li > *:last-child {
+  margin-bottom: 1.25em;
+}
+
+.prose > ol > li > *:first-child {
+  margin-top: 1.25em;
+}
+
+.prose > ol > li > *:last-child {
+  margin-bottom: 1.25em;
+}
+
+.prose ul ul, .prose ul ol, .prose ol ul, .prose ol ol {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.prose hr + * {
+  margin-top: 0;
+}
+
+.prose h2 + * {
+  margin-top: 0;
+}
+
+.prose h3 + * {
+  margin-top: 0;
+}
+
+.prose h4 + * {
+  margin-top: 0;
+}
+
+.prose thead th:first-child {
+  padding-left: 0;
+}
+
+.prose thead th:last-child {
+  padding-right: 0;
+}
+
+.prose tbody td:first-child {
+  padding-left: 0;
+}
+
+.prose tbody td:last-child {
+  padding-right: 0;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose > :last-child {
+  margin-bottom: 0;
+}
+
+.body-link {
+  font-weight: 500;
+  transition-property: background-size;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.body-link:hover, .group:hover .hover-highlight{
+  background-size: 100% 80%;
+}
+
+.hover-highlight:hover, .group:hover .hover-highlight{
+  background-size: 100% 80%;
+}
+
+.body-link {
+  background-image: linear-gradient(0deg, #ffbe59 0 100%);
+  background-size: 100% 20%;
+  background-position: 0.2em bottom;
+  background-repeat: no-repeat;
+}
+
+/* Site Specific */
+
+/* Tailwind's utility classes - generated based on config file */
+
+.space-x-6 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+}
+
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+}
+
+.bg-lightBeige {
+  --tw-bg-opacity: 1;
+  background-color: rgba(253, 246, 227, var(--tw-bg-opacity));
+}
+
+.bg-darkBeige {
+  --tw-bg-opacity: 1;
+  background-color: rgba(243, 221, 184, var(--tw-bg-opacity));
+}
+
+.bg-darkGreenBlue {
+  --tw-bg-opacity: 1;
+  background-color: rgba(17, 44, 74, var(--tw-bg-opacity));
+}
+
+.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgba(229, 231, 235, var(--tw-border-opacity));
+}
+
+.border-darkSanguine {
+  --tw-border-opacity: 1;
+  border-color: rgba(197, 66, 56, var(--tw-border-opacity));
+}
+
+.border-darkGreenBlue {
+  --tw-border-opacity: 1;
+  border-color: rgba(17, 44, 74, var(--tw-border-opacity));
+}
+
+.border-opacity-10 {
+  --tw-border-opacity: 0.1;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.rounded-t-lg {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.rounded-b-lg {
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.border-dotted {
+  border-style: dotted;
+}
+
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
+.border-t {
+  border-top-width: 1px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.flex {
+  display: flex;
+}
+
+.table {
+  display: table;
+}
+
+.hidden {
+  display: none;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.self-center {
+  align-self: center;
+}
+
+.justify-items-center {
+  justify-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.font-display {
+  font-family: SpaceGrotesk, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+.h-40 {
+  height: 10rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.leading-normal {
+  line-height: 1.5;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.my-12 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mr-6 {
+  margin-right: 1.5rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mr-8 {
+  margin-right: 2rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
+}
+
+.mt-16 {
+  margin-top: 4rem;
+}
+
+.mt-48 {
+  margin-top: 12rem;
+}
+
+.-mb-2 {
+  margin-bottom: -0.5rem;
+}
+
+.-mt-8 {
+  margin-top: -2rem;
+}
+
+.max-w-xl {
+  max-width: 36rem;
+}
+
+.max-w-max {
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+}
+
+.max-w-prose {
+  max-width: 65ch;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.opacity-80 {
+  opacity: 0.8;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.pr-2 {
+  padding-right: 0.5rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
+.pl-0\.5 {
+  padding-left: 0.125rem;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.top-0 {
+  top: 0px;
+}
+
+.right-0 {
+  right: 0px;
+}
+
+* {
+  --tw-shadow: 0 0 #0000;
+}
+
+.hover\:shadow-lg:hover {
+  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+* {
+  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgba(59, 130, 246, 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+}
+
+.table-auto {
+  table-layout: auto;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgba(107, 114, 128, var(--tw-text-opacity));
+}
+
+.text-gray-600 {
+  --tw-text-opacity: 1;
+  color: rgba(75, 85, 99, var(--tw-text-opacity));
+}
+
+.text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgba(55, 65, 81, var(--tw-text-opacity));
+}
+
+.text-lightBeige {
+  --tw-text-opacity: 1;
+  color: rgba(253, 246, 227, var(--tw-text-opacity));
+}
+
+.text-highlight {
+  --tw-text-opacity: 1;
+  color: rgba(255, 190, 89, var(--tw-text-opacity));
+}
+
+.text-darkSanguine {
+  --tw-text-opacity: 1;
+  color: rgba(197, 66, 56, var(--tw-text-opacity));
+}
+
+.text-darkGreenBlue {
+  --tw-text-opacity: 1;
+  color: rgba(17, 44, 74, var(--tw-text-opacity));
+}
+
+.text-opacity-60 {
+  --tw-text-opacity: 0.6;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.tracking-wide {
+  letter-spacing: 0.025em;
+}
+
+.tracking-wider {
+  letter-spacing: 0.05em;
+}
+
+.w-8 {
+  width: 2rem;
+}
+
+.w-4\/5 {
+  width: 80%;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.transition {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-500 {
+  transition-duration: 500ms;
+}
+
+@-webkit-keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+@-webkit-keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    -webkit-animation-timing-function: cubic-bezier(0.8,0,1,1);
+            animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    -webkit-animation-timing-function: cubic-bezier(0,0,0.2,1);
+            animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    -webkit-animation-timing-function: cubic-bezier(0.8,0,1,1);
+            animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    -webkit-animation-timing-function: cubic-bezier(0,0,0.2,1);
+            animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+.text-container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .text-container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .text-container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .text-container {
+    max-width: 1280px;
+  }
+}
+
+.text-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .text-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .text-container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-container {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .text-container {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+.smol-padding {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .smol-padding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .smol-padding {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.wave {
+  height: 3rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .wave {
+    height: 4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .wave {
+    height: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wave {
+    height: 7rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .wave {
+    height: 9rem;
+  }
+}
+
+/* Should be applied alongside thick-underline-70/80 */
+
+.hover-highlight {
+  transition-property: background-size;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.hover-highlight:hover, .group:hover .hover-highlight{
+  background-size: 100% 80%;
+}
+
+.thick-underline-70 {
+  background-image: linear-gradient(0deg, #ffbe59 0 100%);
+  background-size: 100% 30%;
+  background-position: 0.2em bottom;
+  background-repeat: no-repeat;
+}
+
+.thick-underline-80 {
+  background-image: linear-gradient(0deg, #ffbe59 0 100%);
+  background-size: 100% 20%;
+  background-position: 0.2em bottom;
+  background-repeat: no-repeat;
+}
+
+.group:hover .group-hover\:animate-bounce-h {
+  -webkit-animation: bounce-h 1s infinite;
+          animation: bounce-h 1s infinite;
+}
+
+@-webkit-keyframes bounce-h {
+  0%, 100% {
+    transform: translateX();
+    animationTimingFunction: cubic-bezier(0.8, 0, 1, 1);
+  }
+
+  50% {
+    transform: translateX(25%);
+    animationTimingFunction: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes bounce-h {
+  0%, 100% {
+    transform: translateX();
+    animationTimingFunction: cubic-bezier(0.8, 0, 1, 1);
+  }
+
+  50% {
+    transform: translateX(25%);
+    animationTimingFunction: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Doesn't work in base layer for some reason ? */
+
+.prose a {
+  font-weight: 500;
+  transition-property: background-size;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.prose a:hover, .group:hover .hover-highlight{
+  background-size: 100% 80%;
+}
+
+.hover-highlight:hover, .group:hover .hover-highlight{
+  background-size: 100% 80%;
+}
+
+.prose a {
+  background-image: linear-gradient(0deg, #ffbe59 0 100%);
+  background-size: 100% 20%;
+  background-position: 0.2em bottom;
+  background-repeat: no-repeat;
+  text-decoration: none;
+}
+
+/* CSS below mostly used for sidenotes */
+
+.ast-before::before {
+  color: #C54238;
+  content: '\002a';
+}
+
+.ast-after::after {
+  color: #C54238;
+  display: inline-block;
+  content: '\002a';
+}
+
+/* No idea how to achieve that in Tailwind CSS */
+
+@media screen and (max-width: 1023px) {
+  .sn_check:checked ~ .sn_content {
+    position: relative;
+    left: auto;
+    display: block;
+    margin: 0.8rem 0;
+    padding: 0 1rem;
+    /* Counteracts Tailwind's sr-only utilities */
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
+
+@media (min-width: 640px) {
+
+  .sm\:block {
+    display: block;
+  }
+
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:hidden {
+    display: none;
+  }
+
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+
+  .sm\:text-8xl {
+    font-size: 6rem;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 768px) {
+
+  .md\:block {
+    display: block;
+  }
+
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .md\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .md\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .md\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+
+  .md\:mr-8 {
+    margin-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  .lg\:not-sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  .lg\:border-none {
+    border-style: none;
+  }
+
+  .lg\:cursor-default {
+    cursor: default;
+  }
+
+  .lg\:block {
+    display: block;
+  }
+
+  .lg\:hidden {
+    display: none;
+  }
+
+  .lg\:float-right {
+    float: right;
+  }
+
+  .lg\:clear-right {
+    clear: right;
+  }
+
+  .lg\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .lg\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .lg\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .lg\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+
+  .lg\:text-9xl {
+    font-size: 8rem;
+    line-height: 1;
+  }
+
+  .lg\:mt-4 {
+    margin-top: 1rem;
+  }
+
+  .lg\:ml-1\.5 {
+    margin-left: 0.375rem;
+  }
+
+  .lg\:-mr-80 {
+    margin-right: -20rem;
+  }
+
+  .lg\:max-w-3xl {
+    max-width: 48rem;
+  }
+
+  .lg\:relative {
+    position: relative;
+  }
+
+  .lg\:left-0 {
+    left: 0px;
+  }
+
+  .lg\:text-current {
+    color: currentColor;
+  }
+
+  .lg\:w-64 {
+    width: 16rem;
+  }
+}
+
+@media (min-width: 1280px) {
+
+  .xl\:prose-lg {
+    font-size: 1.125rem;
+    line-height: 1.7777778;
+  }
+
+  .xl\:prose-lg p {
+    margin-top: 1.3333333em;
+    margin-bottom: 1.3333333em;
+  }
+
+  .xl\:prose-lg blockquote {
+    margin-top: 1.6666667em;
+    margin-bottom: 1.6666667em;
+    padding-left: 1em;
+  }
+
+  .xl\:prose-lg h1 {
+    font-size: 2.6666667em;
+    margin-top: 0;
+    margin-bottom: 0.8333333em;
+    line-height: 1;
+  }
+
+  .xl\:prose-lg h2 {
+    font-size: 1.6666667em;
+    margin-top: 1.8666667em;
+    margin-bottom: 1.0666667em;
+    line-height: 1.3333333;
+  }
+
+  .xl\:prose-lg h3 {
+    font-size: 1.3333333em;
+    margin-top: 1.6666667em;
+    margin-bottom: 0.6666667em;
+    line-height: 1.5;
+  }
+
+  .xl\:prose-lg h4 {
+    margin-top: 1.7777778em;
+    margin-bottom: 0.4444444em;
+    line-height: 1.5555556;
+  }
+
+  .xl\:prose-lg img {
+    margin-top: 1.7777778em;
+    margin-bottom: 1.7777778em;
+  }
+
+  .xl\:prose-lg figure {
+    margin-top: 1.7777778em;
+    margin-bottom: 1.7777778em;
+  }
+
+  .xl\:prose-lg figure > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .xl\:prose-lg figure figcaption {
+    font-size: 0.8888889em;
+    line-height: 1.5;
+    margin-top: 1em;
+  }
+
+  .xl\:prose-lg code {
+    font-size: 0.8888889em;
+  }
+
+  .xl\:prose-lg h2 code {
+    font-size: 0.8666667em;
+  }
+
+  .xl\:prose-lg h3 code {
+    font-size: 0.875em;
+  }
+
+  .xl\:prose-lg pre {
+    font-size: 0.8888889em;
+    line-height: 1.75;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    border-radius: 0.375rem;
+    padding-top: 1em;
+    padding-right: 1.5em;
+    padding-bottom: 1em;
+    padding-left: 1.5em;
+  }
+
+  .xl\:prose-lg ol {
+    margin-top: 1.3333333em;
+    margin-bottom: 1.3333333em;
+  }
+
+  .xl\:prose-lg ul {
+    margin-top: 1.3333333em;
+    margin-bottom: 1.3333333em;
+  }
+
+  .xl\:prose-lg li {
+    margin-top: 0.6666667em;
+    margin-bottom: 0.6666667em;
+  }
+
+  .xl\:prose-lg ol > li {
+    padding-left: 1.6666667em;
+  }
+
+  .xl\:prose-lg ol > li::before {
+    left: 0;
+  }
+
+  .xl\:prose-lg ul > li {
+    padding-left: 1.6666667em;
+  }
+
+  .xl\:prose-lg ul > li::before {
+    width: 0.3333333em;
+    height: 0.3333333em;
+    top: calc(0.8888889em - 0.1666667em);
+    left: 0.2222222em;
+  }
+
+  .xl\:prose-lg > ul > li p {
+    margin-top: 0.8888889em;
+    margin-bottom: 0.8888889em;
+  }
+
+  .xl\:prose-lg > ul > li > *:first-child {
+    margin-top: 1.3333333em;
+  }
+
+  .xl\:prose-lg > ul > li > *:last-child {
+    margin-bottom: 1.3333333em;
+  }
+
+  .xl\:prose-lg > ol > li > *:first-child {
+    margin-top: 1.3333333em;
+  }
+
+  .xl\:prose-lg > ol > li > *:last-child {
+    margin-bottom: 1.3333333em;
+  }
+
+  .xl\:prose-lg ul ul, .xl\:prose-lg ul ol, .xl\:prose-lg ol ul, .xl\:prose-lg ol ol {
+    margin-top: 0.8888889em;
+    margin-bottom: 0.8888889em;
+  }
+
+  .xl\:prose-lg hr {
+    margin-top: 3.1111111em;
+    margin-bottom: 3.1111111em;
+  }
+
+  .xl\:prose-lg hr + * {
+    margin-top: 0;
+  }
+
+  .xl\:prose-lg h2 + * {
+    margin-top: 0;
+  }
+
+  .xl\:prose-lg h3 + * {
+    margin-top: 0;
+  }
+
+  .xl\:prose-lg h4 + * {
+    margin-top: 0;
+  }
+
+  .xl\:prose-lg table {
+    font-size: 0.8888889em;
+    line-height: 1.5;
+  }
+
+  .xl\:prose-lg thead th {
+    padding-right: 0.75em;
+    padding-bottom: 0.75em;
+    padding-left: 0.75em;
+  }
+
+  .xl\:prose-lg thead th:first-child {
+    padding-left: 0;
+  }
+
+  .xl\:prose-lg thead th:last-child {
+    padding-right: 0;
+  }
+
+  .xl\:prose-lg tbody td {
+    padding-top: 0.75em;
+    padding-right: 0.75em;
+    padding-bottom: 0.75em;
+    padding-left: 0.75em;
+  }
+
+  .xl\:prose-lg tbody td:first-child {
+    padding-left: 0;
+  }
+
+  .xl\:prose-lg tbody td:last-child {
+    padding-right: 0;
+  }
+
+  .xl\:prose-lg > :first-child {
+    margin-top: 0;
+  }
+
+  .xl\:prose-lg > :last-child {
+    margin-bottom: 0;
+  }
+
+  .xl\:block {
+    display: block;
+  }
+
+  .xl\:hidden {
+    display: none;
+  }
+
+  .xl\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .xl\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .xl\:-mr-110 {
+    margin-right: -28rem;
+  }
+
+  .xl\:w-88 {
+    width: 22rem;
+  }
+}
