@@ -4,7 +4,12 @@
         <h1>
             {{ .Title }}
         </h1>
-        <div class="-mt-8 text-gray-500 tracking-wide">
+        {{ with .Params.subtitle }}
+        <div class="-mt-8 text-darkSanguine font-medium text-lg xl:text-xl">
+            {{ safeHTML . }}
+        </div>
+        {{ end }}
+        <div class="text-gray-500 tracking-wide">
             <time class="uppercase">
                 {{ .Date.Format "January 2, 2006" }}
             </time>

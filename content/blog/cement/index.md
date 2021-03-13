@@ -2,10 +2,12 @@
 title: "A primer on cement & concrete from the climate lens"
 subtitle: "We can't replace it and we can't take the CO2 out of it. How do we deal with it?"
 description: "The concrete industry is fundamental for our civilisation, yet will be incredibly hard to decarbonise. Here's what I learned from working on long term roadmaps towards net-zero cement."
-date: 2020-10-21
+date: 2021-02-21
 math: true
 layout: 'post'
 ---
+
+_WIP: this article is not yet complete. I am still gathering feedback and information to finalize this guide. If you arrived here, I would be very happy to hear about your thoughts on the article._
 
 _This is the first post in a series about the cement & concrete industries and their place in the climate fight. It provides a general introduction to the subject, with some surprising facts I discovered along the way._
  

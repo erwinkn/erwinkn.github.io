@@ -21,7 +21,7 @@
                         </h3>
                         {{ with .Params.subtitle }}
                         <div class="font-semibold opacity-80 text-gray-600">
-                            {{ . }}
+                            {{ safeHTML . }}
                         </div>
                         {{ end }}
                         {{ with .Description }}
