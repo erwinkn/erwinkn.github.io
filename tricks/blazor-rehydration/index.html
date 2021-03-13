@@ -1,9 +1,112 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Transfering state from server to client in a Blazor component - Erwin Kuhn</title><meta name=description content="Blazor's server-side prerendering feels amazing, because you get something on the page instantly. Except the first time I used it, the whole page flashed with every refresh."><meta name=author content="Erwin Kuhn"><meta name=generator content="Hugo 0.81.0"><link rel=stylesheet href=https://erwinkn.com/css/styles.min.689177e16dac331b92c3e89d7f168792fcda46cf26139e8fd254512f54fbbd59.css integrity=sha256-aJF34W2sMxuSw+idfxaHkvzaRs8mE56P0lRRL1T7vVk=></head><body class="flex flex-col min-h-screen bg-lightBeige xl:text-lg"><header class="flex flex-col justify-between bg-darkGreenBlue"><nav class="text-container mt-12 pb-4 text-lightBeige"><a href=https://erwinkn.com/ class="font-semibold font-display tracking-wider text-5xl md:text-6xl">Erwin Kuhn</a><div class="font-medium pl-0.5 text-xl md:text-2xl flex flex-wrap space-x-6 my-2 justify-items-center text-beige"><a class="block underline-beige" href=/about/>About</a>
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Transfering state from server to client in a Blazor component - Erwin Kuhn</title><meta name=description content="Blazor's server-side prerendering feels amazing, because you get something on the page instantly. Except the first time I used it, the whole page flashed with every refresh."><meta name=author content="Erwin Kuhn"><meta name=generator content="Hugo 0.81.0"><link rel=stylesheet href=https://erwinkn.com/css/bundle.min.0220fc7eab6cb495ae81f6bd7c51f6567fae520c8fdbe810ea5069c235d80600.css integrity><script type=text/javascript src=https://erwinkn.com/prism/prism.js></script></head><body class="flex flex-col min-h-screen bg-lightBeige xl:text-lg"><header class="flex flex-col justify-between bg-darkGreenBlue"><nav class="text-container mt-12 pb-4 text-lightBeige"><a href=https://erwinkn.com/ class="font-semibold font-display tracking-wider text-5xl md:text-6xl">Erwin Kuhn</a><div class="font-medium pl-0.5 text-xl md:text-2xl flex flex-wrap space-x-6 my-2 justify-items-center text-beige"><a class="block underline-beige" href=/about/>About</a>
 <a class="block underline-beige" href=/blog/>Blog</a>
 <a class="block underline-beige" href=/now/>Now</a>
-<a class="block underline-beige underline" href=/tricks/>Tricks</a></div></nav><div class=text-lightBeige><svg class="wave" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320"><path fill="currentcolor" fill-opacity="1" d="M0 128l48 16c48 16 144 48 240 37.3C384 171 480 117 576 90.7 672 64 768 64 864 80s192 48 288 53.3C1248 139 1344 117 1392 106.7L1440 96V320h-48c-48 0-144 0-240 0s-192 0-288 0-192 0-288 0-192 0-288 0-192 0-240 0H0z"/></svg></div></header><main class="flex-1 w-full text-darkGreenBlue"><article class=text-container><div class="prose xl:prose-lg"><h1>Transfering state from server to client in a Blazor component</h1><div class="-mt-8 text-gray-500 tracking-wide"><time class=uppercase>March 10, 2021</time>
+<a class="block underline-beige underline" href=/tricks/>Tricks</a></div></nav><div class=text-lightBeige><svg class="wave" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320"><path fill="currentcolor" fill-opacity="1" d="M0 128l48 16c48 16 144 48 240 37.3C384 171 480 117 576 90.7 672 64 768 64 864 80s192 48 288 53.3C1248 139 1344 117 1392 106.7L1440 96V320h-48c-48 0-144 0-240 0s-192 0-288 0-192 0-288 0-192 0-288 0-192 0-240 0H0z"/></svg></div></header><main class="flex-1 w-full text-darkGreenBlue"><article class="text-container mt-10"><div class="prose xl:prose-lg"><h1>Transfering state from server to client in a Blazor component</h1><div class="-mt-8 text-darkSanguine font-medium text-lg xl:text-xl">Or how to solve the "flash" problem with Blazor server-side prerendering</div><div class="text-gray-500 tracking-wide"><time class=uppercase>March 10, 2021</time>
 <span>&#183;</span>
-<span>0 min</span></div></div></article></main><footer class="w-full mt-48 text-center border-t border-darkGreenBlue border-opacity-10 p-4 text-xs text-darkGreenBlue text-opacity-60"><p>made with
+<span>6 min</span></div><p>I wanted to brush up my <a href=https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor>Blazor</a> skills. I had been <span><input aria-label="Show sidenote" type=checkbox id=sn_check-1 class="sn_check hidden">
+<label tabindex=0 title="I&rsquo;ll give an introduction to …" aria-describedby=sidenote-1 for=sn_check-1 class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
+lg:cursor-default lg:border-none lg:text-current">using the new .NET framework</label>
+<small id=sidenote-1 class="sn_content ast-before sr-only flex
+lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
+lg:w-64 lg:-mr-80
+xl:w-88 xl:-mr-110"><span class=sr-only>(sidenote:</span>
+<span class="lg:ml-1.5 leading-normal">I&rsquo;ll give an introduction to Blazor and the whole experience of putting it into production in a separate blog post.</span>
+<span class=sr-only>)</span></small></span> in my work with <a href=https://www.vicat.fr/>Vicat</a>, an international cement & concrete group based in France, to develop a modelling tool for long term roadmaps towards carbon neutrality. Coding with it was a joy, but I had doubts about its overall performance.</p><p>Since there&rsquo;s no better way to put a framework to the test than to build something and optimize the hell out of it, I decided to make a good old Hacker News reader using Blazor WebAssembly. That way, I could compare it with <a href=https://hnpwa.com/>the myriad of other implementations</a> out there.</p><p>You can see the final result of the standalone version, hosted on GitHub Pages, <a href=https://erwinkn.com/hnpwa-blazor/>here</a>.</p><p>The last step was to implement server-side prerendering. It enables the server to compute the HTML for the first page and serve it to the client instantly, while the Blazor runtime downloads in the background. I&rsquo;ll skip over the implementation, which is <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/components/prerendering-and-integration?view=aspnetcore-5.0&pivots=webassembly#configuration">described in the docs</a>. Overall, it&rsquo;s easy to setup - but it requires a server, so say goodbye to static hosting like GitHub Pages.</p><p>The results felt really nice: no more loading indicators, instant content! Except&mldr; the whole page rendered then disappeared then rendered again every time you opened the app.</p><figure><img src=imgs/blazor-flash.gif alt="Initial HTML render followed by reloading of the page"><figcaption><p>See that loading indicator that appears after the browser gets the page?</p></figcaption></figure><p>Turns out, your component logic will execute twice: once on the server, once in the client. That&rsquo;s <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/components/lifecycle?view=aspnetcore-5.0#stateful-reconnection-after-prerendering">in the docs</a>. What&rsquo;s <em>not</em> in the docs is that if you have an asynchronous API call in there, Blazor will refresh the page as soon as the call goes off, and render elements as the data arrives. Normally that&rsquo;s great, it makes the page more responsive. In our case that&rsquo;s really bad, because we get this &ldquo;flash&rdquo;.</p><p>If you dig a bit deeper, the fundamental problem here is that there is no state transfer between the server and the client. In other frameworks, this technique is called <a href=https://www.aboutmonica.com/blog/server-side-rendering-react-hydration-best-practices>rehydration</a>. The documentation linked above provides a way to solve this problem for Blazor Server, but says nothing about pre-rendering for Blazor WebAssembly.</p><p>So, here is how you do state rehydration in a Blazor WebAssembly app pre-rendered on a server:</p><figure><img src=imgs/serialized-state.jpg alt="Serialized state in code source of the page"><figcaption><p>Elegant, right?</p></figcaption></figure><p>Yep, you just serialize everything and dump it onto the page.</p><p>Once the client receives the page, it can read the state directly and avoids doing the initial API call.</p><p>The idea here is to replace all your API calls with a service that will take care of serializing / deserializing the state. You provide with a function wrapping the API call, so that it can execute it on its own, and a key to store or retrieve the result.</p><pre><code class=language-csharp>
+MyType items = await Cache.GetOrAdd(
+    key,
+    () => HttpClient.GetFromJsonAsync&lt;MyType>("api/endpoint"));
+</code></pre><p>Alright, time to dig into the code of our <code>Cache</code> service.</p><p>If it&rsquo;s running on the server, the <code>Cache</code> service does the API call and stores the result in a dictionary. This dictionary will be used down the line to serialize everything onto the page.</p><pre><code class=language-csharp>
+private Dictionary&lt;string, object> Items { get; set; }
+    = new Dictionary&lt;string, object>();
+
+public async Task&lt;TResult> GetOrAdd&lt;TResult>(
+    string key, Func&lt;Task<&lt;TResult>> call)
+{
+    if(IsRunningOnServer)
+    {
+        var data = await call();
+        Items[key] = data;
+        return data;
+    }
+    else
+    {
+        // Read from page
+    }
+}
+</code></pre><p>But before that, we have to elucidate something: how does the <code>Cache</code> service know whether it&rsquo;s running on the server or in the browser?</p><p>A simple way to do that is to check whether or not we have access to a JavaScript runtime.</p><pre><code class=language-csharp>
+private readonly IJSRuntime jsRuntime;
+public Cache(IJSRuntime js)
+{
+    jsRuntime = js;
+}
+bool IsRunningOnServer =>
+    jsRuntime.GetType().Name == "UnsupportedJavaScriptRuntime";
+</code></pre><p>Note that the JavaScript runtime we just injected will also be useful when we need to read the state from the page, as Blazor cannot interact with the DOM directly.</p><p>Now that the result of all our API calls have been stored in the dictionary, it&rsquo;s time to serialize everything onto the page. For this, we&rsquo;ll use a JavaScript object that will hold our data and provide us a function to retrieve it afterwards.</p><p>This JavaScript object is created by a <code>CacheStore.razor</code> component in <code>Server/Components</code></p><pre><code class=language-html>
+@inject Cache Cache
+&lt;script type="text/javascript">
+    window.Cache = {
+        cache: @(new MarkupString(Cache.Write())),
+        load: () => window.Cache.cache
+    }
+&lt;/script>
+</code></pre><p>The <code>Cache.Write</code> function simply serializes our dictionary:<pre><code class=language-csharp>
+public string Write() => JsonSerializer.Serialize(Items);
+</code></pre></p><p>Finally, we embed our <code>CacheStore.razor</code> in the <code>_Host.cshtml</code> page on our server.<pre><code class=language-html>
+&lt;component
+    type="typeof(HnpwaBlazor.Server.Components.CacheStore)"
+    render-mode="Static" />
+</code></pre></p><p>Alright, that gives you everything you need to get that beautiful serialized state onto your page that we&rsquo;ve seen above. Now, it&rsquo;s time to read from it.</p><p>Once again, this happens in our <code>Cache</code> service. The first time someone calls the <code>GetOrAdd</code> method on the client, the cache loads the <code>Items</code> dictionary by calling the JavaScript function defined above.</p><p>For all subsequent calls, the <code>Cache</code> takes the result from the dictionary and returns it, or does an API call if it cannot find it.</p><pre><code class=language-csharp>
+private bool HasLoaded { get; set; }
+public async Task&lt;TResult> GetOrAdd&lt;TResult>(
+    string key, Func&lt;Task<&lt;TResult>> call)
+{
+    if(IsRunningOnServer)
+    {
+        // We saw this already
+    }
+    else
+    {
+        if(!HasLoaded)
+        {
+            Items = await jsRuntime.InvokeAsync
+                        &lt;Dictionary&lt;string, object>>("Cache.load");
+            HasLoaded = true;
+        }
+        it(Items.Remove(key, out var item))
+        {
+            var json = JsonSerializer.Serialize(item);
+            return JsonSerializer.Deserialize<tresult>(json);
+        }
+        return await call();
+    }
+}
+</code></pre><p>Note that since all our API calls go through the <code>Cache</code> service, we remove the items from the dictionary to make sure that the requests are executed normally afterwards.</p><p>Alright, we&rsquo;re nearly done here! The last thing we need to do is to register our <code>Cache</code> service for both the client and server and inject it into components.</p><pre><code class=language-csharp>
+/* In Server/Startup.cs */
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddScoped&lt;Cache>();
+    // ...
+}
+
+/* In Client/Program.cs */
+public static async Task Main(string[] args)
+{
+    // ...
+    builder.AddScoped&lt;Cache>();
+    // ...
+}
+
+/* In some component */
+@inject Cache Cache
+// markup
+@code {
+    // ...
+    MyType items = await Cache.GetOrAdd(
+        key,
+        () => HttpClient.GetFromJsonAsync&lt;MyType>("api/endpoint"));
+    // ...
+}
+</code></pre><p>If you want to look at an actual implementation, my Hacker News Blazor reader is running <a href=https://hn-blazor.azurewebsites.net/>here</a> and the code is available on <a href=https://github.com/erwinkn/hnpwa-blazor>GitHub</a>.</p><p>For the things I presented here, you&rsquo;ll mostly want to look into the <a href=https://github.com/erwinkn/hnpwa-blazor/tree/main/Shared><code>Shared</code> folder</a>. There&rsquo;s additional trickery involved with another <code>ApiService</code> on top of cache because I have a build process that publishes the app both as standalone and server-hosted. Feel free to ignore that.</p><p>Hope this proves useful and feel free to <a href=mailto:erwin.kuhn@protonmail.com>contact me</a> if anything seems unclear.</p></div></article></main><footer class="w-full mt-48 text-center border-t border-darkGreenBlue border-opacity-10 p-4 text-xs text-darkGreenBlue text-opacity-60"><p>made with
 <a href=https://gohugo.io class="thick-underline-70 hover-highlight">Hugo</a>
 and
 <a href=https://tailwindcss.com class="thick-underline-70 hover-highlight">TailwindCSS</a></p></footer></body></html>
