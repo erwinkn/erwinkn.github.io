@@ -82,11 +82,11 @@ Note that the JavaScript runtime we just injected will also be useful when we ne
 
 Now that the result of all our API calls have been stored in the dictionary, it's time to serialize everything onto the page. For this, we'll use a JavaScript object that will hold our data and provide us a function to retrieve it afterwards.
 
-This JavaScript object is created by a `CacheStore.razor` component in `Server/Components`
+This JavaScript object is created by a `CacheStore.razor` component in `Server/Components`. The `supress-error` attribute is necessary, otherwise the compiler won't accept a `<script>` tag  in a Razor component. Don't worry, it works fine 😁
 
 {{< code-block language="html">}}
 @inject Cache Cache
-&lt;script type="text/javascript">
+&lt;script suppress-error="BL9992" type="text/javascript">
     window.Cache = {
         cache: @(new MarkupString(Cache.Write())),
         load: () => window.Cache.cache
@@ -105,6 +105,8 @@ Finally, we embed our `CacheStore.razor` in the `_Host.cshtml` page on our serve
     type="typeof(HnpwaBlazor.Server.Components.CacheStore)"
     render-mode="Static" />
 {{< /code-block >}}
+
+<span class="text-darkSanguine font-semibold">Important!</span> The component should be placed at the very end of `_Host.cshtml`, right before the closing `</body>` tag, to make sure all the components have loaded before it writes the state on the page.
 
 Alright, that gives you everything you need to get that beautiful serialized state onto your page that we've seen above. Now, it's time to read from it.
 

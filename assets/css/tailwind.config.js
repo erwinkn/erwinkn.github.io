@@ -1,3 +1,4 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 const plugin = require('tailwindcss/plugin')
 
@@ -26,7 +27,22 @@ module.exports = {
             h4: {
               color: theme('colors.darkGreenBlue'),
             },
-
+            code: {
+              color: "inherit",
+              backgroundColor: theme('colors.darkBeige'),
+              borderColor: colors.rose[200],
+              borderWidth: '1px',
+              padding: '.2rem .3rem',
+	            borderRadius: '0.3em',
+              fontWeight: "inherit",
+              fontSize: "0.875em",
+            },
+            'code::after': {
+              content: "none",
+            },
+            'code::before': {
+              content: "none",
+            },
           },
         },
       }),
