@@ -108,7 +108,7 @@ Finally, we embed our `CacheStore.razor` in the `_Host.cshtml` page on our serve
 
 <span class="text-darkSanguine font-semibold">Important!</span> The component should be placed at the very end of `_Host.cshtml`, right before the closing `</body>` tag, to make sure all the components have loaded before it writes the state on the page.
 
-Alright, that gives you everything you need to get that beautiful serialized state onto your page that we've seen above. Now, it's time to read from it.
+With this, you have everything you need to get that beautiful serialized state that we've seen above. Now, it's time to read from it.
 
 Once again, this happens in our `Cache` service. The first time someone calls the `GetOrAdd` method on the client, the cache loads the `Items` dictionary by calling the JavaScript function defined above.
 

@@ -22,13 +22,10 @@
     {{ $css := slice $prismcss $styles | resources.Concat "css/bundle.css" }}
     {{ $prismjs := resources.Get "prism/prism.js" }}
 
-    {{- if .Site.IsServer }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+    {{ if hugo.IsProduction }}
+    {{ $css := $css | minify | fingerprint | resources.PostProcess }}
+    {{ end }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
     <script type="text/javascript" src="{{ $prismjs.RelPermalink }}"></script>
-    {{ else }}
-    {{- $css := $css | minify | fingerprint | resources.PostProcess -}}
-    <link rel="stylesheet" href="{{ $css.Permalink }}" integrity="{{ $styles.Data.Integrity }}">
-    <script type="text/javascript" src="{{ $prismjs.Permalink }}"></script>
-    {{ end -}}
     
 </head>
