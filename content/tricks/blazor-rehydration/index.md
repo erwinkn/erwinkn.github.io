@@ -177,4 +177,4 @@ If you want to look at an actual implementation, my Hacker News Blazor reader is
 
 For the things I presented here, you'll mostly want to look into the [`Shared` folder](https://github.com/erwinkn/hnpwa-blazor/tree/main/Shared). There's additional trickery involved with another `ApiService` on top of cache because I have a build process that publishes the app both as standalone and server-hosted. Feel free to ignore that.
 
-Hope this proves useful and feel free to [contact me](mailto:erwin.kuhn@protonmail.com) if anything seems unclear.
+Hope this proves useful and feel free to [contact me](mailto:erwin.kuhn@protonmail.com) if anything seems unclear!
