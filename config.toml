@@ -1,15 +1,10 @@
 baseURL = "https://erwinkn.com/"
 languageCode = "en-us"
 title = "Erwin Kuhn"
-sectionPagesMenu = "main"
+author = "Erwin Kuhn"
 
 [params]
-description = "Erwin's Blog"
-
-[markup]
-    [markup.goldmark]
-        [markup.goldmark.renderer]
-            unsafe=true
+description = "Now: I write code for the climate. Previously: food photographer, (involuntary) influencer and data markets researcher."
 
 [menu]
     [[menu.main]]
@@ -38,3 +33,9 @@ tag = "tags"
 
 [build]
 writeStats = true
+
+[markup]
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+            unsafe=true
+
