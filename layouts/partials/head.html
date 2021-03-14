@@ -44,7 +44,7 @@
     <!-- Styles -->
     {{ $prismcss := resources.Get "prism/prism.css" }}
     {{ $styles := resources.Get "css/styles.css" }}
-    {{ $styles := postCSS (dict "config" "./assets/css/postcss.config.js") $styles -}}
+    {{ $styles := $styles | postCSS (dict "config" "./assets/css/postcss.config.js") }}
     {{ $css := slice $prismcss $styles | resources.Concat "css/bundle.css" }}
     {{ $prismjs := resources.Get "prism/prism.js" }}
 
