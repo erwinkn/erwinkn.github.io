@@ -29,12 +29,14 @@
 
     @variants hover, group-hover {
         .thick-underline-70 {
+            display: inline;
             background-image: linear-gradient(0deg, #ffbe59 0 100%);
             background-size: 100% 30%;
             background-position: 0.2em bottom;
             background-repeat: no-repeat;
         }
         .thick-underline-80 {
+            display: inline;
             background-image: linear-gradient(0deg, #ffbe59 0 100%);
             background-size: 100% 20%;
             background-position: 0.2em bottom;
