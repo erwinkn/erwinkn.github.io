@@ -22,7 +22,10 @@ jobs:
         with:
           hugo-version: 'latest'
 
-      - name: Build
+      - name: Build first time for hugo_stats
+        run: hugo --minify
+
+      - name: Build second time for full CSS
         run: hugo --minify
 
       - name: Deploy
