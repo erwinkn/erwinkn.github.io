@@ -4,7 +4,7 @@
             {{ .Site.Title }}
         </a>
         <!-- pl-0.5 is needed for proper alignment with the site title -->
-        <div class="text-xl md:text-2xl lg:text-3xl mt-3 font-medium flex flex-wrap space-x-4 justify-items-center">
+        <div class="text-xl md:text-2xl lg:text-3xl mt-1 font-medium flex flex-wrap space-x-4 justify-items-center">
             {{ $currentPage := . }}
             {{ range .Site.Menus.main }}
             {{ $isSection := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}

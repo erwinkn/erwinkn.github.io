@@ -1,5 +1,5 @@
 ---
-title: "Transfering state from server to client in a Blazor component"
+title: "Transfering state from server to client with Blazor WASM and prerendering"
 subtitle: "Or how to solve the \"flash\" problem with Blazor server-side prerendering"
 description: "Blazor's server-side prerendering feels amazing, because you get something on the page instantly. Except the first time I used it, the whole page flashed with every refresh."
 author: "Erwin Kuhn"
@@ -107,7 +107,7 @@ Finally, we embed our `CacheStore.razor` in the `_Host.cshtml` page on our serve
     render-mode="Static" />
 {{< /code-block >}}
 
-<span class="text-darkSanguine font-semibold">Important!</span> The component should be placed at the very end of `_Host.cshtml`, right before the closing `</body>` tag, to make sure all the components have loaded before it writes the state on the page.
+{{< important >}}Important!{{< /important >}} The component should be placed at the very end of `_Host.cshtml`, right before the closing `</body>` tag, to make sure all the components have loaded before it writes the state on the page.
 
 With this, you have everything you need to get that beautiful serialized state that we've seen above. Now, it's time to read from it.
 

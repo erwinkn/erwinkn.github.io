@@ -1,0 +1,67 @@
+<!-- Title -->
+{{ if .IsHome }}
+<title itemprop="name">{{ .Site.Title }}</title>
+<meta property="og:title" content="{{ .Site.Title }}" >
+<meta name="twitter:title" content="{{ .Site.Title }}" >
+{{ else }}
+<title>{{ .Title }}</title>
+<meta property="og:title" content="{{ .Title }}" >
+<meta name="twitter:title" content="{{ .Title }}" >
+{{ end }}
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<!-- Description -->
+{{- if .Description }}
+<meta name="description" content="{{ .Description }}" >
+<meta property="og:description" content="{{ .Description }}" >
+<meta name="twitter:description" content="{{ .Description }}" >
+{{ end -}}
+<!-- Keywords -->
+{{- with .Keywords }}
+<meta name="keywords" content="{{ delimit . "," }}" >
+{{ end -}}
+<!-- Page type -->
+<meta name="twitter:card" content="summary">
+{{ if or (eq .Section "blog") (eq .Section "tricks") }}
+<meta property="og:type" content="article" >
+{{ else }}
+<meta property="og:type" content="website" >
+{{ end }}
+<!-- Author -->
+<meta name="author" content="{{ .Site.Author}}" >
+<meta name="twitter:creator" content="@erwinkhn" >
+<meta name="twitter:site" content="@erwinkhn">
+<!-- Image -->
+{{ with .Params.image }} 
+  <meta itemprop="image" content="{{ . | absURL }}" />
+  <meta property="og:image" content="{{ . | absURL }}" /> 
+  <meta name="twitter:image" content="{{ . | absURL }}" />
+  <meta name="twitter:image:src" content="{{ . | absURL }}" />
+{{ else }}
+  <meta itemprop="image" content="{{ .Site.Params.image | absURL }}" />
+  <meta property="og:image" content="{{ .Site.Params.image | absURL }}" />
+  <meta name="twitter:image" content="{{ .Site.Params.image | absURL }}" />
+  <meta name="twitter:image:src" content="{{ .Site.Params.image | absURL }}" /> 
+{{ end }}
+<!-- Self-referential canonical and other URLs -->
+<link rel="canonical" href="{{ .Permalink }}" >
+<meta property="twitter:url" content="{{ .Permalink }}">
+<meta property="og:url" content="{{ .Permalink }}" >
+<!-- Robots tag -->
+{{ if .Params.noindex }}
+<meta name="robots" content="noindex" >
+{{ else }}
+<meta name="robots" content="index,follow" /> 
+<meta name="googlebot" content="index,follow" />
+{{ end }}
+
+<!-- Generator -->
+{{ hugo.Generator }}
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<!-- Theme color (see lightBeige in Tailwind config) -->
+<meta name="theme-color" content="#fdf6e3">
