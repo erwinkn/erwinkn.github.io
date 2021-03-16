@@ -1286,6 +1286,10 @@ img {
   border-bottom-width: 2px;
 }
 
+.border-l-4 {
+  border-left-width: 4px;
+}
+
 .border-t {
   border-top-width: 1px;
 }
@@ -1412,8 +1416,8 @@ img {
   margin-bottom: 0.25rem;
 }
 
-.mt-2 {
-  margin-top: 0.5rem;
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 
 .mt-3 {
@@ -1490,6 +1494,11 @@ img {
   padding: 1rem;
 }
 
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
 .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -1513,6 +1522,10 @@ img {
 .py-16 {
   padding-top: 4rem;
   padding-bottom: 4rem;
+}
+
+.pl-4 {
+  padding-left: 1rem;
 }
 
 * {
@@ -1569,6 +1582,10 @@ img {
 
 .text-opacity-60 {
   --tw-text-opacity: 0.6;
+}
+
+.italic {
+  font-style: italic;
 }
 
 .uppercase {
@@ -2007,6 +2024,10 @@ img {
     margin-top: 1rem;
   }
 
+  .lg\:mt-6 {
+    margin-top: 1.5rem;
+  }
+
   .lg\:ml-1\.5 {
     margin-left: 0.375rem;
   }
@@ -2217,11 +2238,6 @@ img {
 
   .xl\:text-lg {
     font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
-
-  .xl\:text-xl {
-    font-size: 1.25rem;
     line-height: 1.75rem;
   }
 
