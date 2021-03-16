@@ -5,7 +5,8 @@ author = "Erwin Kuhn"
 
 [params]
 description = "Now: I write code for the climate. Previously: food photographer, (involuntary) influencer and data markets researcher."
-image="/img/glacier.svg"
+image="/img/default.png"
+imageAlt="Homepage of Erwin Kuhn's website"
 
 [menu]
     [[menu.main]]

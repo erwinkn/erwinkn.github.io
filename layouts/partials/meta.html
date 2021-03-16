@@ -20,7 +20,7 @@
 <meta name="keywords" content="{{ delimit . "," }}" >
 {{ end -}}
 <!-- Page type -->
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 {{ if or (eq .Section "blog") (eq .Section "tricks") }}
 <meta property="og:type" content="article" >
 {{ else }}
@@ -32,15 +32,17 @@
 <meta name="twitter:site" content="@erwinkhn">
 <!-- Image -->
 {{ with .Params.image }} 
-  <meta itemprop="image" content="{{ . | absURL }}" />
-  <meta property="og:image" content="{{ . | absURL }}" /> 
-  <meta name="twitter:image" content="{{ . | absURL }}" />
-  <meta name="twitter:image:src" content="{{ . | absURL }}" />
+  <meta itemprop="image" content="{{ . | absURL }}" >
+  <meta property="og:image" content="{{ . | absURL }}" > 
+  <meta name="twitter:image" content="{{ . | absURL }}" >
+  {{ with $.Params.imageAlt }}
+  <meta name="twitter:image:alt" content="{{ . }}">
+  {{ end }}
 {{ else }}
-  <meta itemprop="image" content="{{ .Site.Params.image | absURL }}" />
-  <meta property="og:image" content="{{ .Site.Params.image | absURL }}" />
-  <meta name="twitter:image" content="{{ .Site.Params.image | absURL }}" />
-  <meta name="twitter:image:src" content="{{ .Site.Params.image | absURL }}" /> 
+  <meta itemprop="image" content="{{ .Site.Params.image | absURL }}" >
+  <meta property="og:image" content="{{ .Site.Params.image | absURL }}" >
+  <meta name="twitter:image" content="{{ .Site.Params.image | absURL }}" >
+  <meta name="twitter:image:alt" content="{{ .Site.Params.imageAlt }}" >
 {{ end }}
 <!-- Self-referential canonical and other URLs -->
 <link rel="canonical" href="{{ .Permalink }}" >
@@ -50,8 +52,8 @@
 {{ if .Params.noindex }}
 <meta name="robots" content="noindex" >
 {{ else }}
-<meta name="robots" content="index,follow" /> 
-<meta name="googlebot" content="index,follow" />
+<meta name="robots" content="index,follow" > 
+<meta name="googlebot" content="index,follow" >
 {{ end }}
 
 <!-- Generator -->
