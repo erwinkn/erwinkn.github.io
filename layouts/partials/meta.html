@@ -10,10 +10,14 @@
 {{ end }}
 <meta property="og:site_name" content="{{ .Site.Title }}">
 <!-- Description -->
-{{- if .Description }}
-<meta name="description" content="{{ .Description }}" >
-<meta property="og:description" content="{{ .Description }}" >
-<meta name="twitter:description" content="{{ .Description }}" >
+{{- with .Description }}
+<meta name="description" content="{{ . }}" >
+<meta property="og:description" content="{{ . }}" >
+<meta name="twitter:description" content="{{ . }}" >
+{{ else }}
+<meta name="description" content="{{ .Site.Params.description }}" >
+<meta property="og:description" content="{{ .Site.Params.description }}" >
+<meta name="twitter:description" content="{{ .Site.Params.description }}" >
 {{ end -}}
 <!-- Keywords -->
 {{- with .Keywords }}
