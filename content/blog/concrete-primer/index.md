@@ -30,7 +30,7 @@ Simply put, concrete is what you pour to build things and cement is the glue tha
 
 More precisely, cement is a fine powder that is mixed with sand and crushed rocks (called "aggregates") to form the concrete mix. Once the mix is hydrated, it starts to solidify and, after a short time, sets into a fixed structure.
 
-{{< figure src="imgs/cement-and-concrete.jpg" caption="*Here's some cement on top of a concrete block*" alt="Cement powder on top of a concrete block" width="600px" >}}
+{{< figure src="imgs/concrete-primer-and-concrete.jpg" caption="*Here's some cement on top of a concrete block*" alt="Cement powder on top of a concrete block" width="600px" >}}
 
 ## Concrete is everywhere
 
@@ -280,7 +280,7 @@ Cement & concrete reading list coming soon. Feel free to [contact me](mailto:erw
 
 
 [^IEA18]: https://www.iea.org/reports/technology-roadmap-low-carbon-transition-in-the-cement-industry
-[^IEAweb]: https://www.iea.org/reports/tracking-industry-2020/cement
+[^IEAweb]: https://www.iea.org/reports/tracking-industry-2020/concrete-primer
 [^Chatham]: https://www.chathamhouse.org/2018/06/making-concrete-change-innovation-low-carbon-cement-and-concrete
 [^Scrivener18]: https://doi.org/10.1016/j.cemconres.2018.03.015
 [^Insulation]: https://www.drawdown.org/solutions/insulation
