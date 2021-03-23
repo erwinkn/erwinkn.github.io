@@ -152,7 +152,7 @@ Taken altogether, quarrying, transportation, preparation of raw materials, cooli
 
 However, here's a very interesting consequence of all this: **concrete absorbs {{< co2 >}} from the air.** The chemical reaction we've seen above is actually one side of a triangle.
 
-{{< figure src="imgs/scrivener18_calcium-triangle.jpg" caption="The carbon cycle of concrete ([source](https://www.sciencedirect.com/science/article/pii/S0008884618301480))" alt="Diagram showing a triangle of reactions CaCO3 -> CaO -> Ca(OH)2 -> CaCO3" width="80%"  >}}
+{{< figure src="imgs/cement-triangle.jpg" caption="The carbon cycle of concrete ([source](https://www.sciencedirect.com/science/article/pii/S0008884618301480))" alt="Diagram showing a triangle of reactions CaCO3 -> CaO -> Ca(OH)2 -> CaCO3" width="80%"  >}}
 
 During clinker production, we take stable {{< rawhtml >}}CaCO<sub>3</sub>{{< /rawhtml >}} in the form of limestone and turn it at high temperatures into very reactive CaO --- also known as quicklime. Once it is incorporated into the concrete formulation and mixed with water, it rapidly turns into calcium hydrates {{< rawhtml >}}Ca(OH)<sub>2</sub>{{< /rawhtml >}} and solidifies.
 
