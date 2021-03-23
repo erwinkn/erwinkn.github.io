@@ -356,11 +356,6 @@ Grouping content
 2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
 */
 
-hr {
-  height: 0; /* 1 */
-  color: inherit; /* 2 */
-}
-
 /*
 Text-level semantics
 ====================
@@ -408,8 +403,7 @@ small {
 Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
 */
 
-sub,
-sup {
+sub {
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -418,10 +412,6 @@ sup {
 
 sub {
   bottom: -0.25em;
-}
-
-sup {
-  top: -0.5em;
 }
 
 /*
@@ -523,8 +513,6 @@ blockquote,
 h1,
 h2,
 h3,
-h4,
-hr,
 figure,
 p,
 pre {
@@ -536,7 +524,7 @@ pre {
  * results in a loss of the default `button` focus styles.
  */
 
-ol,
+
 ul {
   list-style: none;
   margin: 0;
@@ -608,10 +596,6 @@ body {
  * Ensure horizontal rules are visible by default
  */
 
-hr {
-  border-top-width: 1px;
-}
-
 /**
  * Undo the `border-style: none` reset that Normalize applies to images so that
  * our `border-{width}` utilities have the expected effect.
@@ -643,8 +627,7 @@ input::placeholder {
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
   font-size: inherit;
   font-weight: inherit;
 }
@@ -934,28 +917,8 @@ img {
 }
 
 .prose strong {
-  color: #111827;
+  color: #112c4a;
   font-weight: 600;
-}
-
-.prose ol {
-  counter-reset: list-counter;
-  margin-top: 1.25em;
-  margin-bottom: 1.25em;
-}
-
-.prose ol > li {
-  position: relative;
-  counter-increment: list-counter;
-  padding-left: 1.75em;
-}
-
-.prose ol > li::before {
-  content: counter(list-counter) ".";
-  position: absolute;
-  font-weight: 400;
-  color: #6b7280;
-  left: 0;
 }
 
 .prose ul > li {
@@ -972,13 +935,6 @@ img {
   height: 0.375em;
   top: calc(0.875em - 0.1875em);
   left: 0.25em;
-}
-
-.prose hr {
-  border-color: #e5e7eb;
-  border-top-width: 1px;
-  margin-top: 3em;
-  margin-bottom: 3em;
 }
 
 .prose blockquote {
@@ -1026,14 +982,6 @@ img {
   margin-top: 1.6em;
   margin-bottom: 0.6em;
   line-height: 1.6;
-}
-
-.prose h4 {
-  color: #112c4a;
-  font-weight: 600;
-  margin-top: 1.5em;
-  margin-bottom: 0.5em;
-  line-height: 1.5;
 }
 
 .prose figure figcaption {
@@ -1157,21 +1105,9 @@ img {
   margin-bottom: 1.25em;
 }
 
-.prose > ol > li > *:first-child {
-  margin-top: 1.25em;
-}
-
-.prose > ol > li > *:last-child {
-  margin-bottom: 1.25em;
-}
-
-.prose ul ul, .prose ul ol, .prose ol ul, .prose ol ol {
+.prose ul ul {
   margin-top: 0.75em;
   margin-bottom: 0.75em;
-}
-
-.prose hr + * {
-  margin-top: 0;
 }
 
 .prose h2 + * {
@@ -1179,10 +1115,6 @@ img {
 }
 
 .prose h3 + * {
-  margin-top: 0;
-}
-
-.prose h4 + * {
   margin-top: 0;
 }
 
@@ -1882,6 +1814,19 @@ img {
   text-decoration: none;
 }
 
+figure img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure figcaption {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+}
+
 /* CSS below mostly used for sidenotes */
 
 .ast-before::before {
@@ -2096,12 +2041,6 @@ img {
     line-height: 1.5;
   }
 
-  .xl\:prose-lg h4 {
-    margin-top: 1.7777778em;
-    margin-bottom: 0.4444444em;
-    line-height: 1.5555556;
-  }
-
   .xl\:prose-lg img {
     margin-top: 1.7777778em;
     margin-bottom: 1.7777778em;
@@ -2147,11 +2086,6 @@ img {
     padding-left: 1.5em;
   }
 
-  .xl\:prose-lg ol {
-    margin-top: 1.3333333em;
-    margin-bottom: 1.3333333em;
-  }
-
   .xl\:prose-lg ul {
     margin-top: 1.3333333em;
     margin-bottom: 1.3333333em;
@@ -2160,14 +2094,6 @@ img {
   .xl\:prose-lg li {
     margin-top: 0.6666667em;
     margin-bottom: 0.6666667em;
-  }
-
-  .xl\:prose-lg ol > li {
-    padding-left: 1.6666667em;
-  }
-
-  .xl\:prose-lg ol > li::before {
-    left: 0;
   }
 
   .xl\:prose-lg ul > li {
@@ -2194,26 +2120,9 @@ img {
     margin-bottom: 1.3333333em;
   }
 
-  .xl\:prose-lg > ol > li > *:first-child {
-    margin-top: 1.3333333em;
-  }
-
-  .xl\:prose-lg > ol > li > *:last-child {
-    margin-bottom: 1.3333333em;
-  }
-
-  .xl\:prose-lg ul ul, .xl\:prose-lg ul ol, .xl\:prose-lg ol ul, .xl\:prose-lg ol ol {
+  .xl\:prose-lg ul ul {
     margin-top: 0.8888889em;
     margin-bottom: 0.8888889em;
-  }
-
-  .xl\:prose-lg hr {
-    margin-top: 3.1111111em;
-    margin-bottom: 3.1111111em;
-  }
-
-  .xl\:prose-lg hr + * {
-    margin-top: 0;
   }
 
   .xl\:prose-lg h2 + * {
@@ -2221,10 +2130,6 @@ img {
   }
 
   .xl\:prose-lg h3 + * {
-    margin-top: 0;
-  }
-
-  .xl\:prose-lg h4 + * {
     margin-top: 0;
   }
 
