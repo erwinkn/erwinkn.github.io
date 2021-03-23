@@ -15,6 +15,9 @@ module.exports = {
             a: {
               color: theme('colors.darkGreenBlue')
             },
+            strong: {
+              color: theme('colors.darkGreenBlue'),
+            },
             h1: {
               color: theme('colors.darkGreenBlue'),
             },

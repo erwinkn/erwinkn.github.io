@@ -63,6 +63,14 @@
         @apply no-underline body-link;
     }
 
+    figure img {
+        @apply mx-auto;
+    }
+
+    figure figcaption {
+        @apply mx-auto max-w-max;
+    }
+
     /* CSS below mostly used for sidenotes */
     .ast-before::before {
         color: theme('colors.darkSanguine');
