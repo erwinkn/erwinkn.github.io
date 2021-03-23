@@ -524,7 +524,7 @@ pre {
  * results in a loss of the default `button` focus styles.
  */
 
-
+ol,
 ul {
   list-style: none;
   margin: 0;
@@ -921,6 +921,26 @@ img {
   font-weight: 600;
 }
 
+.prose ol {
+  counter-reset: list-counter;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+
+.prose ol > li {
+  position: relative;
+  counter-increment: list-counter;
+  padding-left: 1.75em;
+}
+
+.prose ol > li::before {
+  content: counter(list-counter) ".";
+  position: absolute;
+  font-weight: 400;
+  color: #6b7280;
+  left: 0;
+}
+
 .prose ul > li {
   position: relative;
   padding-left: 1.75em;
@@ -1105,7 +1125,15 @@ img {
   margin-bottom: 1.25em;
 }
 
-.prose ul ul {
+.prose > ol > li > *:first-child {
+  margin-top: 1.25em;
+}
+
+.prose > ol > li > *:last-child {
+  margin-bottom: 1.25em;
+}
+
+.prose ul ul, .prose ul ol, .prose ol ul, .prose ol ol {
   margin-top: 0.75em;
   margin-bottom: 0.75em;
 }
@@ -2086,6 +2114,11 @@ figure figcaption {
     padding-left: 1.5em;
   }
 
+  .xl\:prose-lg ol {
+    margin-top: 1.3333333em;
+    margin-bottom: 1.3333333em;
+  }
+
   .xl\:prose-lg ul {
     margin-top: 1.3333333em;
     margin-bottom: 1.3333333em;
@@ -2094,6 +2127,14 @@ figure figcaption {
   .xl\:prose-lg li {
     margin-top: 0.6666667em;
     margin-bottom: 0.6666667em;
+  }
+
+  .xl\:prose-lg ol > li {
+    padding-left: 1.6666667em;
+  }
+
+  .xl\:prose-lg ol > li::before {
+    left: 0;
   }
 
   .xl\:prose-lg ul > li {
@@ -2120,7 +2161,15 @@ figure figcaption {
     margin-bottom: 1.3333333em;
   }
 
-  .xl\:prose-lg ul ul {
+  .xl\:prose-lg > ol > li > *:first-child {
+    margin-top: 1.3333333em;
+  }
+
+  .xl\:prose-lg > ol > li > *:last-child {
+    margin-bottom: 1.3333333em;
+  }
+
+  .xl\:prose-lg ul ul, .xl\:prose-lg ul ol, .xl\:prose-lg ol ul, .xl\:prose-lg ol ol {
     margin-top: 0.8888889em;
     margin-bottom: 0.8888889em;
   }
