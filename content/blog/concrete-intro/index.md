@@ -4,9 +4,12 @@ subtitle: "We can't replace it and we can't take the CO2 out of it. How do we de
 description: "The concrete industry is fundamental for our civilisation, yet will be incredibly hard to decarbonise. Here's what I learned from working on long term roadmaps towards carbon neutral cement."
 date: 2021-02-21
 math: true
+toc: true
 image: imgs/montalieu.jpg
 imageAlt: Aerial overview of a cement plant in Montalieu, France
 ---
+
+## Introduction
 
 _Welcome to the first article in a 3-part series about the cement & concrete industries and their place in the climate fight. It provides a general introduction to the subject, with some surprising facts I discovered along the way._
  
@@ -55,7 +58,7 @@ As we can see, cementitious materials dwarf the other most common materials, lik
 
 This has strong implications on our understanding on concrete and its environmental impact.
 
-## Concrete and climate
+## The climate impact of concrete
 
 At the same time, concrete is often seen as dangerous for the environment. For good reason! The cement industry is the largest industrial emitter of greenhouse gas emissions, responsible for [7-8% of global {{<co2>}} emissions](https://www.iea.org/reports/technology-roadmap-low-carbon-transition-in-the-cement-industry), and the third largest industrial energy consumer, representing 7% of the global industrial energy use.
 
@@ -126,7 +129,7 @@ The magnitude of impact of a more efficient use of concrete should not be undere
 
 However, as important as efficiency improvements are, we still need to reach net-zero emissions if we hope to stabilize our climate. To achieve this goal, we need to understand where the {{< co2 >}} emissions are coming from.
 
-## The {{< co2 >}} problem {#co2problem}
+## The CO<sub>2</sub> problem {#co2problem}
 
 Concrete is particular in that nearly all of its embodied emissions come from cement production, for which the vast majority of emissions are concentrated at a single point in the manufacturing process: clinker production.
 
