@@ -2,7 +2,7 @@
 title: "An introduction to cement & concrete from the climate lens"
 subtitle: "We can't replace it and we can't take the CO2 out of it. How do we deal with it?"
 description: "The concrete industry is fundamental for our civilisation, yet will be incredibly hard to decarbonise. Here's what I learned from working on long term roadmaps towards carbon neutral cement."
-date: 2021-02-21
+date: 2021-03-23
 math: true
 toc: true
 image: imgs/montalieu.jpg
