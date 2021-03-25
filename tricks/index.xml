@@ -1,1 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tips &amp; tricks on Erwin Kuhn</title><link>https://erwinkn.com/tricks/</link><description>Recent content in Tips &amp; tricks on Erwin Kuhn</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 10 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://erwinkn.com/tricks/index.xml" rel="self" type="application/rss+xml"/><item><title>Transfering state from server to client with Blazor WASM and prerendering</title><link>https://erwinkn.com/tricks/blazor-rehydration/</link><pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate><guid>https://erwinkn.com/tricks/blazor-rehydration/</guid><description>I wanted to brush up my Blazor skills. I had been using the new .NET framework (sidenote: I&amp;rsquo;ll give an introduction to Blazor and the whole experience of putting it into production in a separate blog post. ) in my work with Vicat, an international cement &amp;amp; concrete group based in France, to develop a modelling tool for long term roadmaps towards carbon neutrality. Coding with it was a joy, but I had doubts about its overall performance.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tips &amp; tricks on Erwin Kuhn</title>
+    <link>https://erwinkn.com/tricks/</link>
+    <description>Recent content in Tips &amp; tricks on Erwin Kuhn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://erwinkn.com/tricks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Transfering state from server to client with Blazor WASM and prerendering</title>
+      <link>https://erwinkn.com/tricks/blazor-rehydration/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://erwinkn.com/tricks/blazor-rehydration/</guid>
+      <description>I wanted to brush up my Blazor skills. I had been  using the new .NET framework (sidenote:  I&amp;rsquo;ll give an introduction to Blazor and the whole experience of putting it into production in a separate blog post. )    in my work with Vicat, an international cement &amp;amp; concrete group based in France, to develop a modelling tool for long term roadmaps towards carbon neutrality. Coding with it was a joy, but I had doubts about its overall performance.</description>
+    </item>
+    
+  </channel>
+</rss>
