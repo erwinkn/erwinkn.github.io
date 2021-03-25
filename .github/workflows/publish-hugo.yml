@@ -23,10 +23,10 @@ jobs:
           hugo-version: 'latest'
 
       - name: Build first time for hugo_stats
-        run: hugo --minify
+        run: hugo
 
       - name: Build second time for full CSS
-        run: hugo --minify
+        run: hugo
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

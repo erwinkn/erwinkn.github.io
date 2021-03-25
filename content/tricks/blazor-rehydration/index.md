@@ -96,6 +96,7 @@ This JavaScript object is created by a `CacheStore.razor` component in `Server/C
 {{< /code-block >}}
 
 The `Cache.Write` function simply serializes our dictionary:
+
 {{< code-block language="csharp">}}
 public string Write() => JsonSerializer.Serialize(Items);
 {{< /code-block >}}
