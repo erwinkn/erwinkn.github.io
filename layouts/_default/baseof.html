@@ -11,9 +11,5 @@
     {{- partialCached "footer.html" . -}}
     {{- partial "dev-parameters.html" . -}}
 </body>
-<!-- KaTeX include -->
-{{ if or .Params.math .Site.Params.math }}
-{{ partial "math.html" . }}
-{{ end }}
 
 </html>

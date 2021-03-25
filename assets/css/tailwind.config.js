@@ -12,6 +12,7 @@ module.exports = {
         DEFAULT: {
           css: {
             color: theme('colors.darkGreenBlue'),
+            maxWidth: 'none',
             a: {
               color: theme('colors.darkGreenBlue')
             },
@@ -30,6 +31,31 @@ module.exports = {
             h4: {
               color: theme('colors.darkGreenBlue'),
             },
+            // Removing margins because the grid wrapper in articles prevents margin collapse
+            p: {
+              marginBottom: 0,
+            },
+            figure: {
+              marginBottom: '1em',
+            },
+            ul: {
+              marginBottom: 0,
+            },
+            ol: {
+              marginBottom: 0,
+            },
+            blockquote: {
+              marginBottom: 0,
+              paddingTop: '0.5em',
+              paddingBottom: '0.5em'
+            },
+            'blockquote p:first-of-type': {
+              marginTop: 0,
+            },
+            'blockquote p:last-of-type': {
+              marginBottom: 0,
+            },
+            // Fiddling to have nice inline code with prismJS
             code: {
               color: "inherit",
               backgroundColor: theme('colors.darkBeige'),
@@ -103,7 +129,7 @@ module.exports = {
       80: '20rem',
       88: '22rem',
       96: '24rem',
-      // added manuall  y
+      // added manually
       104: '26rem',
       110: '28rem',
       118: '30rem',

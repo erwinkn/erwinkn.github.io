@@ -1,0 +1,17 @@
+<!-- Provide ApexCharts options inside the shortcode -->
+{{ $path := .Get "src" }}
+{{ $height := default (.Get "height") 400 }}
+{{ $options := ($.Page.Resources.GetMatch $path).Content | safeJS }}
+{{ $id := index (seq 999 | shuffle) 1 }}
+
+<div class='my-4 {{ with .Get "class" }}{{ . }}{{ end }}'>
+    <canvas id="chart-{{ $id }}"></canvas>
+</div>
+
+
+<script type="text/javascript">
+    var ctx = document.getElementById('chart-{{ $id }}').getContext('2d');
+    {{ $options }}
+    var chart = new Chart(ctx, options)
+    chart.render();
+</script>

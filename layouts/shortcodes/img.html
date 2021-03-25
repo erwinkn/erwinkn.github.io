@@ -1,0 +1,47 @@
+<!-- Parameters: src, alt -->
+<!-- Supported sizes: 360px for mobile, 660, 990 and 1320px images -->
+{{ $src := .Page.Resources.GetMatch (printf "*%s*" (.Get "src")) }}
+
+{{/* set image sizes, these are hardcoded for now, x dictates that images are resized to this width */}}
+
+{{ $mobilew := default "360x" }}
+{{ $regularw := default "660x" }}
+{{ $largew := default "990x" }}
+{{ $xlargew := default "1320x" }}
+
+{{/* resize the src image to the given sizes */}}
+
+{{ .Scratch.Set "mobile" ($src.Resize $mobilew) }}
+{{ .Scratch.Set "regular" ($src.Resize $regularw) }}
+{{ .Scratch.Set "large" ($src.Resize $largew) }}
+{{ .Scratch.Set "xlarge" ($src.Resize $xlargew) }}
+
+{{/* add the processed images to the scratch */}}
+
+{{ $mobile := .Scratch.Get "mobile" }}
+{{ $regular := .Scratch.Get "regular" }}
+{{ $regular := .Scratch.Get "regular" }}
+{{ $xlarge := .Scratch.Get "xlarge" }}
+
+{{/* only use images regularer than or equal to the src (original) image size, as Hugo will upscale regular images */}}
+
+<img
+  srcset='
+  {{ if ge $src.Width "500" }}
+    {{ with $mobile.RelPermalink }}{{.}} 360w{{ end }}
+  {{ end }}
+  {{ if ge $src.Width "800" }}
+    {{ with $regular.RelPermalink }}, {{.}} 660w{{ end }}
+  {{ end }}
+  {{ if ge $src.Width "1200" }}
+    {{ with $regular.RelPermalink }}, {{.}} 990w{{ end }}
+  {{ end }}
+  {{ if ge $src.Width "1500" }}
+    {{ with $xlarge.RelPermalink }}, {{.}} 1320w {{ end }}
+  {{ end }}'
+  {{ if .Get (print $regular) }}
+    src="{{ $regular.RelPermalink }}" 
+  {{ else }}
+    src="{{ $src.RelPermalink }}" 
+  {{ end }}
+  {{ with .Get "alt" }}alt="{{.}}"{{ else }}alt=""{{ end }}>

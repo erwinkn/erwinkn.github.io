@@ -1,0 +1,6 @@
+<figure class='mx-auto w-full flex flex-col items-center {{ with .Get "class" }}{{ . }}{{ end }}'>
+    {{ .Inner }}
+    {{ with .Get "caption" }}
+    <figcaption>{{ markdownify . }}</figcaption>
+    {{ end }}
+</figure>

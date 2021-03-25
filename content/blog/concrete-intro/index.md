@@ -4,6 +4,7 @@ subtitle: "We can't replace it and we can't take the CO2 out of it. How do we de
 description: "The concrete industry is fundamental for our civilisation, yet will be incredibly hard to decarbonise. Here's what I learned from working on long term roadmaps towards carbon neutral cement."
 date: 2021-03-23
 math: true
+charts: true
 toc: true
 image: imgs/montalieu.jpg
 imageAlt: Aerial overview of a cement plant in Montalieu, France
@@ -15,19 +16,15 @@ _Welcome to the first article in a 3-part series about the cement & concrete ind
  
 _This is a personal perspective and is subject to change based on feedback and further discussions. Feel free to [reach out](mailto:erwin.kuhn@protonmail.com)!_
 
-{{< sidenote-content id=1 >}}For the anecdote, Louis Vicat is the inventor of one of the first modern cement formulations in 1817! He also released his discovery to the world without any patent, which enabled tremendous improvements in construction efficiency at the time.{{< /sidenote-content >}}
+{{< sidenote-content >}}For the anecdote, Louis Vicat is the inventor of one of the first modern cement formulations in 1817! He also released his discovery to the world without any patent, which enabled tremendous improvements in construction efficiency at the time.{{< /sidenote-content >}}
 
-I've been working for the past year with {{< sidenote id=1 >}}Vicat,{{< /sidenote >}} a large French cement group, on their climate strategy. More specifically, we are developing N-Zero, a modelling tool to create roadmaps towards carbon neutral cement. Coming from the computer science world, I had to learn everything along the way and I quickly became fascinated. 
+I've been working for the past year with {{< sidenote >}}Vicat,{{< /sidenote >}} a large French cement group, on their climate strategy. More specifically, we are developing N-Zero, a modelling tool to create roadmaps towards carbon neutral cement. Coming from the computer science world, I had to learn everything along the way and I quickly became fascinated. 
 
 Whenever I talk about my work, people often note that "it's great that the industry is making progress on climate questions, but don't forget: *it's still concrete after all*."
 
 In this series, I want to unpack this observation. Especially the assumptions behind it. Why is concrete harmful? How is it harmful? Can "eco-friendly" concrete actually mean something? If so, how will the buildings and the material world around us evolve in response?
 
-I will answer these questions in three parts. The first article sets the decor for the discussion, including a few facts that really surprised me as I was learning about the subject. To be honest, I didn't understand how fundamental concrete is for our civilization before I started working on it.
-
-The second article will focus on the technologies and actions that can lead us to reduce the carbon footprint of concrete. It will start from zero and go in-depth on each subject, leveraging some of my modelling work.
-
-The third article will border on science fiction. I'm interested in imagining the future of the construction industry (with a special emphasis on concrete obviously). What would carbon-neutral buildings be made of, and look like? Will there still be concrete? It won't be exhaustive but I have a handful of ideas I want to explore.
+This article sets the decor, including a few facts that really surprised me as I was learning about the subject. To be honest, I didn't understand how fundamental concrete is for our civilization before I started working on it.
 
 ## The difference between cement and concrete
 Before we go any further, I  want to answer a question I get asked very often: what is the difference between cement and concrete?
@@ -36,7 +33,9 @@ Simply put, concrete is what you pour to build things and cement is the glue tha
 
 More precisely, cement is a fine powder that is mixed with sand and crushed rocks (called "aggregates") to form the concrete mix. Once the mix is hydrated, it starts to solidify and, after a short time, sets into a fixed structure.
 
-{{< figure src="imgs/cement-and-concrete.jpg" caption="*Here's some cement on top of a concrete block*" alt="Cement powder on top of a concrete block" width="600px" >}}
+{{< figure caption="*Here's some cement on top of a concrete block*" >}}
+{{< img src="imgs/cement-and-concrete.jpg" alt="Cement powder on top of a concrete block" >}}
+{{< /figure >}}
 
 ## Concrete is everywhere
 
@@ -46,94 +45,96 @@ It's hard to get a sense of how much concrete we actually use.
 
 First of all, it's hard to find accurate numbers for the global annual production of concrete. This is likely due to the very distributed nature of concrete manufacturing, which often happens in small production units, whereas cement is manufactured in large-scale plants, making reporting and accounting easier.
 
-{{< sidenote-content id=2 >}}One gigatonne (Gt) is equal to 1 billion tonnes. It's a commonly used unit to talk about things like global cement production or CO<sub>2</sub> emissions. Every year, humanity puts around 40Gt of CO<sub>2</sub> in the atmosphere.{{< /sidenote-content >}}
+{{< sidenote-content >}}One gigatonne (Gt) is equal to 1 billion tonnes. It's a common unit to talk about things like global cement production or CO<sub>2</sub> emissions. Every year, humanity puts around 40Gt of CO<sub>2</sub> in the atmosphere.{{< /sidenote-content >}}
 
-Overall, the global production of cement is over {{< sidenote id=2 >}}4 Gt/year.{{< /sidenote >}} Taking 2015 numbers, that's 626 kg of cement per person on the planet - more than the annual food consumption!
+Overall, the global production of cement is around {{< sidenote >}}4 Gt/year.{{< /sidenote >}} Taking 2020 numbers, that's 525 kg of cement per person on the planet per year!
 
-Estimations for global concrete production put it at over 10 Gt/year. Cementitious materials, which include a majority of concrete, represent around 30% of global materials use, including fossil fuels. Here's a chart from [Scrivener et al. (2018)](https://doi.org/10.1016/j.cemconres.2018.03.015) that compares their use to that of other common materials:
+{{< sidenote-content >}}Getting exact numbers for most industries is surprisingly hard. I detailed my sources in [the appendix](https://github.com/erwinkn/erwinkn.github.io/blob/main/content/blog/concrete-intro/appendix.md){{< /sidenote-content >}}
+
+Estimations for global concrete production put it at over 16 Gt/year. Cement-derived materials, which include a majority of concrete, represent [around 30% of global materials use](https://wedocs.unep.org/bitstream/handle/20.500.11822/25281/eco_efficient_cements.pdf), including fossil fuels. With some {{< sidenote >}}rough estimates,{{< /sidenote >}} here is a chart for the global production of common materials, in gigatonnes per year:
     
-{{< figure src="imgs/scrivener18_materials.jpg" caption="Estimated production of common materials (2002-2005). Cementitions materials also include the cement used in their manufacturing.<br/>From [Scrivener et al. (2018)](https://doi.org/10.1016/j.cemconres.2018.03.015)" alt="Estimated production of common materials (2002-2005)" >}}
+{{< chart src="charts/materials-production.js" class="full-bleed h-104 md:h-118 xl:h-132 my-4 lg:my-10" >}}
 
-As we can see, cementitious materials dwarf the other most common materials, like wood or iron, by far. I'm still surprised every time I see these numbers! Sure, I knew that we use a lot of concrete - but **more than all the other construction materials combined?** It took me a while to interiorise these facts.
-
-This has strong implications on our understanding on concrete and its environmental impact.
-
-## The climate impact of concrete
-
-At the same time, concrete is often seen as dangerous for the environment. For good reason! The cement industry is the largest industrial emitter of greenhouse gas emissions, responsible for [7-8% of global {{<co2>}} emissions](https://www.iea.org/reports/technology-roadmap-low-carbon-transition-in-the-cement-industry), and the third largest industrial energy consumer, representing 7% of the global industrial energy use.
-
-One perhaps more surprising fact is that concrete actually has a relatively low energy and {{< co2 >}} footprint compared to other construction materials. [The Chatham House report](https://www.chathamhouse.org/2018/06/making-concrete-change-innovation-low-carbon-cement-and-concrete-0/) on innovation in low-carbon cement and concrete compiled data regarding the embodied energy and {{< co2 >}} emissions of construction materials in the UK, summarized in the figure below.
-
-{{< figure src="imgs/chatham_embodied.png" caption="Embodied emissions and energy for materials used in construction in the UK ([source](https://www.chathamhouse.org/2018/06/making-concrete-change-innovation-low-carbon-cement-and-concrete-0/1-introduction#paragraph-7220-title))" alt="Embodied emissions and energy for materials used in construction in the UK" >}}
+As we can see, concrete dwarfs the other most common materials, like wood or steel, by far. I'm still surprised every time I see these numbers! Sure, I knew that we use a lot of concrete - but **more than all the other construction materials combined?** It's important to keep this in mind as we look into the environmental footprint of concrete production.
 
 
-As we can see, **concrete lies on the low end for both embodied energy and embodied {{< co2 >}} per kilogram.** The comparison with wood is especially interesting: somehow it is more energy efficient to mine vast amounts of rock, heat it up over 1400°C and blend it with sand and more rocks than to cut down wood, transport it and process it. I suspect this is is likely due to the high economies of scale that can be achieved in the cement industry --- both on the scale of global concrete production and the scale of individual cement plants, which generally process over a million tonnes of cement per year.
+## The climate impact of concrete vs other materials
 
-However, to be clear: this is not an entirely fair comparison, for two reasons.
+Concrete is often seen as dangerous for the environment. For good reason! The cement industry is the largest industrial emitter of greenhouse gas emissions, responsible for [7-8% of global {{<co2>}} emissions](https://www.iea.org/reports/technology-roadmap-low-carbon-transition-in-the-cement-industry), and the third largest industrial energy consumer, representing 7% of the global industrial energy use.
 
-- The data does not factor in carbon sequestration from the wood, which shifts the {{< co2 >}} balance significantly (although concrete also captures {{< co2 >}}, as we will see later)
-- Concrete is about 4x denser than wood, although both materials obviously have very different properties and the former generally achieves higher resistances per cubic meter.
+{{< sidenote-content >}}Which refers to the {{< co2 >}} emitted during the production of the materials.{{< /sidenote-content >}}
 
-Still, even if we were comparing energy and {{< co2 >}} footprints per cubic meter, concrete would come about equal or even below wood. The consequence is that **the very large environmental footprint of the cement industry is not due to concrete being especially destructive in and of itself, but due to the incredibly high amounts of it we use as a civilization.**
+What is perhaps more surprising is that **concrete actually has a relatively low {{< co2 >}} footprint compared to other construction materials**. One way to see this is to look at {{< sidenote >}}the embodied {{< co2 >}}{{< /sidenote >}} of common construction materials.
 
-{{< figure src="imgs/montalieu.jpg" caption="Vicat's flagship plant of Montalieu, with all the state-of-the-art technological goodness" alt="Aerial overview of Vicat's cement plant in Montalieu, France" >}}
+To this end, I compiled some data from the [ICE database](https://circularecology.com/embodied-carbon-footprint-database.html), released in 2019, to obtain the following chart. **Disclaimer:** the boxes do not correspond to statistical quantities, like the median or quartiles, but representative values derived from the database. The methodology is described in [the appendix](https://github.com/erwinkn/erwinkn.github.io/blob/main/content/blog/concrete-intro/appendix.md).
 
-## Can we use less concrete?
+{{< chart src="charts/embodied-co2.js" class="full-bleed h-104 md:h-118 xl:h-132" >}}
 
-Naturally, the first question that comes to mind once we realize the magnitude of concrete's environmental footprint is: can we use less of it?
+It turns out, it is somehow more energy and {{< co2 >}} efficient to mine rock, heat it up to 1450°C and blend it with sand and more rocks than to cut down, process and transport it. This is still something I struggle to wrap my head around: concrete is in fact one of the lowest impact materials we can use for construction.
 
-{{< sidenote-content id=12 >}}Numbers taken from [Our World In Data](https://ourworldindata.org/) in November 2020.{{< /sidenote-content >}}
+To be clear, this is not an apple-to-apples comparison. What we care about is not the number of kilograms used, but the amount of each material we would have to use for a given construction. Of course, the analysis becomes much more complicated. Based on [one such study](https://pubs.acs.org/doi/10.1021/es202190r), concrete seems to also come out as one of the lowest impact materials.
 
-The short answer to this is: no. Many people around the world still lack access to basic infrastructure such as clean water and electricity, world population is increasing and developing countries will need to build a lot more to continue improving their standards of living. About 1-in-3 people in cities are living in urban slums, with a lack of access to clean water, sanitation, sufficient living space or durable housing. 4.5 billion people, 60% of the world, do not have access to safely managed sanitation and {{< sidenote id=12 >}}2.1 billion people do not have access to safe drinking water.{{< /sidenote >}} The amount of infrastructure development that still needs to happen for the whole world to reach decent living standards is staggering.
+Another dimension which I have not included in this graphic is the {{< co2 >}} captured in the wood. The ICE database also provides values for timber with carbon sequestration. In this case, timber becomes strongly carbon negative, with values ranging from **-0.58 to -1.29 kgCO2e / kg of timber** and a mean of **-1.05 kgCO2e / kg of timber.**
+
+However, these values only hold if the wood was grown in a sustainable manner and is properly disposed of at end of life. Otherwise, emissions from deforestation and the release of methane from decomposition could make the balance much worse. Deforestation is currently responsible for [around 6.5% of global {{< co2 >}} emissions](https://ourworldindata.org/deforestation?country=#one-third-of-co2-emissions-from-deforestation-are-embedded-in-international-trade). As such, it seems unlikely that we would be able to scale up our wood production, by at least 6x, to meet current concrete demand, in a sustainable manner.
+
+Concrete also has other properties which make it hard to replace:
+- **Ease of use and versatility:** concrete is basically rock you can pour, which makes it both usable with nearly zero training and equipment and able to take a wide range of shapes.
+- **Durability:** concrete buildings can easily last {{< sidenote >}}over 100 years{{< /sidenote >}}. If our constructions last longer, we can build less and lower our environmental footprint.
+- **Insulation:** higher energy efficiency in our built environment is [incredibly important](https://www.drawdown.org/solutions/insulation) on our path to reduce global {{< co2 >}} emissions. Concrete has a high thermal mass and low air infiltration, both important factors in enhancing the energy efficiency of buildings.
+- **Adaptability:** your regular neighborhood concrete plant is able to offer hundreds of different formulations. Every concrete plant has a different set of them, adapted to local environmental conditions. This diversity means concrete can be used anywhere on Earth, from Siberia to the Sahara, and adapted to any construction type.
+
+The moral of the story is two-fold. First, while we should definitely use as much sustainably grown wood as possible, concrete will very likely remain the major construction material far into the future.
+
+Second, the very large environmental footprint of the cement & concrete industry is not due to concrete being especially destructive in and of itself, but simply due to the incredibly high amounts of it we use as a civilization.
+
+{{< figure caption="Vicat's flagship plant of Montalieu, with all the state-of-the-art technological goodness" >}}
+{{< img src="imgs/montalieu.jpg" alt="Aerial overview of Vicat's cement plant in Montalieu, France" >}}
+{{< /figure >}}
+
+## Can we build less?
+
+Naturally, the question that comes to mind after seeing the very large impact of concrete is: can we build less? Can we use less concrete?
+
+[According to the IEA](https://www.iea.org/reports/global-status-report-for-buildings-and-construction-2019), the buildings and construction sector accounted for 36% of final energy use and 39% of energy and process-related carbon dioxide (CO2) emissions in 2018.
+
+So, can we build less?
+
+{{< sidenote-content >}}Numbers taken from [Our World In Data](https://ourworldindata.org/) in November 2020.{{< /sidenote-content >}}
+
+The short answer is: no. Many people around the world still lack access to basic infrastructure such as clean water and electricity, world population is increasing and developing countries will need to build a lot more to continue improving their standards of living. About 1-in-3 people in cities are living in urban slums, with a lack of access to clean water, sanitation, sufficient living space or durable housing. 4.5 billion people, 60% of the world, do not have access to safely managed sanitation and {{< sidenote >}}2.1 billion people do not have access to safe drinking water.{{< /sidenote >}} The amount of infrastructure development that still needs to happen for the whole world to reach good living standards is staggering.
 
 As often, it's helpful to look at historical trends to try and get a sense of where we are headed. Here is a graph showing world population, cement production and steel production from 1950 to 2015:
 
-{{< figure src="imgs/scrivener18_cementprod.jpg" caption="World population, cement production and steel production (1950-2015).<br/>From [Scrivener et al. (2018)](https://doi.org/10.1016/j.cemconres.2018.03.015)" >}}
+{{< figure caption="World population, cement production and steel production (1950-2015).<br/>From [Scrivener et al. (2016)](https://wedocs.unep.org/bitstream/handle/20.500.11822/25281/eco_efficient_cements.pdf)" >}}
+{{< img src="imgs/scrivener18_cementprod.jpg" alt="World population, cement production and steel production (1950-2015)" >}}
+{{< /figure >}}
 
 Over the last 65 years, global population has increased ~2.5x, while cement production has increased by over 30x, a much faster rate than other major materials like steel. Over the same time period, the world also saw the fastest increase in living standards in human history. 
 
 To quote the [2016 New Climate Economy report](https://newclimateeconomy.report//2016) from the Global Commission on the Economy and Climate:
 
 > _The world is expected to invest around US$90 trillion in infrastructure over the next 15 years, more than is in place in our entire current stock today._
-> -- The Sustainable Infrastructure Imperative
 
-Developing countries are expected to account for 2/3 of this amount. 
+Developing countries are expected to account for 2/3 of this amount. To get a sense of what that kind of development entails, here is an impressive statistic:
 
-Here's an impressive statistic, to get a sense of what that kind of development entails:
-
-{{< figure src="imgs/concrete-in-china-gates.png" caption="Illustration taken from [Gates Notes](https://www.gatesnotes.com/About-Bill-Gates/Concrete-in-China)" alt="China used more cement from 2011 to 2013 than the US in the entire 20th century"  >}}
+{{< figure caption="Illustration taken from [Gates Notes](https://www.gatesnotes.com/About-Bill-Gates/Concrete-in-China)" >}}
+{{< img src="imgs/concrete-in-china-gates.png" alt="China used more cement from 2011 to 2013 than the US in the entire 20th century" >}}
+{{< /figure >}}
 
 At the same time, from 1990 to 2014, China saw its share of urban population living in slums decrease from 44% to 25%. 
 
 Given the amount of development still required to meet the UN's Sustainable Development Goals, it seems likely --- and even desirable --- that cement and concrete production will keep on increasing at a rapid rate in the near future.
 
-Coming back to concrete's environmental impact: if we still have a lot to build, can we maybe use less concrete to achieve those goals? Here are the two possibilities.
-
-### 1) Can we replace concrete with other materials, like wood?
-
-{{< sidenote-content id=4 >}}Look at Roman roads and bridges: they relied heavily on concrete, of which they had developed a very advanced understanding. Many of them still hold today and some are still in use!{{< /sidenote-content >}}
-
-Concrete has some unique properties, which make it quite hard to replace. Let's go through some of them.
-
-- **Ease of use and versatility:** concrete is basically rock you can pour, which makes it both usable with nearly zero training and equipment and able to take a wide range of shapes.
-- **Durability:** concrete buildings can easily last {{< sidenote id=4 >}}over 100 years{{< /sidenote >}}. If our constructions last longer, we can build less and lower our environmental footprint.
-- **Insulation:** higher energy efficiency in our built environment is [incredibly important](https://www.drawdown.org/solutions/insulation) on our path to reduce global {{< co2 >}} emissions. Concrete has a high thermal mass and low air infiltration, both important factors in enhancing the energy efficiency of buildings.
-- **Adaptability:** your regular neighborhood concrete plant is able to offer hundreds of different formulations. Every concrete plant has a different set of them, adapted to local environmental conditions. This diversity means concrete can be used anywhere on Earth, from Siberia to the Sahara, and adapted to any construction type.
-
-To my knowledge, no other construction material today can cover all the uses of concrete. Add to that the enormous amounts of it that we use every year and it seems clear that concrete is not going away.
-
-### 2) Can we use concrete more efficiently?
-Definitely yes, for many reasons, ranging from improved construction standards and increased recycling to high-tech innovations like 3D printing.
-
-The magnitude of impact of a more efficient use of concrete should not be underestimated. By using different types of concrete in different parts of the same structure, not overdosing cement in concrete mixes and optimising the design of structural elements, gains of [up to 40% less embodied {{< co2 >}}](https://www.research-collection.ethz.ch/handle/20.500.11850/301843) could be achieved.
-
-However, as important as efficiency improvements are, we still need to reach net-zero emissions if we hope to stabilize our climate. To achieve this goal, we need to understand where the {{< co2 >}} emissions are coming from.
-
 ## The CO<sub>2</sub> problem {#co2problem}
 
-Concrete is particular in that nearly all of its embodied emissions come from cement production, for which the vast majority of emissions are concentrated at a single point in the manufacturing process: clinker production.
+Now that we've covered why it is incredibly important that we find a way to decarbonise the concrete industry, it's time to understand why it will be so difficult.
 
-Clinker is the main component of ordinary cement and gives it its binding power. Typically, cement is composed of 70-80% clinker, gypsum, supplementary cementitious materials (SCMs), which also provide binding power, and inert fillers.
+Concrete is particular in that nearly all of its embodied emissions come from cement production. And nearly all emissions related to cement are concentrated at a single point in the process: clinker production.
+
+{{< sidenote-content >}}Portland cement is the standard cement manufacturing process today, used in [more than 98% of global concrete production](https://doi.org/10.1002/jctb.4927){{< /sidenote-content >}}
+
+Clinker is the main component of {{< sidenote >}}ordinary Portland cement{{< /sidenote >}} and gives it its binding power. Typically, cement is composed of 70-80% clinker, gypsum, supplementary cementitious materials (SCMs), which also provide binding power, and inert fillers.
 
 Clinker is produced by heating limestone and other mineral materials, like clay, marl or shale, making up the raw meal to temperatures over 1400°C in the massive kilns sitting at the center of cement plants. At this point, the following chemical reaction happens:
 
@@ -141,21 +142,25 @@ $$\ce{CaCO3 -> CaO + CO2}$$
 
 This is the calcination of limestone and the source of most of our problems here. The {{< co2 >}} emissions coming from this chemical reaction are called **process emissions** and make up **2/3rds of the {{< co2 >}} emissions associated with cement production.**
 
-{{< sidenote-content id=5 >}}Over 4000MJ per ton of clinker in fact. That's roughly the energy contained in 100L of crude oil.{{< /sidenote-content >}}
+{{< sidenote-content >}}Over 4000MJ per ton of clinker in fact. That's roughly the energy contained in 100L of crude oil.{{< /sidenote-content >}}
 
-Firing up a cement kiln at 1450°C also requires {{< sidenote id=5 >}}a lot of energy{{< /sidenote >}} and the combustion of fuels makes up **another third of total {{< co2 >}} emissions.**
+Firing up a cement kiln at 1450°C also requires {{< sidenote >}}a lot of energy{{< /sidenote >}} and the combustion of fuels makes up **another third of total {{< co2 >}} emissions.**
 
 What this implies is that, **even if we were able to operate cement plants entirely on carbon-neutral fuels, we would still be left with nearly two thirds of the emissions.**
 
-Let's look at a detailed breakdown of the concrete manufacturing process, associated emissions and possible solutions, from the Chatham House report on innovation the cement industry:
+Let's look at a detailed breakdown of the cement manufacturing process, associated emissions and possible solutions:
 
-{{< figure src="imgs/chatham-co2-breakdown.png" caption="Emissions along the cement supply chain. ([source](https://www.chathamhouse.org/2018/06/making-concrete-change-innovation-low-carbon-cement-and-concrete-0/1-introduction#paragraph-7218-title))" >}}
+{{< figure caption="Emissions along the cement supply chain. ([source](https://www.chathamhouse.org/2018/06/making-concrete-change-innovation-low-carbon-cement-and-concrete-0/1-introduction#paragraph-7218-title))" >}}
+{{< img src="imgs/chatham-co2-breakdown.png" alt="Diagram of cement & concrete production with a breakdown of CO2 emissions" >}}
+{{< /figure >}}
 
 Taken altogether, quarrying, transportation, preparation of raw materials, cooling, grinding, mixing and transportation again make up 10% of emissions. Clinker production is the remaining 90%.
 
 However, here's a very interesting consequence of all this: **concrete absorbs {{< co2 >}} from the air.** The chemical reaction we've seen above is actually one side of a triangle.
 
-{{< figure src="imgs/cement-triangle.jpg" caption="The carbon cycle of concrete ([source](https://www.sciencedirect.com/science/article/pii/S0008884618301480))" alt="Diagram showing a triangle of reactions CaCO3 -> CaO -> Ca(OH)2 -> CaCO3" width="80%"  >}}
+{{< figure caption="The carbon cycle of concrete ([source](https://www.sciencedirect.com/science/article/pii/S0008884618301480))" class="w-4/5" >}}
+{{< img src="imgs/cement-triangle.jpg" alt="Diagram showing a triangle of reactions CaCO3 -> CaO -> Ca(OH)2 -> CaCO3" >}}
+{{< /figure >}}
 
 During clinker production, we take stable {{< rawhtml >}}CaCO<sub>3</sub>{{< /rawhtml >}} in the form of limestone and turn it at high temperatures into very reactive CaO --- also known as quicklime. Once it is incorporated into the concrete formulation and mixed with water, it rapidly turns into calcium hydrates {{< rawhtml >}}Ca(OH)<sub>2</sub>{{< /rawhtml >}} and solidifies.
 
@@ -168,11 +173,13 @@ Concrete used in a building for 80 years will [absorb around 20% of the process 
 
 The actions and technologies that can help reduce concrete's {{< co2 >}} footprint warrant a whole article of their own. However, it's possible to get a quick understanding of the landscape without diving too deep. So let's do just that!
 
-A mental model which I find really helpful is the one given in the [2050 Carbon Neutrality Roadmap](https://cembureau.eu/library/reports/2050-carbon-neutrality-roadmap/) from CEMBUREAU. It illustrates the five stages of the cement & concrete value chain. All of them are pretty straightforward, except "carbonation": it refers to the fact that concrete
+A mental model which I find really helpful is the one given in the [2050 Carbon Neutrality Roadmap](https://cembureau.eu/library/reports/2050-carbon-neutrality-roadmap/) from CEMBUREAU. It illustrates the five stages of the cement & concrete value chain. _"Carbonation"_ refers to the {{< co2 >}} absorbed by concrete over time and ways we could accelerate it.
 
 In the following, I will annotate each decarbonisation lever with the stage at which it applies.
 
-{{< figure src="imgs/cembureau-5c.png" caption="The five stages of the cement & concrete value chain" alt="The five stages of the cement & concrete value chain: clinker, cement, concrete, construction and carbonation" width="90%" >}}
+{{< figure caption="The five stages of the cement & concrete value chain" >}}
+{{< img src="imgs/cembureau-5c.png" alt="The five stages of the cement & concrete value chain: clinker, cement, concrete, construction and carbonation" >}}
+{{< /figure >}}
 
 Across the whole spectrum of actions that are relevant to reducing concrete's {{< co2 >}} footprint, it's possible to group nearly everything into a few categories.
 
@@ -190,28 +197,28 @@ This is a very active area of work and **one of the major levers for short term 
 ### Clinker substitution <small class="text-darkSanguine">(cement)</small> {#clinkersubst}
 Since clinker production is where nearly all the {{< co2 >}} emissions happen, why not use something else? In fact, clinker substitution is another major area of work in the cement industry today. 
 
-{{< sidenote-content id=6 >}}This leads to alterations in the structural properties of the resulting cement and concrete, like slower strength development. In most cases, this can be mitigated, but not all constructions can rely on those formulations.{{< /sidenote-content >}}
+{{< sidenote-content >}}This leads to alterations in the structural properties of the resulting cement and concrete, like slower strength development. In most cases, this can be mitigated, but not all constructions can rely on those formulations.{{< /sidenote-content >}}
 
-The two materials most commonly used for this are fly ash and ground-granulated blast-furnace slag (or GBFS). They are byproducts of the coal and steel industry, respectively. Both can be used up to {{< sidenote id=6 >}}very high percentages (50+%) of the final cement mix.{{< /sidenote >}}
+The two materials most commonly used for this are fly ash and ground-granulated blast-furnace slag (or GBFS). They are byproducts of the coal and steel industry, respectively. Both can be used up to {{< sidenote >}}very high percentages (50+%) of the final cement mix.{{< /sidenote >}}
 
 Another promising material is calcined clay, which has the advantages of not coming from {{< co2 >}}-intensive industries and offering a very large geological supply. The process is still in research & development, but [estimations](https://ecra-online.org/research/technology-papers/) are aiming for cements with up to 35-50% of the mix being calcined clay.
 
-{{< sidenote-content id=7 >}}{{< co2 >}} accounting is a tricky business however. Currently fly ash and GBFS are considered to be 0 kg{{< co2 >}}/t, which is simply not true. This leads to inaccurate claims by some manufacturers that their cement contains 80% or 90% less embodied emissions. The exact {{< co2 >}} content of these materials still needs to be determined, but I believe they have a role to play as the cement industry gets ready for more radical changes.{{< /sidenote-content >}}
+{{< sidenote-content >}}{{< co2 >}} accounting is a tricky business however. Currently fly ash and GBFS are considered to be 0 kg{{< co2 >}}/t, which is simply not true. This leads to inaccurate claims by some manufacturers that their cement contains 80% or 90% less embodied emissions. The exact {{< co2 >}} content of these materials still needs to be determined, but I believe they have a role to play as the cement industry gets ready for more radical changes.{{< /sidenote-content >}}
 
-**Replacing clinker is the second very promising avenue for** {{< sidenote id=7 >}}<span class="font-semibold">strong reductions in the carbon footprint of cement and concrete in the next decade</span>.{{< /sidenote >}} One caveat is that fly ash and GBFS cannot be sustainable solutions in my opinion. As the coal industry winds down and steel production switches to other processes, like electric furnaces, their supply will decrease. Better alternatives will be needed.
+**Replacing clinker is the second very promising avenue for** {{< sidenote >}}<span class="font-semibold">strong reductions in the carbon footprint of cement and concrete in the next decade</span>.{{< /sidenote >}} One caveat is that fly ash and GBFS cannot be sustainable solutions in my opinion. As the coal industry winds down and steel production switches to other processes, like electric furnaces, their supply will decrease. Better alternatives will be needed.
 
 ### Carbon capture <small class="text-darkSanguine">(clinker)</small>
 The idea here is simple as well: if you can't avoid {{< co2 >}} emissions in the process, capture them from the gas coming out of the kiln, before it gets into the atmosphere.
 
-{{< sidenote-content id=8 >}}For comparison, coal plants have around 15% {{< co2 >}} in their flue gases.{{< /sidenote-content >}}
+{{< sidenote-content >}}For comparison, coal plants have around 15% {{< co2 >}} in their flue gases.{{< /sidenote-content >}}
 
-This is the elephant in the room of low carbon cement. **Let's be clear: we won't get to net-zero emissions cement without carbon capture.** Clinker production is also very well suited to it: very large plants concentrating nearly all the emissions, with a {{< sidenote id=8 >}}high {{< co2 >}} percentage (~30%) in the flue gases.{{< /sidenote >}}
+This is the elephant in the room of low carbon cement. **Let's be clear: we won't get to net-zero emissions cement without carbon capture.** Clinker production is also very well suited to it: very large plants concentrating nearly all the emissions, with a {{< sidenote >}}high {{< co2 >}} percentage (~30%) in the flue gases.{{< /sidenote >}}
 
 **On the other hand, [carbon capture is very expensive](https://www.mdpi.com/1996-1073/12/3/542), both energetically (+100-150%) and financially (+50-100%).** The technologies are still immature and may run into unexpected problems once they are put into production. As such, the point in time at which carbon capture can be deployed widely is very uncertain. For this reason, all the other decarbonisation levers outlined here are just as crucial in a complete roadmap towards carbon neutral concrete.
 
 ### Alternative cement formulations <small class="text-darkSanguine">(concrete)</small>
 
-So far, all solutions above have focused on the regular cement process, known as [Portland cement](https://en.wikipedia.org/wiki/Portland_cement). What about alternatives, you may ask?
+So far, all solutions above have focused on regular Portland cement. What about alternatives, you may ask?
 
 There are indeed dozens of cement formulations other than Portland cement. There is however no catch-all solution that we could simply swap in. Often, the choice is strongly dependent on the construction type, as other cements have different physical properties, and the locally available materials.
 

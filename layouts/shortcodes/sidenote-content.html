@@ -1,2 +1,1 @@
-{{- $key := print "sidenote-" (.Get "id") -}}
-{{- .Page.Scratch.Set $key (markdownify .Inner) -}}
+{{- .Page.Scratch.Set "sidenote" (markdownify .Inner) -}}

@@ -1,23 +1,23 @@
+<!-- Will read from the most recent sidenote-content -->
+{{ $id := index (seq 999 | shuffle) 1 }}
 <span>
-  {{- $key := print "sidenote-" (string (.Get "id")) -}}
-  <input aria-label="Show sidenote" type="checkbox" id='sn_check-{{ .Get "id" }}'
+  <input aria-label="Show sidenote" type="checkbox" id='sn_check-{{ $id }}'
          class="sn_check hidden">
-  <label tabindex="0" title="{{- with (.Page.Scratch.Get $key) -}}{{ truncate 35 . }}{{- end -}}"
-    aria-describedby='sidenote-{{ .Get "id"}}' for='sn_check-{{ .Get "id" }}'
+  <label tabindex="0" title='{{- with (.Page.Scratch.Get "sidenote") -}}{{ truncate 35 . }}{{- end -}}'
+    aria-describedby='sidenote-{{ $id }}' for='sn_check-{{ $id }}'
     class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
-           lg:cursor-default lg:border-none lg:text-current">
+           xl:cursor-default xl:border-none xl:text-current">
     {{- .Inner -}}
   </label>
-  <small id='sidenote-{{ .Get "id" }}'
+  <small id='sidenote-{{ $id }}'
          class="sn_content ast-before sr-only flex
-                lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
-                lg:w-64  lg:-mr-80
-                xl:w-88 xl:-mr-110">
+                xl:not-sr-only xl:relative xl:float-right xl:clear-right xl:left-0
+                xl:w-80 xl:-mr-104">
     <span class="sr-only">
       (sidenote:
     </span>
-    <span class="lg:ml-1.5 leading-normal">
-      {{- with (.Page.Scratch.Get $key) -}}{{- . -}}{{- end -}}
+    <span class="xl:ml-1.5 leading-normal">
+      {{- with (.Page.Scratch.Get "sidenote") -}}{{- . -}}{{- end -}}
     </span>
     <span class="sr-only">
       )
