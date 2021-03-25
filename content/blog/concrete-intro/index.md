@@ -78,6 +78,8 @@ Another dimension which I have not included in this graphic is the {{< co2 >}} c
 
 However, these values only hold if the wood was grown in a sustainable manner and is properly disposed of at end of life. Otherwise, emissions from deforestation and the release of methane from decomposition could make the balance much worse. Deforestation is currently responsible for [around 6.5% of global {{< co2 >}} emissions](https://ourworldindata.org/deforestation?country=#one-third-of-co2-emissions-from-deforestation-are-embedded-in-international-trade). As such, it seems unlikely that we would be able to scale up our wood production, by at least 6x, to meet current concrete demand, in a sustainable manner.
 
+{{< sidenote-content >}}Look at Roman constructions: they had developed an advanced understanding of concrete and some of their roads and bridges still stand today.{{< /sidenote-content >}}
+
 Concrete also has other properties which make it hard to replace:
 - **Ease of use and versatility:** concrete is basically rock you can pour, which makes it both usable with nearly zero training and equipment and able to take a wide range of shapes.
 - **Durability:** concrete buildings can easily last {{< sidenote >}}over 100 years{{< /sidenote >}}. If our constructions last longer, we can build less and lower our environmental footprint.

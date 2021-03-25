@@ -12,7 +12,7 @@ module.exports = {
         DEFAULT: {
           css: {
             color: theme('colors.darkGreenBlue'),
-            maxWidth: 'none',
+            // maxWidth: 'none',
             a: {
               color: theme('colors.darkGreenBlue')
             },
