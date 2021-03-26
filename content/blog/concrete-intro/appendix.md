@@ -15,8 +15,10 @@ Roundwood = all wood removed from forests in a year = 3,966 million m3 in 2019. 
 ### Concrete
 2019 cement production = [4.1 billion](https://www.iea.org/reports/cement). Assuming an average content of 280kg of cement per m3 of concrete, a density of 2400 kg/m3 for concrete and a conservative estimate of 50% of global cement going into concrete we get 17.57 Gt of global concrete production.
 
-### Asphalt
-102 Mt estimated global world use according to Wikipedia. Same number given in [this course](https://www.coursera.org/lecture/mastering-bitumen/3-global-bitumen-market-main-uses-and-development-vfJ2h) from Ecole des Ponts ParisTech
+### Oil
+2019 oil production = 52,070 TWh according to [Our World in Data](https://ourworldindata.org/fossil-fuels#coal-production-how-much-do-countries-produce)
+[One tonne of oil equivalent (toe)](https://en.wikipedia.org/wiki/Tonne_of_oil_equivalent) is 11.63 MWh
+=> 2019 oil production = 4.48 Gt
 
 ### Glass
 Around 200Mt, according to [this presentation](http://www.iyog2022.org/images/files/77-economicsiyog-200925.pdf) or [this report](https://www.grandviewresearch.com/industry-analysis/glass-manufacturing-market)
