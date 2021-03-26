@@ -44,4 +44,5 @@
     {{ with $2xl.RelPermalink }}, {{.}} 1440w{{ end }}
   {{ end }}'
   src="{{ $src.RelPermalink }}" 
-  {{ with .Get "alt" }}alt="{{.}}"{{ else }}alt=""{{ end }}>
+  {{ with .Get "alt" }}alt="{{.}}"{{ else }}alt=""{{ end }}
+  {{ with .Get "class" }}class="{{ . }}"{{ end }}>

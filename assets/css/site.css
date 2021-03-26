@@ -8,7 +8,7 @@
     }
 
     .content-wrapper {
-        @apply w-full lg:w-152 xl:w-152 2xl:w-160 mx-auto lg:mr-64 xl:mx-auto;
+        @apply w-full md:w-148 lg:w-152 2xl:w-160 mx-auto lg:mr-64 xl:mx-auto;
     }
 
     .text-wrapper > * {

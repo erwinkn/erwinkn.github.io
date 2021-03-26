@@ -7,14 +7,20 @@
 // cement = 4.1
 var labels = ['Asphalt', 'Glass', 'Steel', 'Wood', 'Cement', 'Concrete']
 var values = [0.1, 0.2, 1.87, 3, 4.1, 17.5]
-var colors = palette('tol', 6)
+// See https://google.github.io/palette.js/
+var opacity = 0.6
+var colors = palette('tol', 8)
+var bgColors = colors.map(v => hexToRgba(v, opacity))
+var colorIdx = [4, 2, 0, 3, 6, 7]
 
 var data = {
     labels: labels,
     datasets: [
         {
             label: 'Global production (Gt/yr)',
-            backgroundColor: colors,
+            backgroundColor: colorIdx.map(i => bgColors[i]),
+            borderColor: colorIdx.map(i => colors[i]),
+            borderWidth: 2,
             data: values
         }
     ]
