@@ -6,6 +6,9 @@ date: 2021-03-23
 math: true
 charts: true
 toc: true
+url: /concrete/
+aliases:
+    - /blog/concrete-intro/
 image: img/cards/concrete-intro.jpg
 imageAlt: Aerial overview of a cement plant in Montalieu, France
 ---
