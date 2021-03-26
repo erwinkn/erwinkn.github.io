@@ -59,7 +59,7 @@ var options = {
                 displayColors: false,
                 callbacks: {
                     label: function(context) {
-                        var text = [`Average: ${context.raw.median}`,
+                        var text = [`Average: ${context.raw.median} kgCO2e/kg`,
                                     `Normal range: ${context.raw.q1}-${context.raw.q3}`,
                                     `Extremes: ${context.raw.min}-${context.raw.max}`]
                         return text;
