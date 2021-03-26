@@ -1,5 +1,5 @@
 ---
-title: "An introduction to cement & concrete from the climate lens"
+title: "Why decarbonising concrete is key to save the planet"
 subtitle: "We can't replace it and we can't take the CO2 out of it. How do we deal with it?"
 description: "The concrete industry is fundamental for our civilisation, yet will be incredibly hard to decarbonise. Here's what I learned from working on long term roadmaps towards carbon neutral cement."
 date: 2021-03-23
@@ -66,13 +66,13 @@ Concrete is often seen as dangerous for the environment. For good reason! The ce
 
 What is perhaps more surprising is that **concrete actually has a relatively low {{< co2 >}} footprint compared to other construction materials**. One way to see this is to look at {{< sidenote >}}the embodied {{< co2 >}}{{< /sidenote >}} of common construction materials.
 
-To this end, I compiled some data from the [Embodied Carbon database](https://circularecology.com/embodied-carbon-footprint-database.html), released in 2019, to obtain the following chart. **Disclaimer:** the boxes do not correspond to statistical quantities, like the median or quartiles, but representative values derived from the database. The methodology is described in [the appendix](https://github.com/erwinkn/erwinkn.github.io/blob/main/content/blog/concrete-intro/appendix.md).
+To this end, I compiled some data from the [Embodied Carbon database](https://circularecology.com/embodied-carbon-footprint-database.html), released in 2019, to obtain the following chart. **Disclaimer:** the boxes do not correspond to statistical quantities, like the median or quartiles, but representative values derived from the database. I described my methodology in [the appendix](https://github.com/erwinkn/erwinkn.github.io/blob/main/content/blog/concrete-intro/appendix.md).
 
 {{< chart src="charts/embodied-co2.js" class="full-bleed h-104 md:h-118 xl:h-132" >}}
 
-It turns out, it is somehow more energy and {{< co2 >}} efficient to mine rock, heat it up to 1450°C and blend it with sand and more rocks than to cut down, process and transport it. This is still something I struggle to wrap my head around: concrete is in fact one of the lowest impact materials we can use for construction.
+It turns out, it is somehow more energy and {{< co2 >}} efficient to mine rock, heat it up to 1450°C and blend it with sand and more rocks than to simply cut down wood, process it and transport it. It is still something I struggle to wrap my head around: concrete is in fact one of the lowest impact materials we can use for construction.
 
-To be clear, this is not an apple-to-apples comparison. What we care about is not the number of kilograms used, but the amount of each material we would have to use for a given construction. Of course, the analysis becomes much more complicated. [In the only such study](https://pubs.acs.org/doi/10.1021/es202190r) I could find, concrete seems to also come out as one of the lowest impact materials.
+To be clear, this is not an apple-to-apples comparison. What we care about is not the number of kilograms used, but the amount of each material we would have to use for a given construction. Of course, the analysis becomes much more complicated. [In the only such study](https://pubs.acs.org/doi/10.1021/es202190r) I could find, concrete also comes out as the lowest impact material.
 
 Another dimension which is not included in this graphic is the {{< co2 >}} captured in the wood. The Embodied Carbon database also provides values for timber with carbon sequestration. In this case, timber becomes strongly carbon negative, with values ranging from **-0.58 to -1.29 kgCO2e / kg of timber** and a mean of **-1.05 kgCO2e / kg of timber.**
 

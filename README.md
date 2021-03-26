@@ -1,5 +1,3 @@
-# Personal digital garden
+# Personal website
 
-Mostly a blog for now. 
-
-See: https://tomcritchlow.com/2018/10/10/of-gardens-and-wikis/
+A blog, a collection of technical tricks and an experimental playground in the making.
