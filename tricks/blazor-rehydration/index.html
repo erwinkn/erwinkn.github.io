@@ -70,7 +70,7 @@
     
     
     
-    <link rel="stylesheet" href="/bundle.min.cc5cbcc8b9b00492ca1cd03bc3b166f68265a03da75491f86477f4aaa264ad4c.css" integrity="">
+    <link rel="stylesheet" href="/bundle.min.a6da45ea72118cbaabf482979c25e9038ed35fdfb4725bd26fcefff5b4925ede.css" integrity="">
     <script type="text/javascript" src="/prism/prism.js"></script>
     
     
@@ -78,34 +78,36 @@
 
     
     
-</head><body class="flex flex-col min-h-screen bg-lightBeige xl:text-lg">
+</head><body class="flex flex-col min-h-screen bg-lightBeige 2xl:text-lg">
 <header class="bg-darkGreenBlue text-lightBeige">
-    <nav class="max-w-container mt-12 mb-4">
-        <a href="https://erwinkn.com/" class='font-semibold font-display tracking-wider text-5xl md:text-6xl  '>
-            Erwin Kuhn
-        </a>
-        
-        <div class="text-xl md:text-2xl lg:text-3xl mt-1 font-medium flex flex-wrap space-x-4 justify-items-center">
+    <div class="max-w-container mt-12 mb-4">
+        <nav class="content-wrapper">
+            <a href="https://erwinkn.com/" class='font-semibold font-display tracking-wider text-5xl md:text-6xl  '>
+                Erwin Kuhn
+            </a>
             
-            
-            
-            
-            <a class=" block px-1 py-2 " href="/about/">About</a>
-            
-            
-            
-            <a class=" block px-1 py-2 " href="/blog/">Blog</a>
-            
-            
-            
-            <a class=" block px-1 py-2 " href="/now/">Now</a>
-            
-            
-            
-            <a class=" block px-1 py-2 " href="/tricks/">Tricks</a>
-            
-        </div>
-    </nav>
+            <div class="text-xl md:text-2xl lg:text-3xl mt-1 font-medium flex flex-wrap space-x-4 justify-items-center">
+                
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/about/">About</a>
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/blog/">Blog</a>
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/now/">Now</a>
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/tricks/">Tricks</a>
+                
+            </div>
+        </nav>
+    </div>
     
     <svg class="wave" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320">
     <path fill="currentColor" fill-opacity="1"
@@ -114,7 +116,7 @@
 </svg>
 </header><main class="flex-1 w-full text-darkGreenBlue">
 <article class="max-w-container mt-10">
-    <div class="prose xl:prose-lg">
+    <div class="text-wrapper prose 2xl:prose-lg">
         <h1>
             Transfering state from server to client with Blazor WASM and prerendering
         </h1>
@@ -130,28 +132,31 @@
             </span>
         </div>
         
-        <div class="border-darkSanguine border-l-4 pl-4 py-1 mt-4 lg:mt-6 mb-2 font-medium italic text-xl xl:text-2xl ">
+        <div class="border-darkSanguine border-l-4 pl-4 py-1 mt-4 lg:mt-6 font-medium italic text-xl 2xl:text-2xl ">
             Or how to solve the "flash" problem with Blazor server-side prerendering
         </div>
+        
         
         
 <p>I wanted to brush up my <a href="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor">Blazor</a> skills. I had been 
 
 <span>
-  <input aria-label="Show sidenote" type="checkbox" id='sn_check-602'
+  <input aria-label="Show sidenote" type="checkbox" id='sn_check-569'
          class="sn_check hidden">
   <label tabindex="0" title='I&rsquo;ll give an introduction to …'
-    aria-describedby='sidenote-602' for='sn_check-602'
+    aria-describedby='sidenote-569' for='sn_check-569'
     class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
-           xl:cursor-default xl:border-none xl:text-current">using the new .NET framework</label>
-  <small id='sidenote-602'
+           lg:cursor-default lg:border-none lg:text-current">using the new .NET framework</label>
+  <small id='sidenote-569'
          class="sn_content ast-before sr-only flex
-                xl:not-sr-only xl:relative xl:float-right xl:clear-right xl:left-0
-                xl:w-80 xl:-mr-104">
+                lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
+                lg:w-64 lg:-mr-80
+                xl:w-64 xl:-mr-72
+                2xl:-mr-80">
     <span class="sr-only">
       (sidenote:
     </span>
-    <span class="xl:ml-1.5 leading-normal">I&rsquo;ll give an introduction to Blazor and the whole experience of putting it into production in a separate blog post.</span>
+    <span class="lg:ml-1.5 leading-normal">I&rsquo;ll give an introduction to Blazor and the whole experience of putting it into production in a separate blog post.</span>
     <span class="sr-only">
       )
     </span>
@@ -163,33 +168,78 @@
 <p>The results felt really nice: no more loading indicators, instant content! Except&hellip; the whole page rendered then disappeared then rendered again every time you opened the app.</p>
 <figure class='mx-auto w-full flex flex-col items-center '>
     
+<img src="imgs/blazor-flash.gif" alt="Initial HTML render followed by reloading of the page" >
 
-Turns out, your component logic will execute twice: once on the server, once in the client. That's [in the docs](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/lifecycle?view=aspnetcore-5.0#stateful-reconnection-after-prerendering). What's *not* in the docs is that if you have an asynchronous API call in there, Blazor will refresh the page as soon as the call goes off, and render elements as the data arrives. Normally that's great, it makes the page more responsive. In our case that's really bad, because we get this "flash". 
-
-If you dig a bit deeper, the fundamental problem here is that there is no state transfer between the server and the client. In other frameworks, this technique is called [rehydration](https://www.aboutmonica.com/blog/server-side-rendering-react-hydration-best-practices). The documentation linked above provides a way to solve this problem for Blazor Server, but says nothing about pre-rendering for Blazor WebAssembly.
-
-So, here is how you do state rehydration in a Blazor WebAssembly app pre-rendered on a server:
-
+    
+    <figcaption>See that loading indicator that appears after the browser gets the page?</figcaption>
+    
+</figure>
+<p>Turns out, your component logic will execute twice: once on the server, once in the client. That&rsquo;s <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/components/lifecycle?view=aspnetcore-5.0#stateful-reconnection-after-prerendering">in the docs</a>. What&rsquo;s <em>not</em> in the docs is that if you have an asynchronous API call in there, Blazor will refresh the page as soon as the call goes off, and render elements as the data arrives. Normally that&rsquo;s great, it makes the page more responsive. In our case that&rsquo;s really bad, because we get this &ldquo;flash&rdquo;.</p>
+<p>If you dig a bit deeper, the fundamental problem here is that there is no state transfer between the server and the client. In other frameworks, this technique is called <a href="https://www.aboutmonica.com/blog/server-side-rendering-react-hydration-best-practices">rehydration</a>. The documentation linked above provides a way to solve this problem for Blazor Server, but says nothing about pre-rendering for Blazor WebAssembly.</p>
+<p>So, here is how you do state rehydration in a Blazor WebAssembly app pre-rendered on a server:</p>
 <figure class='mx-auto w-full flex flex-col items-center '>
     
 
-Yep, you just serialize everything and dump it onto the page.
 
-Once the client receives the page, it can read the state directly and avoids doing the initial API call.
 
-The idea here is to replace all your API calls with a service that will take care of serializing / deserializing the state. You provide with a function wrapping the API call, so that it can execute it on its own, and a key to store or retrieve the result.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<img
+  srcset='
+  
+    /tricks/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_360x0_resize_q75_box.jpg 360w
+  
+  
+    , /tricks/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_660x0_resize_q75_box.jpg 660w
+  
+  
+    , /tricks/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_660x0_resize_q75_box.jpg 990w
+  
+  
+    , /tricks/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_1320x0_resize_q75_box.jpg 1320w 
+  '
+  
+    src="/tricks/blazor-rehydration/imgs/serialized-state.jpg" 
+  
+  alt="Serialized state in code source of the page">
+
+    
+    <figcaption>Elegant, right?</figcaption>
+    
+</figure>
+<p>Yep, you just serialize everything and dump it onto the page.</p>
+<p>Once the client receives the page, it can read the state directly and avoids doing the initial API call.</p>
+<p>The idea here is to replace all your API calls with a service that will take care of serializing / deserializing the state. You provide with a function wrapping the API call, so that it can execute it on its own, and a key to store or retrieve the result.</p>
 
 <pre><code class='language-csharp'>
 MyType items = await Cache.GetOrAdd(
     key,
     () => HttpClient.GetFromJsonAsync&lt;MyType>("api/endpoint"));
 </code></pre>
-
-Alright, time to dig into the code of our `Cache` service.
-
-If it's running on the server, the `Cache` service does the API call and stores the result in a dictionary. This dictionary will be used down the line to serialize everything onto the page.
-
+<p>Alright, time to dig into the code of our <code>Cache</code> service.</p>
+<p>If it&rsquo;s running on the server, the <code>Cache</code> service does the API call and stores the result in a dictionary. This dictionary will be used down the line to serialize everything onto the page.</p>
 
 <pre><code class='language-csharp'>
 private Dictionary&lt;string, object> Items { get; set; }
@@ -210,11 +260,8 @@ public async Task&lt;TResult> GetOrAdd&lt;TResult>(
     }
 }
 </code></pre>
-
-But before that, we have to elucidate something: how does the `Cache` service know whether it's running on the server or in the browser? 
-
-A simple way to do that is to check whether or not we have access to a JavaScript runtime.
-
+<p>But before that, we have to elucidate something: how does the <code>Cache</code> service know whether it&rsquo;s running on the server or in the browser?</p>
+<p>A simple way to do that is to check whether or not we have access to a JavaScript runtime.</p>
 
 <pre><code class='language-csharp'>
 private readonly IJSRuntime jsRuntime;
@@ -225,13 +272,9 @@ public Cache(IJSRuntime js)
 bool IsRunningOnServer =>
     jsRuntime.GetType().Name == "UnsupportedJavaScriptRuntime";
 </code></pre>
-
-Note that the JavaScript runtime we just injected will also be useful when we need to read the state from the page, as Blazor cannot interact with the DOM directly.
-
-Now that the result of all our API calls have been stored in the dictionary, it's time to serialize everything onto the page. For this, we'll use a JavaScript object that will hold our data and provide us a function to retrieve it afterwards.
-
-This JavaScript object is created by a `CacheStore.razor` component in `Server/Components`. The `supress-error` attribute is necessary, otherwise the compiler won't accept a `<script>` tag  in a Razor component. Don't worry, it works fine 😁
-
+<p>Note that the JavaScript runtime we just injected will also be useful when we need to read the state from the page, as Blazor cannot interact with the DOM directly.</p>
+<p>Now that the result of all our API calls have been stored in the dictionary, it&rsquo;s time to serialize everything onto the page. For this, we&rsquo;ll use a JavaScript object that will hold our data and provide us a function to retrieve it afterwards.</p>
+<p>This JavaScript object is created by a <code>CacheStore.razor</code> component in <code>Server/Components</code>. The <code>supress-error</code> attribute is necessary, otherwise the compiler won&rsquo;t accept a <code>&lt;script&gt;</code> tag  in a Razor component. Don&rsquo;t worry, it works fine 😁</p>
 
 <pre><code class='language-html'>
 @inject Cache Cache
@@ -242,30 +285,22 @@ This JavaScript object is created by a `CacheStore.razor` component in `Server/C
     }
 &lt;/script>
 </code></pre>
-
-The `Cache.Write` function simply serializes our dictionary:
-
+<p>The <code>Cache.Write</code> function simply serializes our dictionary:</p>
 
 <pre><code class='language-csharp'>
 public string Write() => JsonSerializer.Serialize(Items);
 </code></pre>
-
-Finally, we embed our `CacheStore.razor` in the `_Host.cshtml` page on our server.
+<p>Finally, we embed our <code>CacheStore.razor</code> in the <code>_Host.cshtml</code> page on our server.
 
 <pre><code class='language-html'>
 &lt;component
     type="typeof(HnpwaBlazor.Server.Components.CacheStore)"
     render-mode="Static" />
-</code></pre>
-
-<span class="text-darkSanguine font-semibold">Important!</span> The component should be placed at the very end of `_Host.cshtml`, right before the closing `</body>` tag, to make sure all the components have loaded before it writes the state on the page.
-
-With this, you have everything you need to get that beautiful serialized state that we've seen above. Now, it's time to read from it.
-
-Once again, this happens in our `Cache` service. The first time someone calls the `GetOrAdd` method on the client, the cache loads the `Items` dictionary by calling the JavaScript function defined above.
-
-For all subsequent calls, the `Cache` takes the result from the dictionary and returns it, or does an API call if it cannot find it.
-
+</code></pre></p>
+<p><span class="text-darkSanguine font-semibold">Important!</span> The component should be placed at the very end of <code>_Host.cshtml</code>, right before the closing <code>&lt;/body&gt;</code> tag, to make sure all the components have loaded before it writes the state on the page.</p>
+<p>With this, you have everything you need to get that beautiful serialized state that we&rsquo;ve seen above. Now, it&rsquo;s time to read from it.</p>
+<p>Once again, this happens in our <code>Cache</code> service. The first time someone calls the <code>GetOrAdd</code> method on the client, the cache loads the <code>Items</code> dictionary by calling the JavaScript function defined above.</p>
+<p>For all subsequent calls, the <code>Cache</code> takes the result from the dictionary and returns it, or does an API call if it cannot find it.</p>
 
 <pre><code class='language-csharp'>
 private bool HasLoaded { get; set; }
@@ -293,11 +328,8 @@ public async Task&lt;TResult> GetOrAdd&lt;TResult>(
     }
 }
 </code></pre>
-
-Note that since all our API calls go through the `Cache` service, we remove the items from the dictionary to make sure that the requests are executed normally afterwards.
-
-Alright, we're nearly done here! The last thing we need to do is to register our `Cache` service for both the client and server and inject it into components.
-
+<p>Note that since all our API calls go through the <code>Cache</code> service, we remove the items from the dictionary to make sure that the requests are executed normally afterwards.</p>
+<p>Alright, we&rsquo;re nearly done here! The last thing we need to do is to register our <code>Cache</code> service for both the client and server and inject it into components.</p>
 
 <pre><code class='language-csharp'>
 /* In Server/Startup.cs */
@@ -326,20 +358,9 @@ public static async Task Main(string[] args)
     // ...
 }
 </code></pre>
-
-If you want to look at an actual implementation, my Hacker News Blazor reader is running [here](https://hn-blazor.azurewebsites.net/) and the code is available on [GitHub](https://github.com/erwinkn/hnpwa-blazor).
-
-For the things I presented here, you'll mostly want to look into the [`Shared` folder](https://github.com/erwinkn/hnpwa-blazor/tree/main/Shared). There's additional trickery involved with another `ApiService` on top of cache because I have a build process that publishes the app both as standalone and server-hosted. Feel free to ignore that.
-
-Hope this proves useful and feel free to [contact me](mailto:erwin.kuhn@protonmail.com) if anything seems unclear!
-    
-    <figcaption>Elegant, right?</figcaption>
-    
-</figure>
-    
-    <figcaption>See that loading indicator that appears after the browser gets the page?</figcaption>
-    
-</figure>
+<p>If you want to look at an actual implementation, my Hacker News Blazor reader is running <a href="https://hn-blazor.azurewebsites.net/">here</a> and the code is available on <a href="https://github.com/erwinkn/hnpwa-blazor">GitHub</a>.</p>
+<p>For the things I presented here, you&rsquo;ll mostly want to look into the <a href="https://github.com/erwinkn/hnpwa-blazor/tree/main/Shared"><code>Shared</code> folder</a>. There&rsquo;s additional trickery involved with another <code>ApiService</code> on top of cache because I have a build process that publishes the app both as standalone and server-hosted. Feel free to ignore that.</p>
+<p>Hope this proves useful and feel free to <a href="mailto:erwin.kuhn@protonmail.com">contact me</a> if anything seems unclear!</p>
 
     </div>
 </article>
