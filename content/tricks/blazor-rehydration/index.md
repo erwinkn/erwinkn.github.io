@@ -19,7 +19,9 @@ The last step was to implement server-side prerendering. It enables the server t
 
 The results felt really nice: no more loading indicators, instant content! Except... the whole page rendered then disappeared then rendered again every time you opened the app.
 
-{{< figure src="imgs/blazor-flash.gif" caption="See that loading indicator that appears after the browser gets the page?" alt="Initial HTML render followed by reloading of the page" >}}
+{{< figure caption="See that loading indicator that appears after the browser gets the page?" >}}
+<img src="imgs/blazor-flash.gif" alt="Initial HTML render followed by reloading of the page" >
+{{< /figure >}}
 
 Turns out, your component logic will execute twice: once on the server, once in the client. That's [in the docs](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/lifecycle?view=aspnetcore-5.0#stateful-reconnection-after-prerendering). What's *not* in the docs is that if you have an asynchronous API call in there, Blazor will refresh the page as soon as the call goes off, and render elements as the data arrives. Normally that's great, it makes the page more responsive. In our case that's really bad, because we get this "flash". 
 
@@ -27,7 +29,9 @@ If you dig a bit deeper, the fundamental problem here is that there is no state 
 
 So, here is how you do state rehydration in a Blazor WebAssembly app pre-rendered on a server:
 
-{{< figure src="imgs/serialized-state.jpg" caption="Elegant, right?" alt="Serialized state in code source of the page">}}
+{{< figure caption="Elegant, right?" >}}
+{{< img src="imgs/serialized-state.jpg" alt="Serialized state in code source of the page" >}}
+{{< /figure >}}
 
 Yep, you just serialize everything and dump it onto the page.
 

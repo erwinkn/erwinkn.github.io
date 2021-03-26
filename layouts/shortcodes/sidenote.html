@@ -6,17 +6,19 @@
   <label tabindex="0" title='{{- with (.Page.Scratch.Get "sidenote") -}}{{ truncate 35 . }}{{- end -}}'
     aria-describedby='sidenote-{{ $id }}' for='sn_check-{{ $id }}'
     class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
-           xl:cursor-default xl:border-none xl:text-current">
+           lg:cursor-default lg:border-none lg:text-current">
     {{- .Inner -}}
   </label>
   <small id='sidenote-{{ $id }}'
          class="sn_content ast-before sr-only flex
-                xl:not-sr-only xl:relative xl:float-right xl:clear-right xl:left-0
-                xl:w-80 xl:-mr-104">
+                lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
+                lg:w-64 lg:-mr-80
+                xl:w-64 xl:-mr-72
+                2xl:-mr-80">
     <span class="sr-only">
       (sidenote:
     </span>
-    <span class="xl:ml-1.5 leading-normal">
+    <span class="lg:ml-1.5 leading-normal">
       {{- with (.Page.Scratch.Get "sidenote") -}}{{- . -}}{{- end -}}
     </span>
     <span class="sr-only">

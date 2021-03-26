@@ -1,18 +1,20 @@
 <header class="bg-darkGreenBlue text-lightBeige">
-    <nav class="max-w-container mt-12 mb-4">
-        <a href="{{ .Site.Home.Permalink }}" class='font-semibold font-display tracking-wider text-5xl md:text-6xl {{ if .IsHome }} underline {{ end }} '>
-            {{ .Site.Title }}
-        </a>
-        <!-- pl-0.5 is needed for proper alignment with the site title -->
-        <div class="text-xl md:text-2xl lg:text-3xl mt-1 font-medium flex flex-wrap space-x-4 justify-items-center">
-            {{ $currentPage := . }}
-            {{ range .Site.Menus.main }}
-            {{ $isSection := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
-            {{ $underline := or $isSection (eq (lower $currentPage.Name) .Identifier )}}
-            <a class=" block px-1 py-2 {{if $underline }} underline {{end}}" href="{{ .URL }}">{{ .Name }}</a>
-            {{ end }}
-        </div>
-    </nav>
+    <div class="max-w-container mt-12 mb-4">
+        <nav class="content-wrapper">
+            <a href="{{ .Site.Home.Permalink }}" class='font-semibold font-display tracking-wider text-5xl md:text-6xl {{ if .IsHome }} underline {{ end }} '>
+                {{ .Site.Title }}
+            </a>
+            <!-- pl-0.5 is needed for proper alignment with the site title -->
+            <div class="text-xl md:text-2xl lg:text-3xl mt-1 font-medium flex flex-wrap space-x-4 justify-items-center">
+                {{ $currentPage := . }}
+                {{ range .Site.Menus.main }}
+                {{ $isSection := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
+                {{ $underline := or $isSection (eq (lower $currentPage.Name) .Identifier )}}
+                <a class=" block px-1 py-2 {{if $underline }} underline {{end}}" href="{{ .URL }}">{{ .Name }}</a>
+                {{ end }}
+            </div>
+        </nav>
+    </div>
     <!-- SVG wave -->
     {{ partialCached "wave-top.html" . }}
 </header>

@@ -66,19 +66,19 @@ Concrete is often seen as dangerous for the environment. For good reason! The ce
 
 What is perhaps more surprising is that **concrete actually has a relatively low {{< co2 >}} footprint compared to other construction materials**. One way to see this is to look at {{< sidenote >}}the embodied {{< co2 >}}{{< /sidenote >}} of common construction materials.
 
-To this end, I compiled some data from the [ICE database](https://circularecology.com/embodied-carbon-footprint-database.html), released in 2019, to obtain the following chart. **Disclaimer:** the boxes do not correspond to statistical quantities, like the median or quartiles, but representative values derived from the database. The methodology is described in [the appendix](https://github.com/erwinkn/erwinkn.github.io/blob/main/content/blog/concrete-intro/appendix.md).
+To this end, I compiled some data from the [Embodied Carbon database](https://circularecology.com/embodied-carbon-footprint-database.html), released in 2019, to obtain the following chart. **Disclaimer:** the boxes do not correspond to statistical quantities, like the median or quartiles, but representative values derived from the database. The methodology is described in [the appendix](https://github.com/erwinkn/erwinkn.github.io/blob/main/content/blog/concrete-intro/appendix.md).
 
 {{< chart src="charts/embodied-co2.js" class="full-bleed h-104 md:h-118 xl:h-132" >}}
 
 It turns out, it is somehow more energy and {{< co2 >}} efficient to mine rock, heat it up to 1450°C and blend it with sand and more rocks than to cut down, process and transport it. This is still something I struggle to wrap my head around: concrete is in fact one of the lowest impact materials we can use for construction.
 
-To be clear, this is not an apple-to-apples comparison. What we care about is not the number of kilograms used, but the amount of each material we would have to use for a given construction. Of course, the analysis becomes much more complicated. Based on [one such study](https://pubs.acs.org/doi/10.1021/es202190r), concrete seems to also come out as one of the lowest impact materials.
+To be clear, this is not an apple-to-apples comparison. What we care about is not the number of kilograms used, but the amount of each material we would have to use for a given construction. Of course, the analysis becomes much more complicated. Based on [the only such study](https://pubs.acs.org/doi/10.1021/es202190r) I could find, concrete seems to also come out as one of the lowest impact materials.
 
-Another dimension which I have not included in this graphic is the {{< co2 >}} captured in the wood. The ICE database also provides values for timber with carbon sequestration. In this case, timber becomes strongly carbon negative, with values ranging from **-0.58 to -1.29 kgCO2e / kg of timber** and a mean of **-1.05 kgCO2e / kg of timber.**
+Another dimension which I have not included in this graphic is the {{< co2 >}} captured in the wood. The Embodied Carbon database also provides values for timber with carbon sequestration. In this case, timber becomes strongly carbon negative, with values ranging from **-0.58 to -1.29 kgCO2e / kg of timber** and a mean of **-1.05 kgCO2e / kg of timber.**
 
 However, these values only hold if the wood was grown in a sustainable manner and is properly disposed of at end of life. Otherwise, emissions from deforestation and the release of methane from decomposition could make the balance much worse. Deforestation is currently responsible for [around 6.5% of global {{< co2 >}} emissions](https://ourworldindata.org/deforestation?country=#one-third-of-co2-emissions-from-deforestation-are-embedded-in-international-trade). As such, it seems unlikely that we would be able to scale up our wood production, by at least 6x, to meet current concrete demand, in a sustainable manner.
 
-{{< sidenote-content >}}Look at Roman constructions: they had developed an advanced understanding of concrete and some of their roads and bridges still stand today.{{< /sidenote-content >}}
+{{< sidenote-content >}}Look at Roman constructions: they had developed an advanced understanding of concrete and some of their roads and bridges still stand today!{{< /sidenote-content >}}
 
 Concrete also has other properties which make it hard to replace:
 - **Ease of use and versatility:** concrete is basically rock you can pour, which makes it both usable with nearly zero training and equipment and able to take a wide range of shapes.
@@ -247,7 +247,9 @@ Needless to say, an incredible amount of work needs to be done before we can rea
 
 Concrete is one of the most crucial sectors in our transition to a carbon-neutral world and is deeply fascinating. Yet, I feel it is often overlooked compared to other areas of interest in discussions around the climate. I highly encourage ambitious folks to come tackle the problem, both within existing organisations, and by building new ones. There's a real shift in the industry right now. The questions it not "will we reach net-zero?" anymore, but "how will we do it?"
 
-## References {#refs}
+## Final words and references {#refs}
+
+
 
 I have linked many references in this article, but a few reports and papers have been crucial to shape my understanding of the subject. If you're interested in diving deeper, here are my recommandations:
 

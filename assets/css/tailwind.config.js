@@ -12,7 +12,7 @@ module.exports = {
         DEFAULT: {
           css: {
             color: theme('colors.darkGreenBlue'),
-            // maxWidth: 'none',
+            maxWidth: 'none',
             a: {
               color: theme('colors.darkGreenBlue')
             },
@@ -30,30 +30,6 @@ module.exports = {
             },
             h4: {
               color: theme('colors.darkGreenBlue'),
-            },
-            // Removing margins because the grid wrapper in articles prevents margin collapse
-            p: {
-              marginBottom: 0,
-            },
-            figure: {
-              marginBottom: '1em',
-            },
-            ul: {
-              marginBottom: 0,
-            },
-            ol: {
-              marginBottom: 0,
-            },
-            blockquote: {
-              marginBottom: 0,
-              paddingTop: '0.5em',
-              paddingBottom: '0.5em'
-            },
-            'blockquote p:first-of-type': {
-              marginTop: 0,
-            },
-            'blockquote p:last-of-type': {
-              marginBottom: 0,
             },
             // Fiddling to have nice inline code with prismJS
             code: {
@@ -80,7 +56,8 @@ module.exports = {
       sm: '640px',
       md: '768px',
       lg: '1024px',
-      xl: '1280px'
+      xl: '1280px',
+      '2xl': '1440px'
     },
     colors: {
       transparent: 'transparent',
@@ -131,11 +108,13 @@ module.exports = {
       96: '24rem',
       // added manually
       104: '26rem',
-      110: '28rem',
-      118: '30rem',
-      126: '32rem',
-      132: '34rem',
-      140: '36rem',
+      112: '28rem',
+      120: '30rem',
+      128: '32rem',
+      136: '34rem',
+      144: '36rem',
+      152: '40rem',
+      160: '44rem'
     },
     animation: {
       none: 'none',
@@ -550,6 +529,7 @@ module.exports = {
       lg: '32rem',
       xl: '36rem',
       '2xl': '42rem',
+      '2.5xl': '45rem',
       '3xl': '48rem',
       '4xl': '56rem',
       '5xl': '64rem',

@@ -1,6 +1,6 @@
 {{ define "main" }}
 <article class="max-w-container mt-10">
-    <div class="prose xl:prose-lg">
+    <div class="text-wrapper prose 2xl:prose-lg">
         <h1>
             {{ .Title }}
         </h1>
@@ -16,9 +16,15 @@
             </span>
         </div>
         {{ with .Params.subtitle }}
-        <div class="border-darkSanguine border-l-4 pl-4 py-1 mt-4 lg:mt-6 mb-2 font-medium italic text-xl xl:text-2xl ">
+        <div class="border-darkSanguine border-l-4 pl-4 py-1 mt-4 lg:mt-6 font-medium italic text-xl 2xl:text-2xl ">
             {{ safeHTML . }}
         </div>
+        {{ end }}
+        {{ if .Params.toc }}
+        <aside>
+            <h2>Table of contents</h2>
+            {{ .TableOfContents }}
+        </aside>
         {{ end }}
         {{ .Content }}
     </div>
