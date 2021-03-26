@@ -8,11 +8,11 @@
     }
 
     .content-wrapper {
-        @apply w-full lg:w-136 xl:w-152 2xl:w-160 mx-auto;
+        @apply w-full lg:w-152 xl:w-152 2xl:w-160 mx-auto lg:mr-64 xl:mx-auto;
     }
 
     .text-wrapper > * {
-        @apply w-full lg:w-136 xl:w-152 2xl:w-160 mx-auto lg:mr-88 xl:mx-auto;
+        @apply content-wrapper;
     }
 
     .full-bleed {
