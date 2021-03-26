@@ -1,47 +1,47 @@
 <!-- Parameters: src, alt -->
-<!-- Supported sizes: 360px for mobile, 660, 990 and 1320px images -->
+<!-- Supported sizes: 360px for mobile and Tailwind breakpoints -->
 {{ $src := .Page.Resources.GetMatch (printf "*%s*" (.Get "src")) }}
 
 {{/* set image sizes, these are hardcoded for now, x dictates that images are resized to this width */}}
 
 {{ $mobilew := default "360x" }}
-{{ $regularw := default "660x" }}
-{{ $largew := default "990x" }}
-{{ $xlargew := default "1320x" }}
+{{ $smw := default "640x" }}
+{{ $mdw := default "768x" }}
+{{ $lgw := default "1024x" }}
+{{ $xlw := default "1280x"}}
+{{ $2xlw := default "1440x"}}
 
 {{/* resize the src image to the given sizes */}}
 
-{{ .Scratch.Set "mobile" ($src.Resize $mobilew) }}
-{{ .Scratch.Set "regular" ($src.Resize $regularw) }}
-{{ .Scratch.Set "large" ($src.Resize $largew) }}
-{{ .Scratch.Set "xlarge" ($src.Resize $xlargew) }}
+{{ $mobile := ($src.Resize $mobilew) }}
+{{ $sm := ($src.Resize $smw) }}
+{{ $md := ($src.Resize $mdw) }}
+{{ $lg := ($src.Resize $lgw) }}
+{{ $xl := ($src.Resize $xlw) }}
+{{ $2xl := ($src.Resize $2xlw) }}
 
-{{/* add the processed images to the scratch */}}
 
-{{ $mobile := .Scratch.Get "mobile" }}
-{{ $regular := .Scratch.Get "regular" }}
-{{ $regular := .Scratch.Get "regular" }}
-{{ $xlarge := .Scratch.Get "xlarge" }}
-
-{{/* only use images regularer than or equal to the src (original) image size, as Hugo will upscale regular images */}}
+{{/* only use images smaller than or equal to the src (original) image size, as Hugo will upscale regular images */}}
 
 <img
   srcset='
-  {{ if ge $src.Width "500" }}
+  {{ if ge $src.Width "360" }}
     {{ with $mobile.RelPermalink }}{{.}} 360w{{ end }}
   {{ end }}
-  {{ if ge $src.Width "800" }}
-    {{ with $regular.RelPermalink }}, {{.}} 660w{{ end }}
+  {{ if ge $src.Width "640" }}
+    {{ with $sm.RelPermalink }}, {{.}} 640w{{ end }}
   {{ end }}
-  {{ if ge $src.Width "1200" }}
-    {{ with $regular.RelPermalink }}, {{.}} 990w{{ end }}
+  {{ if ge $src.Width "768" }}
+    {{ with $md.RelPermalink }}, {{.}} 768w{{ end }}
   {{ end }}
-  {{ if ge $src.Width "1500" }}
-    {{ with $xlarge.RelPermalink }}, {{.}} 1320w {{ end }}
+  {{ if ge $src.Width "1024" }}
+    {{ with $lg.RelPermalink }}, {{.}} 1024w{{ end }}
+  {{ end }}
+  {{ if ge $src.Width "1280" }}
+    {{ with $xl.RelPermalink }}, {{.}} 1280w{{ end }}
+  {{ end }}
+  {{ if ge $src.Width "1440" }}
+    {{ with $2xl.RelPermalink }}, {{.}} 1440w{{ end }}
   {{ end }}'
-  {{ if .Get (print $regular) }}
-    src="{{ $regular.RelPermalink }}" 
-  {{ else }}
-    src="{{ $src.RelPermalink }}" 
-  {{ end }}
+  src="{{ $src.RelPermalink }}" 
   {{ with .Get "alt" }}alt="{{.}}"{{ else }}alt=""{{ end }}>
