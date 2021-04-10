@@ -17,6 +17,7 @@ var switchTimber = function switchTimber() {
     if(showTimberWCS)
     {
         showTimberWCS = false;
+        document.querySelector("#timberSwitch").innerText = "Show me the timber!";
         chart1.data.labels.pop();
         chart1.data.datasets[0].data.pop();
         chart1.update();
@@ -24,6 +25,7 @@ var switchTimber = function switchTimber() {
     else
     {
         showTimberWCS = true;
+        document.querySelector("#timberSwitch").innerText = "Hide the timber!";
         chart1.data.labels.push('Timber w/ CS');
         chart1.data.datasets[0].data.push(timber_withcc)
         chart1.update();

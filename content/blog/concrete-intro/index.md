@@ -77,18 +77,20 @@ To this end, I compiled some data from the [Embodied Carbon database](https://ci
 </div>
 <script src="charts/embodied-co2.js" type="text/javascript"></script>
 
-It turns out, it is somehow more energy and {{< co2 >}} efficient to mine rock, heat it up to 1450°C and blend it with sand and more rocks than to simply cut down wood, process it and transport it. It is still something I struggle to wrap my head around: concrete is in fact one of the lowest impact materials we can use for construction.
+To be clear, this is not an apple-to-apples comparison. 
+First, I did not show the values for timber that count the carbon sequestered (CS) in the wood by default. I'll explain why below, but you can click here to make them appear:
 
-To be clear, this is not an apple-to-apples comparison. What we care about is not the number of kilograms used, but the amount of each material we would have to use for a given construction. Of course, the analysis becomes much more complicated. [In the only such study](https://pubs.acs.org/doi/10.1021/es202190r) I could find, concrete also comes out as the lowest impact material.
+<div id="timberSwitch" onclick="switchTimber()" style="border-color: #117733" class="bg-darkBeige border-2 p-2 rounded cursor-pointer max-w-max" >Show me the timber!</div>
 
-Another dimension which is not included in this graphic is the carbon captured in the wood. You can show it by clicking here (careful, it distorts the chart):
-<div onclick="switchTimber()" style="border-color: #117733" class="bg-darkBeige border-2 p-2 rounded cursor-pointer max-w-max" >Show me the timber!</div>
+Overall, it turns out that, it is somehow more energy and {{< co2 >}} efficient to mine rock, heat it up to 1450°C and blend it with sand and more rocks than to simply cut down wood, process it and transport it. It is something I struggle to wrap my head around: concrete is in fact one of the lowest impact materials we can use for construction.
 
-You can see that, in the best of cases, timber becomes **strongly carbon-negative** and can be a great way to reduce the {{< co2 >}} footprint of buildings.
+However, in the cases where we can account for carbon sequestration, timber becomes **strongly carbon-negative** and can be a great way to reduce the {{< co2 >}} footprint of buildings.
+
+Another important dimension is that we don't care about the number of kilograms used, but the amount of each material needed for a given construction. Of course, the analysis becomes much more complicated. [In the only such study](https://pubs.acs.org/doi/10.1021/es202190r) I could find, concrete also comes out as the lowest impact material (not counting for carbon sequestration once again).
 
 {{< sidenote-content >}}Deforestation is currently responsible for [around 6.5% of global {{< co2 >}} emissions](https://ourworldindata.org/deforestation?country=#one-third-of-co2-emissions-from-deforestation-are-embedded-in-international-trade){{< /sidenote-content >}}
 
-However, the negative {{< co2 >}} values for timber only hold if the wood was grown in a sustainable manner and is properly disposed of at end of life. Otherwise, {{< sidenote >}}emissions from deforestation{{< /sidenote >}} and the release of methane from decomposition could make the balance much worse.
+To go back to timber, the negative {{< co2 >}} values only hold if the wood was grown in a sustainable manner and is properly disposed of at end of life. Otherwise, {{< sidenote >}}emissions from deforestation{{< /sidenote >}} and the release of methane from decomposition could make the balance much worse.
 
 By how much we can scale up our wood production in a sustainable manner, to replace concrete with products like [mass timber](https://www.archdaily.com/922980/is-cross-laminated-timber-clt-the-concrete-of-the-future), remains an open question for the future. 
 
