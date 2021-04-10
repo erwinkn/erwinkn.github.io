@@ -78,11 +78,11 @@ To this end, I compiled some data from the [Embodied Carbon database](https://ci
 <script src="charts/embodied-co2.js" type="text/javascript"></script>
 
 To be clear, this is not an apple-to-apples comparison. 
-First, I did not show the values for timber that count the carbon sequestered (CS) in the wood by default. I'll explain why below, but you can click here to make them appear:
+First, I did not show the values for timber that count the carbon sequestered (CS) in the wood. I'll explain why below, but you can click here to make them appear:
 
-<div id="timberSwitch" onclick="switchTimber()" style="border-color: #117733" class="bg-darkBeige border-2 p-2 rounded cursor-pointer max-w-max" >Show me the timber!</div>
+<div id="timberSwitch" onclick="switchTimber()" class="text-lightBeige font-bold bg-emerald-800 border-2 border-green-900 bg-opacity-80 p-2 rounded cursor-pointer max-w-max" >Show me the timber!</div>
 
-Overall, it turns out that, it is somehow more energy and {{< co2 >}} efficient to mine rock, heat it up to 1450°C and blend it with sand and more rocks than to simply cut down wood, process it and transport it. It is something I struggle to wrap my head around: concrete is in fact one of the lowest impact materials we can use for construction.
+Still, it turns out that overall, it is somehow more energy and {{< co2 >}} efficient to mine rock, heat it up to 1450°C and blend it with sand and more rocks than to simply cut down wood, process it and transport it. It is something I struggle to wrap my head around: concrete is in fact one of the lowest impact materials we can use for construction.
 
 However, in the cases where we can account for carbon sequestration, timber becomes **strongly carbon-negative** and can be a great way to reduce the {{< co2 >}} footprint of buildings.
 

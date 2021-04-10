@@ -64,6 +64,9 @@ module.exports = {
       current: 'currentColor',
       gray: colors.coolGray,
       pink: colors.pink,
+      lime: colors.lime,
+      emerald: colors.emerald,
+      green: colors.green,
       lightBeige: '#fdf6e3', // base3 from Solarized
       darkBeige: '#f3ddb8',
       highlight: '#ffbe59', // jackmcdade.com
