@@ -61,7 +61,7 @@ Estimations for global concrete production put it at over 16 Gt/year. Cement-der
 As we can see, concrete dwarfs the other most common materials, like wood or steel, by far. I'm still surprised every time I see these numbers! Sure, I knew that we use a lot of concrete - but **more than all the other construction materials combined?** It's important to keep this in mind as we look into its environmental footprint.
 
 
-## The climate impact of concrete vs other materials
+## The climate impact of concrete (and other materials)
 
 Concrete is often seen as dangerous for the environment. For good reason! The cement industry is the largest industrial emitter of greenhouse gas emissions, responsible for [7-8% of global {{<co2>}} emissions](https://www.iea.org/reports/technology-roadmap-low-carbon-transition-in-the-cement-industry). It's also the third largest industrial energy consumer, representing 7% of the global industrial energy use.
 
@@ -71,29 +71,44 @@ What is perhaps more surprising is that **concrete actually has a relatively low
 
 To this end, I compiled some data from the [Embodied Carbon database](https://circularecology.com/embodied-carbon-footprint-database.html), released in 2019, to obtain the following chart. **Disclaimer:** the boxes do not correspond to statistical quantities, like the median or quartiles, but representative values derived from the database. I described my methodology in [the appendix](https://github.com/erwinkn/erwinkn.github.io/blob/main/content/blog/concrete-intro/appendix.md).
 
-{{< chart src="charts/embodied-co2.js" class="full-bleed h-104 md:h-118 xl:h-132" >}}
+
+<div class='my-4 full-bleed h-104 md:h-118 xl:h-132'>
+    <canvas id="chart-1"></canvas>
+</div>
+<script src="charts/embodied-co2.js" type="text/javascript"></script>
 
 It turns out, it is somehow more energy and {{< co2 >}} efficient to mine rock, heat it up to 1450°C and blend it with sand and more rocks than to simply cut down wood, process it and transport it. It is still something I struggle to wrap my head around: concrete is in fact one of the lowest impact materials we can use for construction.
 
 To be clear, this is not an apple-to-apples comparison. What we care about is not the number of kilograms used, but the amount of each material we would have to use for a given construction. Of course, the analysis becomes much more complicated. [In the only such study](https://pubs.acs.org/doi/10.1021/es202190r) I could find, concrete also comes out as the lowest impact material.
 
-Another dimension which is not included in this graphic is the {{< co2 >}} captured in the wood. The Embodied Carbon database also provides values for timber with carbon sequestration. In this case, timber becomes strongly carbon negative, with values ranging from **-0.58 to -1.29 kgCO2e / kg of timber** and a mean of **-1.05 kgCO2e / kg of timber.**
+Another dimension which is not included in this graphic is the carbon captured in the wood. You can show it by clicking here (careful, it distorts the chart):
+<div onclick="switchTimber()" style="border-color: #117733" class="bg-darkBeige border-2 p-2 rounded cursor-pointer max-w-max" >Show me the timber!</div>
 
-However, these values only hold if the wood was grown in a sustainable manner and is properly disposed of at end of life. Otherwise, emissions from deforestation and the release of methane from decomposition could make the balance much worse. Deforestation is currently responsible for [around 6.5% of global {{< co2 >}} emissions](https://ourworldindata.org/deforestation?country=#one-third-of-co2-emissions-from-deforestation-are-embedded-in-international-trade). As such, I'm still uncertain by how much we can scale up our wood production in a sustainable manner, to replace concrete with products like [cross-laminated timber](https://www.archdaily.com/922980/is-cross-laminated-timber-clt-the-concrete-of-the-future).
+You can see that, in the best of cases, timber becomes **strongly carbon-negative** and can be a great way to reduce the {{< co2 >}} footprint of buildings.
+
+{{< sidenote-content >}}Deforestation is currently responsible for [around 6.5% of global {{< co2 >}} emissions](https://ourworldindata.org/deforestation?country=#one-third-of-co2-emissions-from-deforestation-are-embedded-in-international-trade){{< /sidenote-content >}}
+
+However, the negative {{< co2 >}} values for timber only hold if the wood was grown in a sustainable manner and is properly disposed of at end of life. Otherwise, {{< sidenote >}}emissions from deforestation{{< /sidenote >}} and the release of methane from decomposition could make the balance much worse.
+
+By how much we can scale up our wood production in a sustainable manner, to replace concrete with products like [mass timber](https://www.archdaily.com/922980/is-cross-laminated-timber-clt-the-concrete-of-the-future), remains an open question for the future. 
+
+Moreover timber doesn't magically make a building's carbon footprint disappear. Dependending on each project's configuration, as well as the type of wood product used, the gains can vary greatly. Even in "good" cases, the few comparative assessments I found estimated a reduction in global warming impact of [around 20%](https://www.researchgate.net/publication/340960305_Comparative_life-cycle_assessment_of_a_mass_timber_building_and_concrete_alternative) for a mass timber structure vs a reinforced concrete one.
+
+While that's great, it shows clearly that we need to change our construction processes much more deeply, if we want to build for the climate and not against it.
 
 {{< sidenote-content >}}Look at Roman constructions: they had developed an advanced understanding of concrete and some of their roads and bridges still stand today!{{< /sidenote-content >}}
 
 Concrete also has other properties which make it hard to replace:
-- **Ease of use and versatility:** concrete is basically rock you can pour, which makes it both usable with nearly zero training and equipment and able to take a wide range of shapes.
+- **Ease of use and versatility:** concrete is basically rock you can pour, which makes it usable with nearly zero training and equipment, and able to take a wide range of shapes.
 - **Durability:** concrete buildings can easily last {{< sidenote >}}over 100 years.{{< /sidenote >}} If our constructions last longer, we can build less and lower our environmental footprint.
 - **Insulation:** higher energy efficiency in our built environment is [incredibly important](https://www.drawdown.org/solutions/insulation) on our path to reduce global {{< co2 >}} emissions. Concrete has a high thermal mass and low air infiltration, both important factors in enhancing the energy efficiency of buildings.
-- **Adaptability:** your regular neighborhood concrete plant is able to offer hundreds of different formulations. Every concrete plant has a different set of them, adapted to local environmental conditions. This diversity means concrete can be used anywhere on Earth, from Siberia to the Sahara, and adapted to any construction type.
+- **Adaptability:** your regular neighborhood concrete plant is able to offer hundreds of different formulations. Every concrete plant has a different set of them, adapted to local environmental conditions. This diversity means concrete can be used anywhere on Earth, from Siberia to the Sahara, for any construction type.
 
-The moral of the story is two-fold. First, while we should definitely use as much sustainably grown wood as possible, concrete will very likely remain the major construction material far into the future.
+The moral of the story is two-fold. First, the plan should be: use as much sustainable wood as possible, and decarbonise concrete at the same time. There's no way around it, as concrete will very likely remain the major construction material far into the 21st century.
 
 Second, the very large environmental footprint of the cement & concrete industry is not due to concrete being especially destructive in and of itself, but simply due to the incredibly high amounts of it we use as a civilization.
 
-{{< figure caption="Vicat's flagship plant of Montalieu, with all the state-of-the-art technological goodness" >}}
+{{< figure class="full-bleed" caption="Vicat's flagship plant of Montalieu, with all the state-of-the-art technological goodness" >}}
 {{< img src="imgs/montalieu.jpg" alt="Aerial overview of Vicat's cement plant in Montalieu, France" >}}
 {{< /figure >}}
 

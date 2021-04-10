@@ -3,13 +3,32 @@ var clay = {min: 0.179, q1:0.229, median: 0.243, q3: 0.296, max: 0.354};
 var cement = {min: 0.278, q1: 0.661, median: 0.73, q3: 0.803, max: 0.912};
 var concrete = {min: 0.047, q1: 0.081, median:0.106, q3:0.139, max:0.149};
 var timber_nocc = {min: 0.263, q1:0.409, median:0.493, q3:0.693, max:0.856};
-var timber_withcc = [-1.292, -1.162, -1.047, -0.844, -0.580];
+var timber_withcc = {min: -1.292, q1: -1.162, median: -1.047, q3: -0.844, max: -0.580};
 
 // See https://google.github.io/palette.js/
 var opacity = 0.6
 var colors = palette('tol', 8)
+console.log(colors);
 var bgColors = colors.map(v => hexToRgba(v, opacity))
-var colorIdx = [4, 7, 3, 6]
+var colorIdx = [4, 7, 3, 6, 3]
+var showTimberWCS = false;
+
+var switchTimber = function switchTimber() {
+    if(showTimberWCS)
+    {
+        showTimberWCS = false;
+        chart1.data.labels.pop();
+        chart1.data.datasets[0].data.pop();
+        chart1.update();
+    }
+    else
+    {
+        showTimberWCS = true;
+        chart1.data.labels.push('Timber w/ CS');
+        chart1.data.datasets[0].data.push(timber_withcc)
+        chart1.update();
+    }
+}
 
 var data = {
     // define label tree
@@ -59,9 +78,9 @@ var options = {
                 displayColors: false,
                 callbacks: {
                     label: function(context) {
-                        var text = [`Average: ${context.raw.median} kgCO2e/kg`,
-                                    `Normal range: ${context.raw.q1}-${context.raw.q3}`,
-                                    `Extremes: ${context.raw.min}-${context.raw.max}`]
+                        var text = [`Average: ${context.raw.median} (kgCO2e/kg)`,
+                                    `Normal range: ${context.raw.q1} to ${context.raw.q3}`,
+                                    `Extremes: ${context.raw.min} to ${context.raw.max}`]
                         return text;
                     }
                 }
@@ -69,3 +88,7 @@ var options = {
         },
     }
 };
+
+var ctx = document.getElementById('chart-1').getContext('2d');
+var chart1 = new Chart(ctx, options)
+chart1.render();
