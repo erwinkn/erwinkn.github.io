@@ -91,6 +91,6 @@ var options = {
     }
 };
 
-var ctx = document.getElementById('chart-1').getContext('2d');
+var ctx = document.getElementById('embodied-co2').getContext('2d');
 var chart1 = new Chart(ctx, options)
 chart1.render();

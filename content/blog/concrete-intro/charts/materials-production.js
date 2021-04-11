@@ -49,3 +49,7 @@ var options = {
         }
     }
 }
+
+var ctx = document.getElementById('materials-production').getContext('2d');
+var chart = new Chart(ctx, options)
+chart.render();

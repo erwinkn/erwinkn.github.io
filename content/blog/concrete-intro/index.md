@@ -56,7 +56,7 @@ Overall, the global production of cement is around {{< sidenote >}}4 Gt/year.{{<
 
 Estimations for global concrete production put it at over 16 Gt/year. Cement-derived materials, which include a majority of concrete, represent [around 30% of global materials use](https://wedocs.unep.org/bitstream/handle/20.500.11822/25281/eco_efficient_cements.pdf), including fossil fuels. With some {{< sidenote >}}rough estimates,{{< /sidenote >}} here is a chart for the global production of common materials, in gigatonnes per year:
     
-{{< chart src="charts/materials-production.js" class="full-bleed h-104 md:h-118 xl:h-132 my-4 lg:my-10" >}}
+{{< chart id="materials-production" src="charts/materials-production.js" class="full-bleed h-104 md:h-118 xl:h-132 my-4 lg:my-10" >}}
 
 As we can see, concrete dwarfs the other most common materials, like wood or steel, by far. I'm still surprised every time I see these numbers! Sure, I knew that we use a lot of concrete - but **more than all the other construction materials combined?** It's important to keep this in mind as we look into its environmental footprint.
 
@@ -71,11 +71,8 @@ What is perhaps more surprising is that **concrete actually has a relatively low
 
 To this end, I compiled some data from the [Embodied Carbon database](https://circularecology.com/embodied-carbon-footprint-database.html), released in 2019, to obtain the following chart. **Disclaimer:** the boxes do not correspond to statistical quantities, like the median or quartiles, but representative values derived from the database. I described my methodology in [the appendix](https://github.com/erwinkn/erwinkn.github.io/blob/main/content/blog/concrete-intro/appendix.md).
 
+{{< chart id="embodied-co2" src="charts/embodied-co2.js" class="full-bleed h-104 md:h-118 xl:h-132 my-4 lg:my-10" >}}
 
-<div class='my-4 full-bleed h-104 md:h-118 xl:h-132'>
-    <canvas id="chart-1"></canvas>
-</div>
-<script src="charts/embodied-co2.js" type="text/javascript"></script>
 
 To be clear, this is not an apple-to-apples comparison. 
 First, I did not show the values for timber that count the carbon sequestered (CS) in the wood. I'll explain why below, but you can click here to make them appear:
