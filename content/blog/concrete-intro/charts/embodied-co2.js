@@ -8,7 +8,6 @@ var timber_withcc = {min: -1.292, q1: -1.162, median: -1.047, q3: -0.844, max: -
 // See https://google.github.io/palette.js/
 var opacity = 0.6
 var colors = palette('tol', 8)
-console.log(colors);
 var bgColors = colors.map(v => hexToRgba(v, opacity))
 var colorIdx = [4, 7, 3, 6, 3]
 var showTimberWCS = false;

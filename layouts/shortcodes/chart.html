@@ -1,6 +1,10 @@
 <!-- Provide ApexCharts options inside the shortcode -->
 {{ $path := .Get "src" }}
-{{ $js := $.Page.Resources.GetMatch $path | minify }}
+
+{{ $js := $.Page.Resources.GetMatch $path }}
+{{ if hugo.IsProduction }}
+{{ $js = $js | minify }}
+{{ end }}
 
 <div class='my-4 {{ with .Get "class" }}{{ . }}{{ end }}'>
     <canvas id='{{ .Get "id" }}'></canvas>
