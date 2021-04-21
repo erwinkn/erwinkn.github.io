@@ -3,9 +3,4 @@
 {{ if hugo.IsProduction }}
 {{ $js = $js | minify }}
 {{ end }}
-
-<div class='mt-4 mb-8 {{ with .Get "class" }}{{ . }}{{ end }}'>
-    <canvas id='{{ .Get "id" }}'></canvas>
-</div>
-
 <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>

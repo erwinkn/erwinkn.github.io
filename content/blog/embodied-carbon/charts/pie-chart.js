@@ -17,6 +17,11 @@ const options = {
     options: {
         responsive: true,
         maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                onClick: null
+            }
+        }
     }
 };
 

@@ -70,3 +70,10 @@ window.hexToRgba = function(hex, opacity) {
   return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${opacity})`;
 }
 
+window.downloadChart = function(chart) {
+  const a = document.createElement('a');
+  a.href = chart.toBase64Image();
+  a.download = "pie-chart.png";
+  a.click();
+}
+

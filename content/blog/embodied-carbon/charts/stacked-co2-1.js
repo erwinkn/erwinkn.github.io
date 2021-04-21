@@ -1,4 +1,5 @@
-var lifetime = 50
+(function(){
+var lifetime = 80
 var embodied = new Array(lifetime + 1)
 var operational = new Array(lifetime+1)
 var years = new Array(lifetime+1)
@@ -9,8 +10,6 @@ for(var i = 0; i < lifetime+1; i++)
     operational[i] = i == 0 ? 0 : 28 + (i - 1) * 72 / (lifetime - 1)
     years[i] = 2020 + i;
 }
-
-console.log(embodied[0])
 
 var colors = palette('tol-dv', 8)
 var bgColors = colors.map(v => hexToRgba(v, 0.6))
@@ -45,6 +44,9 @@ var options = {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
+            x:{
+                
+            },
             y: {
                 ticks: {
                     callback: () => ''
@@ -55,11 +57,15 @@ var options = {
             title: {
                 display: true,
                 text: ''
+            },
+            legend: {
+                onClick: null
             }
         }
     }
 }
 
-var ctx = document.getElementById('stacked-chart').getContext('2d');
-var chart = new Chart(ctx, options)
+var ctx = document.getElementById('stacked-chart1').getContext('2d');
+var chart = new Chart(ctx, options);
 chart.render();
+})();
