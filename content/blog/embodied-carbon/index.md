@@ -2,8 +2,8 @@
 title: "Reevaluating the importance of embodied carbon"
 subtitle: "A simple calculator for building emissions, that accounts for the value of time "
 description: ""
-date: 2021-04-11
 draft: true
+date: 2021-04-11
 charts: true
 url: /embodied-carbon/
 # image: img/cards/concrete-intro.jpg

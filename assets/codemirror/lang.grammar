@@ -1,0 +1,47 @@
+@top Program { expression }
+
+@skip { whitespace }
+
+@precedence { trail, prefix, power @right, times @left, plus @left }
+
+expression {
+    Number |
+    VariableName |
+    PropertyExpression { VariableName !trail("." Property) } |
+    UnaryExpression { !prefix ArithOp<"+" | "-"> expression } |
+    BinaryExpression |
+    ParenthesisedExpression { "(" expression ")" }
+}
+
+
+BinaryExpression {
+    expression !plus ArithOp<"+" | "-" > expression |
+    expression !times ArithOp<"*" | "/"> expression |
+    expression !power ArithOp<"^"> expression
+}
+
+VariableName { identifier }
+
+
+Property { ukw<"Abs"> | ukw<"Gross"> | ukw<"Net"> }
+
+// Unnamed keyword
+ukw<term> { @specialize<identifier, term> }
+
+@tokens {
+    identifierChar { std.asciiLetter | $[_]}
+    identifier { identifierChar (identifierChar | std.digit)* }
+
+    Number { std.digit+ }
+
+    ArithOp<expr> { expr }
+
+    whitespace { std.whitespace }
+
+    "(" ")"
+
+    "."
+
+}
+
+@detectDelim

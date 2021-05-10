@@ -4,10 +4,14 @@ var embodied = new Array(lifetime + 1)
 var operational = new Array(lifetime+1)
 var years = new Array(lifetime+1)
 
+var embodied_total = 28 / (28 + 36)
+var operational_total = 36 / (28 + 36)
+var op_step = operational_total / (lifetime - 1)
+
 for(var i = 0; i < lifetime+1; i++)
 {
-    embodied[i] = i == 0 ? 0 : 56;
-    operational[i] = i == 0 ? 0 : 56 + (i - 1) * 44 / (lifetime - 1)
+    embodied[i] = i == 0 ? 0 : embodied_total;
+    operational[i] = i == 0 ? 0 : embodied_total + (i - 1) * op_step
     years[i] = 2020 + i;
 }
 

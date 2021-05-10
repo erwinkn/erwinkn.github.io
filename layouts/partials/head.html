@@ -27,7 +27,9 @@
     {{ end }}
 
     <!-- Quick Zdog add -->
+    {{ if .Params.zdog }}
     <script src="https://unpkg.com/zdog@1/dist/zdog.dist.min.js"></script>
+    {{ end }}
 
     <!-- KaTeX -->
     {{ if .Params.math }}
