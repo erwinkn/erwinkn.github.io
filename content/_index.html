@@ -88,6 +88,22 @@ zdog: true
             Project in-residence: the Munsell solid
         </h2>
         <canvas id="illo" class="w-full h-96 md:h-120 lg:h-148 mt-8 rounded-xl"></canvas>
+        <div class="flex flex-col">
+            <div class="">
+                <label for="level-height">Vertical spacing</label>
+                <input id="level-height" type="range" min="9" max="30" step="1" value="15" oninput="updateVSpacing(this.value)">
+            </div>
+
+            <div class="">
+                <label for="h-spacing">Horizontal spacing</label>
+                <input id="h-spacing" type="range" min="9" max="30" step="1" value="15" oninput="updateHSpacing(this.value)">
+            </div>
+
+            <div class="">
+                <label for="stroke">Size of each point</label>
+                <input id="stroke" type="range" min="5" max="15" step="1" value="8" oninput="updateStroke(this.value)">
+            </div>
+        </div>
     </div>
 </section>
 
