@@ -68,7 +68,7 @@
     
     
     
-    <link rel="stylesheet" href="/bundle.min.75056123ce9c47a91e193e5d9fa45e5dae20027a95c1dde88e5778906646070c.css" integrity="">
+    <link rel="stylesheet" href="/bundle.min.d43e2f7c7a1540d165ae2080885093deb1b94d03d3179f19e88a757a6327de76.css" integrity="">
     <script type="text/javascript" src="/prism/prism.js"></script>
     
     
@@ -205,11 +205,29 @@
     </div>
 </div>
 <section class="max-w-container py-16">
-    <div class="content-wrapper text-lg md:text-xl lg:text-2xl">
+    <div class="text-wrapper text-lg md:text-xl lg:text-2xl">
         <h2 id="playground" class="text-3xl md:text-4xl lg:text-5xl font-semibold">
             Project in-residence: the Munsell solid
         </h2>
-        <canvas id="illo" class="w-full h-96 md:h-120 lg:h-148 mt-8 rounded-xl"></canvas>
+        <p class="mt-4">
+            The first time I saw a representation of the Munsell color system, I was mesmerized.
+            It was the first color system to separate hue, value and chroma (now commonly used in
+            <a class="body-link" href="https://en.wikipedia.org/wiki/HSL_and_HSV">
+            HSL and HSV</a>)
+            into three independent dimensions. Roughly, hue is the color, value is the brightness (white has a value of 0) and chroma is the saturation.
+        </p>
+        <p class="mt-4">
+            The dimensions of the Munsell color space also are
+            <a class="body-link" href="https://www.programmingdesignsystems.com/color/perceptually-uniform-color-spaces/index.html">
+            perceptually uniform</a>,
+            which means that if you take a 
+
+        </p>
+        <div class="full-bleed">
+            <canvas width="1000" height="600" id="illo"
+                class="bg-white mx-auto mt-8 rounded-3xl border-darkBeige border-4">
+            </canvas>
+        </div>
         <div class="flex flex-col">
             <div class="">
                 <label for="level-height">Vertical spacing</label>
@@ -224,6 +242,11 @@
             <div class="">
                 <label for="stroke">Size of each point</label>
                 <input id="stroke" type="range" min="5" max="15" step="1" value="8" oninput="updateStroke(this.value)">
+            </div>
+
+            <div class="">
+                <label for="nonRGB">Show non sRGB colors</label>
+                <input id="nonRGB" type="checkbox" onchange="toggleNonRgb()">
             </div>
         </div>
     </div>
