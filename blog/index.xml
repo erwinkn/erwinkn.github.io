@@ -6,7 +6,16 @@
     <description>Recent content in Blog on Erwin Kuhn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://erwinkn.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://erwinkn.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The mesmerizing, irregular Munsell solid</title>
+      <link>https://erwinkn.com/munsell/</link>
+      <pubDate>Sun, 11 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://erwinkn.com/munsell/</guid>
+      <description>As part of my Project-in-Residence series</description>
+    </item>
+    
     <item>
       <title>Why decarbonising concrete is key to saving the planet</title>
       <link>https://erwinkn.com/concrete/</link>

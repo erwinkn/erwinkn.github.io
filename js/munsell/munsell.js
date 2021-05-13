@@ -8,6 +8,9 @@ async function fetch_data() {
 
 // delimiter indicates the index at which non-sRGB colors start
 function draw_illo(data, delimiter) { 
+  let minwidth = 800;
+  let zoom = 1.8;
+
   let vspacing = 15;
   let hspacing = 15;
   let stroke = 8;
@@ -15,7 +18,7 @@ function draw_illo(data, delimiter) {
   let TAU = Zdog.TAU;
   let theta = TAU/40;
 
-  var element = document.querySelector('#illo');
+  var element = document.getElementById('illo');
 
   let isSpinning = true;
 
@@ -23,7 +26,11 @@ function draw_illo(data, delimiter) {
   let illo = new Zdog.Illustration({
     element: element,
     rotate: {x : -TAU/12},
-    zoom: 2,
+    zoom:1.8,
+    resize: true,
+    onResize: function(width) {
+      this.zoom = 1.8 * width/minwidth;
+    },
     dragRotate: true,
     onDragStart: function() {
       isSpinning = false;
@@ -88,6 +95,7 @@ function draw_illo(data, delimiter) {
     requestAnimationFrame(animate);
   }
 
+  document.getElementById("nonRGB").checked = false;
   function onWheel(event) {
     const min_zoom = 1;
     const max_zoom = 4;
