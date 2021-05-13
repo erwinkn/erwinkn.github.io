@@ -4,19 +4,24 @@
 
 @layer utilities {
     .max-w-container {
-        @apply container mx-auto px-4 sm:px-8;
+        @apply container mx-auto general-padding;
+    }
+
+    .general-padding {
+        @apply px-4 sm:px-6 lg:px-8;
     }
 
     .content-wrapper {
-        @apply w-full md:w-148 lg:w-152 2xl:w-160 mx-auto lg:mr-64 xl:mx-auto;
+        @apply general-padding w-full md:w-148 lg:w-152 2xl:w-160 mx-auto lg:mr-64 xl:mx-auto;
     }
 
     .text-wrapper > * {
         @apply content-wrapper;
     }
-
-    .full-bleed {
-        @apply w-full lg:w-10/12 xl:w-11/12 max-w-5xl;
+    @variants responsive {
+        .full-bleed {
+            @apply w-full lg:w-10/12 xl:w-11/12 max-w-5xl p-0;
+        }
     }
 
     .smol-padding {

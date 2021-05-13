@@ -30758,6 +30758,32 @@ video {
 
 @media (min-width: 640px) {
   .max-w-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .max-w-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.general-padding {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .general-padding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .general-padding {
     padding-left: 2rem;
     padding-right: 2rem;
   }
@@ -30767,6 +30793,22 @@ video {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .content-wrapper {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-wrapper {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -30799,6 +30841,22 @@ video {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .text-wrapper > * {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-wrapper > * {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -30829,6 +30887,7 @@ video {
 
 .full-bleed {
   max-width: 64rem;
+  padding: 0px;
   width: 100%;
 }
 
@@ -60940,6 +60999,24 @@ video {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
   }
+
+  .sm\:full-bleed {
+    max-width: 64rem;
+    padding: 0px;
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .sm\:full-bleed {
+      width: 83.333333%;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .sm\:full-bleed {
+      width: 91.666667%;
+    }
+  }
 }
 
 @media (min-width: 768px) {
@@ -90810,6 +90887,24 @@ video {
   .md\:animate-bounce {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
+  }
+
+  .md\:full-bleed {
+    max-width: 64rem;
+    padding: 0px;
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .md\:full-bleed {
+      width: 83.333333%;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .md\:full-bleed {
+      width: 91.666667%;
+    }
   }
 }
 
@@ -120682,6 +120777,24 @@ video {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
   }
+
+  .lg\:full-bleed {
+    max-width: 64rem;
+    padding: 0px;
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .lg\:full-bleed {
+      width: 83.333333%;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .lg\:full-bleed {
+      width: 91.666667%;
+    }
+  }
 }
 
 @media (min-width: 1280px) {
@@ -150553,6 +150666,24 @@ video {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
   }
+
+  .xl\:full-bleed {
+    max-width: 64rem;
+    padding: 0px;
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .xl\:full-bleed {
+      width: 83.333333%;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .xl\:full-bleed {
+      width: 91.666667%;
+    }
+  }
 }
 
 @media (min-width: 1440px) {
@@ -180423,5 +180554,23 @@ video {
   .\32xl\:animate-bounce {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
+  }
+
+  .\32xl\:full-bleed {
+    max-width: 64rem;
+    padding: 0px;
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .\32xl\:full-bleed {
+      width: 83.333333%;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .\32xl\:full-bleed {
+      width: 91.666667%;
+    }
   }
 }

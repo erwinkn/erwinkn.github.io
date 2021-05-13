@@ -82,52 +82,70 @@ zdog: true
         {{< wave-top>}}
     </div>
 </div>
-<section class="max-w-container py-16">
-    <div class="text-wrapper text-lg md:text-xl lg:text-2xl">
-        <h2 id="playground" class="text-3xl md:text-4xl lg:text-5xl font-semibold">
-            Project in-residence: the Munsell solid
-        </h2>
-        <p class="mt-4">
-            The first time I saw a representation of the Munsell color system, I was mesmerized.
-            It was the first color system to separate hue, value and chroma (now commonly used in
-            <a class="body-link" href="https://en.wikipedia.org/wiki/HSL_and_HSV">
-            HSL and HSV</a>)
-            into three independent dimensions. Roughly, hue is the color, value is the brightness (white has a value of 0) and chroma is the saturation.
-        </p>
-        <p class="mt-4">
-            The dimensions of the Munsell color space also are
-            <a class="body-link" href="https://www.programmingdesignsystems.com/color/perceptually-uniform-color-spaces/index.html">
-            perceptually uniform</a>,
-            which means that if you take a 
-
-        </p>
-        <div class="full-bleed">
-            <canvas width="1000" height="600" id="illo"
-                class="bg-white mx-auto mt-8 rounded-3xl border-darkBeige border-4">
-            </canvas>
+<section class="text-wrapper text-lg md:text-xl lg:text-2xl py-16">
+    <h2 id="playground" class="text-3xl md:text-4xl lg:text-5xl font-semibold">
+        Project in-residence: the Munsell solid
+    </h2>
+    <p class="mt-4">
+        The first time I saw a representation of the Munsell color system, I was mesmerized.
+        It was the first color system to separate hue, value and chroma (now commonly used in
+        <a class="body-link" href="https://en.wikipedia.org/wiki/HSL_and_HSV">
+        HSL and HSV</a>)
+        into three independent and
+        <a class="body-link" href="https://www.programmingdesignsystems.com/color/perceptually-uniform-color-spaces/index.html">
+        perceptually uniform</a>
+        dimensions. 
+    </p>
+    <p class="mt-4">
+        I also recently stumbled upon a fun little pseudo-3D library called
+        <a class="body-link" href="https://zzz.dog/">
+        Zdog</a>,
+        loved the philosophy and all the
+        <a class="body-link" href="https://codepen.io/collection/DzdGMe/">
+        cool things</a>
+        people built with it.
+        So, why not turn a little trip through color spaces into a nice 3D visualisation?
+        Feel free to drag it around!
+    </p>
+    <div class="full-bleed">
+        <canvas id="illo"
+            class="w-full h-104 md:h-128 lg:h-148 bg-white mx-auto mt-8 rounded-3xl border-darkBeige border-4">
+        </canvas>
+    </div>
+    <div class="mt-4 grid grid-flow-row sm:grid-cols-2 gap-4 ">
+        <div class="">
+            <label class="block" for="h-spacing">Spacing</label>
+            <input id="level-height" type="range" min="9" max="30" step="1" value="15" oninput="updateSpacing(this.value)">
         </div>
-        <div class="flex flex-col">
-            <div class="">
-                <label for="level-height">Vertical spacing</label>
-                <input id="level-height" type="range" min="9" max="30" step="1" value="15" oninput="updateVSpacing(this.value)">
-            </div>
-
-            <div class="">
-                <label for="h-spacing">Horizontal spacing</label>
-                <input id="h-spacing" type="range" min="9" max="30" step="1" value="15" oninput="updateHSpacing(this.value)">
-            </div>
-
-            <div class="">
-                <label for="stroke">Size of each point</label>
-                <input id="stroke" type="range" min="5" max="15" step="1" value="8" oninput="updateStroke(this.value)">
-            </div>
-
-            <div class="">
-                <label for="nonRGB">Show non sRGB colors</label>
-                <input id="nonRGB" type="checkbox" onchange="toggleNonRgb()">
-            </div>
+        <div class="">
+            <label class="block" for="stroke">Point size</label>
+            <input id="stroke" type="range" min="5" max="15" step="1" value="8" oninput="updateStroke(this.value)">
+        </div>
+        <div class="">
+            <button id="nonRGB" class="rounded-xl bg-white border-darkGreenBlue border-2 shadow py-1 px-2 sm:p-2" onclick="toggleNonRgb()">Show non sRGB colors</button>
+        </div>
+        <div class="flex items-center">
+            <span class="block">Selected color:</span>
+            <span id="colorDisplay" class="rounded-xl h-9 md:h-12 w-20 md:w-24 ml-3" style="background-color: white;">
+                <span id="colorHex" class="text-sm block w-full relative top-9 md:top-12 text-center">click on one!</span>
+            </span>
         </div>
     </div>
+    <p class="mt-8">
+        What's really interesting is that a lot of the colors from the original work, which used paints,
+        cannot be translated into the RGB color space used for digital displays. Out of the 2745 original colors, 1537 of them can be represented in RGB.
+    </p>
+    <p class="mt-4">
+        I added an option to show the missing ones, mapped to the closest representable color.
+        I will let you ponder on the implications this has on the color palette of some of our most popular medias, like film, video games or digital art.
+    </p>
+    <p class="mt-4">
+        The code is available on <a class="body-link" href="https://github.com/erwinkn/munsell-json">GitHub</a>,
+        including all the color transformations and the data itself in JSON format,
+        if you want to have fun with it as well!
+    </p>
+
+
 </section>
 
 <script type="module" src="/js/munsell/munsell.js"></script>
