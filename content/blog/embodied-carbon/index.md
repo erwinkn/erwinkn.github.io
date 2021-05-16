@@ -18,6 +18,8 @@ Globally, the split of all building sector emissions is 72% coming from operatio
 
 {{< chart id="pie-chart" src="charts/pie-chart.js" >}}
 
+<button class="bg-darkBeige px-3 py-2 rounded-lg" onclick="downloadChart('pie-chart')">Download pie chart</button>
+
 {{< sidenote-content >}}I discovered this concept in [The New Carbon Architecture](https://ecobuildnetwork.org/projects/new-carbon-architecture), which I highly recommend. {{< /sidenote-content >}}
 
 For this reason, most of the focus so far has been on attacking operational emissions. However, there's an important dimension that we should also consider: {{< sidenote >}}the time value of carbon.{{< /sidenote >}} Since {{< co2 >}} accumulates in the atmosphere for hundreds of years, any {{< co2 >}} emitted today will have more global warming impact than {{< co2 >}} emitted 30 years from now. Here's another way to say this: it's much more important to prevent emissions today than in 2050.

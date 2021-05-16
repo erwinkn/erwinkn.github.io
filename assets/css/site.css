@@ -1,5 +1,77 @@
-@layer components {
-    
+@layer base {
+
+    .slider-thumb {
+        @apply bg-darkSanguine border-none shadow-xl rounded-full cursor-pointer h-5 w-5;
+    } 
+
+    /* We need to separate dims and fill due to how IE handles track styling */
+    .slider-track-dims {
+        @apply w-full h-2.5 cursor-pointer;
+    }
+
+    .slider-track-fill {
+        @apply bg-darkBeige rounded shadow-inner;
+    }
+    .slider-focus {
+        @apply border-darkGreenBlue border-2;
+    }
+
+    input[type=range] {
+        -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+        width: 100%; /* Specific width is required here for Firefox. */
+        background: transparent; /* Otherwise white in Chrome */
+    }
+
+    input[type=range]:focus {
+        /* Removes the blue border.
+        Some kind of focus styling is good for accessibility though. */
+        outline: none;
+    }
+
+    /* Styling the thumb */
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        margin-top: -5px; /* required for proper vertical alignment */
+        @apply slider-thumb;
+    }
+    input[type=range]::-moz-range-thumb {
+        @apply slider-thumb;
+    }
+    input[type=range]::-ms-thumb {
+        margin: 0; /* Reset margin since Edge also supports -webkit-slider-thumber*/
+        @apply slider-thumb;
+    }
+
+    /* Styling the track */
+    input[type=range]::-moz-range-track {
+        @apply slider-track-dims slider-track-fill;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+        @apply slider-track-dims slider-track-fill;
+    }
+    input[type=range]::-ms-track {
+        @apply slider-track-dims;
+        /* Hides the default slider */
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+    }
+    input[type=range]::-ms-fill-lower {
+        @apply slider-track-fill;
+    }
+    input[type=range]::-ms-fill-upper {
+        @apply slider-track-fill;
+    }
+    /* Show focus state, for accessibility reasons */
+    input[type=range]:focus::-ms-fill-lower {
+        @apply slider-focus;
+    }
+    input[type=range]:focus::-ms-fill-lower {
+        @apply slider-focus;
+    }
+    input[type=range]:focus::-webkit-slider-runnable-track {
+        @apply slider-focus;
+    }
 }
 
 @layer utilities {

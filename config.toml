@@ -25,9 +25,9 @@ imageAlt="Homepage of Erwin Kuhn's website"
     url = "/now/"
 
     [[menu.main]]
-    identifier="tricks"
-    name = "Tricks"
-    url = "/tricks/"
+    identifier="code"
+    name = "Code"
+    url = "/code/"
 
 [taxonomies]
 category = "categories"
