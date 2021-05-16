@@ -24,7 +24,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 
-<meta property="og:type" content="article" >
+<meta property="og:type" content="website" >
 
 
 <meta name="author" content="map[]" >
@@ -38,9 +38,9 @@
   <meta name="twitter:image:alt" content="Homepage of Erwin Kuhn&#39;s website" >
 
 
-<link rel="canonical" href="https://erwinkn.com/tricks/blazor-rehydration/" >
-<meta property="twitter:url" content="https://erwinkn.com/tricks/blazor-rehydration/">
-<meta property="og:url" content="https://erwinkn.com/tricks/blazor-rehydration/" >
+<link rel="canonical" href="https://erwinkn.com/code/blazor-rehydration/" >
+<meta property="twitter:url" content="https://erwinkn.com/code/blazor-rehydration/">
+<meta property="og:url" content="https://erwinkn.com/code/blazor-rehydration/" >
 
 
 <meta name="robots" content="index,follow" > 
@@ -70,7 +70,7 @@
     
     
     
-    <link rel="stylesheet" href="/bundle.min.7729c9f8d22cf44464b256bd55c5eb83429ce9c4476a147f0ea036744a4fd620.css" integrity="">
+    <link rel="stylesheet" href="/bundle.min.a5642512398b0b93e9ff9ffd90961dc60295a402ea31a893e3a77b11134cb7d8.css" integrity="">
     <script type="text/javascript" src="/prism/prism.js"></script>
     
     
@@ -102,11 +102,11 @@
                 
                 
                 
+                <a class=" block px-1 py-2 " href="/code/">Code</a>
+                
+                
+                
                 <a class=" block px-1 py-2 " href="/now/">Now</a>
-                
-                
-                
-                <a class=" block px-1 py-2 " href="/tricks/">Tricks</a>
                 
             </div>
         </nav>
@@ -118,39 +118,26 @@
     </path>
 </svg>
 </header><main class="flex-1 w-full text-darkGreenBlue">
-<article class="max-w-container mt-10">
-    <div class="text-wrapper prose xl:prose-lg">
-        <h1>
+
+<div class="max-w-container mt-10">
+    <div class="content-wrapper">
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold">
             Transfering state from server to client with Blazor WASM and prerendering
         </h1>
-        <div class="text-gray-500 tracking-wide -mt-8">
-            <time class="uppercase">
-                March 10, 2021
-            </time>
-            <span class="">
-                &middot;
-            </span>
-            <span>
-                6 min
-            </span>
-        </div>
         
-        <div class="bg-darkBeige border-pink-600 border-opacity-80 border-2 rounded py-2 px-4 mt-4 lg:mt-6 font-medium italic text-xl xl:text-2xl">
-            Or how to solve the "flash" problem with Blazor server-side prerendering
-        </div>
-        
-        
-        
+        <div class="mt-3 prose xl:prose-lg">
+            
 <p>I wanted to brush up my <a href="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor">Blazor</a> skills. I had been 
 
 <span>
-  <input aria-label="Show sidenote" type="checkbox" id='sn_check-809'
+  <input aria-label="Show sidenote" type="checkbox" id='sn_check-751'
          class="sn_check hidden">
   <label tabindex="0" title='I&rsquo;ll give an introduction to …'
-    aria-describedby='sidenote-809' for='sn_check-809'
+    aria-describedby='sidenote-751' for='sn_check-751'
     class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
            lg:cursor-default lg:border-none lg:text-current">using the new .NET framework</label>
-  <small id='sidenote-809'
+  <small id='sidenote-751'
          class="sn_content ast-before sr-only flex
                 lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
                 lg:w-52 lg:-mr-56
@@ -210,24 +197,24 @@
 <img
   srcset='
   
-    /tricks/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_360x0_resize_q75_box.jpg 360w
+    /code/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_360x0_resize_q75_box.jpg 360w
   
   
-    , /tricks/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_640x0_resize_q75_box.jpg 640w
+    , /code/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_640x0_resize_q75_box.jpg 640w
   
   
-    , /tricks/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_768x0_resize_q75_box.jpg 768w
+    , /code/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_768x0_resize_q75_box.jpg 768w
   
   
-    , /tricks/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_1024x0_resize_q75_box.jpg 1024w
+    , /code/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_1024x0_resize_q75_box.jpg 1024w
   
   
-    , /tricks/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_1280x0_resize_q75_box.jpg 1280w
+    , /code/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_1280x0_resize_q75_box.jpg 1280w
   
   
-    , /tricks/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_1440x0_resize_q75_box.jpg 1440w
+    , /code/blazor-rehydration/imgs/serialized-state_hu359607f7cc2e3376b999048464037f2a_553094_1440x0_resize_q75_box.jpg 1440w
   '
-  src="/tricks/blazor-rehydration/imgs/serialized-state.jpg" 
+  src="/code/blazor-rehydration/imgs/serialized-state.jpg" 
   alt="Serialized state in code source of the page"
   >
 
@@ -368,9 +355,9 @@ public static async Task Main(string[] args)
 <p>For the things I presented here, you&rsquo;ll mostly want to look into the <a href="https://github.com/erwinkn/hnpwa-blazor/tree/main/Shared"><code>Shared</code> folder</a>. There&rsquo;s additional trickery involved with another <code>ApiService</code> on top of cache because I have a build process that publishes the app both as standalone and server-hosted. Feel free to ignore that.</p>
 <p>Hope this proves useful and feel free to <a href="mailto:erwin.kuhn@protonmail.com">contact me</a> if anything seems unclear!</p>
 
+        </div>
     </div>
-</article>
-
+</div>
     </main><footer
     class='w-full mt-48 text-center border-t border-darkGreenBlue border-opacity-10 p-4 text-xs text-darkGreenBlue text-opacity-60'>
     <p>

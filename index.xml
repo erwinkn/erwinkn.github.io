@@ -20,10 +20,10 @@ I&amp;rsquo;ve been working for the past year with  Vicat, (sidenote:  For the a
     
     <item>
       <title>Transfering state from server to client with Blazor WASM and prerendering</title>
-      <link>https://erwinkn.com/tricks/blazor-rehydration/</link>
+      <link>https://erwinkn.com/code/blazor-rehydration/</link>
       <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://erwinkn.com/tricks/blazor-rehydration/</guid>
+      <guid>https://erwinkn.com/code/blazor-rehydration/</guid>
       <description>I wanted to brush up my Blazor skills. I had been  using the new .NET framework (sidenote:  I&amp;rsquo;ll give an introduction to Blazor and the whole experience of putting it into production in a separate blog post. )    in my work with Vicat, an international cement &amp;amp; concrete group based in France, to develop a modelling tool for long term roadmaps towards carbon neutrality. Coding with it was a joy, but I had doubts about its overall performance.</description>
     </item>
     
