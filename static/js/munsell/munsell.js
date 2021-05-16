@@ -84,13 +84,13 @@ function draw_illo(data, delimiter) {
       colors[i].visible = !colors[i].visible;
     }
     if(colors[delimiter].visible) {
-      toggleNonRgb.classList.add('shadow-inner', 'bg-darkBeige');
+      toggleNonRgb.classList.add('shadow-inner');
       toggleNonRgb.classList.remove('shadow', 'bg-opacity-60');
       toggleNonRgb.innerText = 'Hide' + baseText;
     }
     else {
       toggleNonRgb.classList.add('shadow', 'bg-opacity-60');
-      toggleNonRgb.classList.remove('shadow-inner', 'bg-darkBeige');
+      toggleNonRgb.classList.remove('shadow-inner');
       toggleNonRgb.innerText = 'Show' + baseText;
     }
   }
