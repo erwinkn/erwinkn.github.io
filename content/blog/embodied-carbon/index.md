@@ -1,5 +1,5 @@
 ---
-title: "Reevaluating the importance of embodied carbon"
+title: "How should we compare"
 subtitle: "A simple calculator for building emissions, that accounts for the value of time "
 description: ""
 draft: true
@@ -17,8 +17,6 @@ We can separate the {{< co2 >}} emissions associated with a building in two cate
 Globally, the split of all building sector emissions is 72% coming from operational and 28% coming from embodied carbon.
 
 {{< chart id="pie-chart" src="charts/pie-chart.js" >}}
-
-<button class="bg-darkBeige px-3 py-2 rounded-lg" onclick="downloadChart('pie-chart')">Download pie chart</button>
 
 {{< sidenote-content >}}I discovered this concept in [The New Carbon Architecture](https://ecobuildnetwork.org/projects/new-carbon-architecture), which I highly recommend. {{< /sidenote-content >}}
 
