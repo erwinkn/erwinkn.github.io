@@ -10,9 +10,9 @@ imageAlt="Homepage of Erwin Kuhn's website"
 
 [menu]
     [[menu.main]]
-    identifier = "blog"
-    name = "Blog"
-    url = "/blog/"
+    identifier = "Climate"
+    name = "Climate"
+    url = "/climate/"
 
     [[menu.main]]
     identifier = "about"
@@ -25,9 +25,9 @@ imageAlt="Homepage of Erwin Kuhn's website"
     url = "/now/"
 
     [[menu.main]]
-    identifier="code"
-    name = "Code"
-    url = "/code/"
+    identifier="tech"
+    name = "Tech"
+    url = "/tech/"
 
 [taxonomies]
 category = "categories"
