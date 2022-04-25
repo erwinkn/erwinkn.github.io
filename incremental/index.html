@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    
+    
+
+<title>Everything is an incremental computation</title>
+<meta property="og:title" content="Everything is an incremental computation" >
+<meta name="twitter:title" content="Everything is an incremental computation" >
+
+<meta property="og:site_name" content="Erwin Kuhn">
+
+
+<meta name="description" content="Incremental computation is an algorithm that comes up everywhere, from spreadsheets to compilers to UI frameworks. We should use it even more broadly." >
+<meta property="og:description" content="Incremental computation is an algorithm that comes up everywhere, from spreadsheets to compilers to UI frameworks. We should use it even more broadly." >
+<meta name="twitter:description" content="Incremental computation is an algorithm that comes up everywhere, from spreadsheets to compilers to UI frameworks. We should use it even more broadly." >
+
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+
+<meta property="og:type" content="website" >
+
+
+<meta name="author" content="map[]" >
+<meta name="twitter:creator" content="@erwinkhn" >
+<meta name="twitter:site" content="@erwinkhn">
+
+
+  <meta itemprop="image" content="https://erwinkn.com/img/default.png" >
+  <meta property="og:image" content="https://erwinkn.com/img/default.png" >
+  <meta name="twitter:image" content="https://erwinkn.com/img/default.png" >
+  <meta name="twitter:image:alt" content="Homepage of Erwin Kuhn&#39;s website" >
+
+
+<link rel="canonical" href="https://erwinkn.com/incremental/" >
+<meta property="twitter:url" content="https://erwinkn.com/incremental/">
+<meta property="og:url" content="https://erwinkn.com/incremental/" >
+
+
+<meta name="robots" content="index,follow" > 
+<meta name="googlebot" content="index,follow" >
+
+
+
+<meta name="generator" content="Hugo 0.97.3" />
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+
+<meta name="theme-color" content="#fdf6e3">
+
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="/bundle.min.b5d4c8a96ad9be181f29676e390ffc3603ffe02c131912b151535fe06ffbf2ce.css" integrity="">
+    <script type="text/javascript" src="/prism/prism.js"></script>
+    
+    
+    
+
+    
+    
+
+    
+    
+</head><body class="flex flex-col min-h-screen bg-lightBeige xl:text-lg">
+<header class="bg-darkGreenBlue text-lightBeige">
+    <div class="max-w-container mt-12 mb-4">
+        <nav class="content-wrapper">
+            <a href="https://erwinkn.com/" class='font-semibold font-display tracking-wider text-5xl md:text-6xl  '>
+                Erwin Kuhn
+            </a>
+            
+            <div class="text-xl md:text-2xl lg:text-3xl mt-1 font-medium flex flex-wrap space-x-4 justify-items-center">
+                
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/about/">About</a>
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/climate/">Climate</a>
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/now/">Now</a>
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/tech/">Tech</a>
+                
+            </div>
+        </nav>
+    </div>
+    
+    <svg class="wave" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320">
+    <path fill="currentColor" fill-opacity="1"
+        d="M0,128L48,144C96,160,192,192,288,181.3C384,171,480,117,576,90.7C672,64,768,64,864,80C960,96,1056,128,1152,133.3C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+    </path>
+</svg>
+</header><main class="flex-1 w-full text-darkGreenBlue">
+<article class="max-w-container mt-10">
+    <div class="text-wrapper prose xl:prose-lg">
+        <h1>
+            Everything is an incremental computation
+        </h1>
+        <div class="text-gray-500 tracking-wide -mt-8">
+            <time class="uppercase">
+                April 22, 2022
+            </time>
+            <span class="">
+                &middot;
+            </span>
+            <span>
+                6 min
+            </span>
+        </div>
+        
+        <div class="bg-darkBeige border-pink-600 border-opacity-80 border-2 rounded py-2 px-4 mt-4 lg:mt-6 font-medium italic text-xl xl:text-2xl">
+            Except that Python script in the corner, it doesn't count
+        </div>
+        
+        
+        <p>There are some algorithms in computer science that just keep coming up everywhere. There&rsquo;s one that I see everywhere I look, but never heard described as universal: the algorithm behind <strong>incremental computation, reactivity, or change propagation</strong> - however you want to call it.</p>
+<p>Its most famous implementation is the one that powers spreadsheets like Excel. If you have a large sheet with many formulas and the value of one cell changes, how do you propagate that change in the most efficient manner?</p>
+<p>The base of the algorithm is always the same. You maintain a computation graph that allows you to answer two questions:</p>
+<ol>
+<li><strong>Observers:</strong> for each node (= spreadsheet cell), who depends on it?</li>
+<li><strong>Dependencies:</strong> for each node, on whom does it depend?</li>
+</ol>
+<div class=''>
+    <figure class='mx-auto flex flex-col items-center w-2/3'>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<img
+  srcset='
+  
+    /incremental/images/incremental-graph_huc030ea1ae87a8f0f9957b5cb4d26f330_848196_360x0_resize_box_3.png 360w
+  
+  
+    , /incremental/images/incremental-graph_huc030ea1ae87a8f0f9957b5cb4d26f330_848196_640x0_resize_box_3.png 640w
+  
+  
+    , /incremental/images/incremental-graph_huc030ea1ae87a8f0f9957b5cb4d26f330_848196_768x0_resize_box_3.png 768w
+  
+  
+  
+  '
+  src="/incremental/images/incremental-graph.png" 
+  alt="Nodes A, B, C = A &#43; B, D = C * B and edges between them"
+  >
+
+        
+        <figcaption>A computation graph</figcaption>
+        
+    </figure>
+</div>
+<p>With such a visual representation, you can probably see that if B changes, we should first recompute C and then recompute D (and not the other way around). On the other hand, if we change D&rsquo;s formula, we can update its value without recomputing C.</p>
+<p>I won&rsquo;t go into more details regarding the algorithm, but if you&rsquo;re interested to learn how performant implementations work, I recommend the excellent
+<a href="https://lord.io/spreadsheets/"><em>How to recalculate a spreadsheet</em></a>.</p>
+<h2 id="incrementalising-all-the-things">Incrementalising all the things</h2>
+<p>While spreadsheets are the most well known example, this technique is used everywhere:</p>
+<ul>
+<li>Reactive UI frameworks like <a href="https://vuejs.org/">Vue</a>, <a href="https://svelte.dev/">Svelte</a>, <a href="https://www.solidjs.com/">Solid</a>, <a href="https://knockoutjs.com/">Knockout</a>, etc&hellip;</li>
+<li><a href="https://www.microsoft.com/en-us/research/publication/build-systems-la-carte/">Build systems</a> and <a href="https://blog.rust-lang.org/2016/09/08/incremental.html">incremental compilation</a></li>
+<li><a href="https://opensource.janestreet.com/incremental/">Financial applications</a></li>
+<li><a href="https://wiki.postgresql.org/wiki/Incremental_View_Maintenance">Incremental queries</a> in databases</li>
+<li><a href="https://aardvarkians.com/">2D/3D rendering</a></li>
+</ul>
+<p>After all, the purpose of all programs is simply to <a href="https://www.youtube.com/watch?v=rX0ItVEVjHc#t=12m38s">transform data from one form to another</a>. All examples above do exactly that, whether they are outputting HTML, compiled programs, financial analytics, SQL query results or graphics.</p>
+<p>And at some point, the input data will change. Generally, only a fraction of the input changes, so <strong>how do we update the output without recomputing everything from scratch?</strong> This is exactly the problem of incremental computation.</p>
+<p><strong>Framing the problem this way is also incredibly liberating for designing programs</strong>: for any non-trivial computation, it&rsquo;s <em>much</em> easier to write how to do something from scratch than how to precisely update the output based on any possible change of the input. Being able to automate the update process allows you to just &ldquo;write the spec&rdquo; and get an efficient program out of it.</p>
+<h2 id="compile-the-update-path">Compile the update path</h2>
+<p>Converting a regular computation into an incremental one is essentially a compiler problem. Existing approaches take different forms:</p>
+<ul>
+<li><strong>Runtime compilers,</strong> which track which values are accessed during a computation (<a href="https://www.solidjs.com/">Solid</a>, the <a href="https://github.com/salsa-rs/salsa">Rust compiler</a>).</li>
+<li><strong>&ldquo;Structured&rdquo; compilers,</strong> where a library forces you to write your computations in a constrained way to optimise them (<a href="https://opensource.janestreet.com/incremental/">Incremental</a> or <a href="https://github.com/TimelyDataflow/differential-dataflow">differential dataflow</a>).</li>
+<li><strong>Classical compilers,</strong> which can either reuse syntax from their target language (<a href="https://svelte.dev/">Svelte</a>, <a href="https://vuejs.org/">Vue</a>) or implement a completely new language for incremental computation (<a href="https://github.com/skiplang/skip">Skip</a>, <a href="https://github.com/Adapton/fungi-lang.rust">Fungi</a>).</li>
+</ul>
+<h2 id="uis-programming-languages-and-distributed-systems">UIs, programming languages and distributed systems</h2>
+<p><strong>I think this paradigm is just starting to be embraced and we have barely seen its consequences.</strong> The modern version of the change propagation algorithm has been formalised in academic research around 2014, with <a href="http://adapton.org">Adapton</a>. That&rsquo;s very new!</p>
+<p>Just in the past few years, we&rsquo;ve seen new approaches appear in multiple as the result of more efficient incremental computations.</p>
+<p>In the web UI world, <a href="https://www.solidjs.com/">Solid</a> redefined just how efficient JavaScript frameworks can be: it&rsquo;s a 6kB library, nearly as fast as carefully hand-optimised JavaScript code, with <a href="https://www.solidjs.com/docs/latest/api#usetransition">advanced</a> <a href="https://www.solidjs.com/docs/latest/api#rendertostream">features</a> that barely exist in other frameworks. In the same vein, <a href="https://svelte.dev/">Svelte</a> is becoming famous for its simple syntax, where everything &ldquo;just works&rdquo; and the compiler takes care of inserting all the update mechanisms, ensuring your UI is always in sync with your data.</p>
+<p>In programming languages, <strong>Rust</strong> was the first major compiler to adopt an incremental computation framework for <a href="https://rustc-dev-guide.rust-lang.org/query.html">demand-driven compilation</a>. It also enabled IDE tooling like <a href="https://github.com/rust-lang/rust-analyzer">rust-analyzer</a> to reuse this approach to improve its performance and analysis, as it attempts to provide instantaneous feedback while you are typing in your editor.</p>
+<h2 id="incremental-view-maintenance-from-the-database-to-the-ui">Incremental view maintenance, from the database to the UI</h2>
+<p>An area I&rsquo;m especially interested in is building <a href="/getting-crdts-to-production/">offline + collaborative</a> applications. It&rsquo;s a hard problem, which can be solved using <a href="https://crdt.tech/">conflict-free replicated data types</a> (CRDTs): they are data structures that provide automatic synchronisation &amp; conflict resolution, while being robust to extended periods of offline work.</p>
+<p>They are also notoriously hard to implement efficiently. In practice, the problem often boils down to: <a href="https://josephg.com/blog/crdts-go-brrr/">&ldquo;how do I efficiently insert this new operation into the existing state?&rdquo;</a>. That sounds suspiciously like an incremental update.</p>
+<p>One of the clearest ways to define CRDTs is as <a href="https://arxiv.org/abs/1805.04263">a query over a set of operations</a>. This model makes synchronisation and conflict resolution trivial and was the first to introduce a CRDT operation for moving elements in a tree. Its theoretical simplicity makes it a great foundation for building more complex or domain-specific data types. However, the model provides no way to efficiently update the CRDT query when a new operation comes in.</p>
+<p>Wait a second, <span class="text-darkSanguine font-semibold">that's also an incremental computation problem!</span> If we were able to define this model in a language or framework that automatically provides incremental updates for queries, then we could just define the spec for a CRDT and get an efficient implementation for free!</p>
+<p>Combine this with another idea: <strong>a UI is just a function of data.</strong> There is first an initial render <em>(= query over the data)</em>, then incremental updates as the underlying data changes <em>(= incremental computation)</em>.</p>
+<p>This is the same setup as replicated data types and both are just a <em>view</em> into the underlying data. For this reason, I&rsquo;ll borrow the term <a href="https://wiki.postgresql.org/wiki/Incremental_View_Maintenance">incremental view maintenance</a> and apply it both for CRDTs, as a view of a set of operations, and for UIs as functions of the base application state.</p>
+<p>Going further, the two could likely be merged together into <a href="https://riffle.systems/essays/prelude/#towards-a-more-radical-approach">an application stack expressed as a single query, with incremental updates</a>. In that model, the developer never has to reason about stale data and synchronisation across devices and databases just works automatically.</p>
+<h2 id="shifting-the-paradigm">Shifting the paradigm</h2>
+
+<p>I suspect nearly all programs could be expressed in this paradigm of 
+
+<span>
+  <input aria-label="Show sidenote" type="checkbox" id='sn_check-350'
+         class="sn_check hidden">
+  <label tabindex="0" title='A popular saying is that all …'
+    aria-describedby='sidenote-350' for='sn_check-350'
+    class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
+           lg:cursor-default lg:border-none lg:text-current">a query + incremental updates.</label>
+  <small id='sidenote-350'
+         class="sn_content ast-before sr-only flex
+                lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
+                lg:w-52 lg:-mr-56
+                xl:w-64 xl:-mr-72
+                2xl:-mr-80">
+    <span class="sr-only">
+      (sidenote:
+    </span>
+    <span class="lg:ml-1.5 leading-normal">A popular saying is that <a href="https://twitter.com/PredragGruevski/status/1470206964043071491">all computer science problems are either a compiler or a database</a>. Query = database + compiler, incremental updates = compiler, so I guess this fits.</span>
+    <span class="sr-only">
+      )
+    </span>
+  </small>
+</span> What we, as developers, want to write is the &ldquo;from scratch&rdquo; computation. Efficient updates should be handled by a compiler, to spare us both the effort and the incredible amount of bugs that comes with handmade implementations.</p>
+<p>More than that, incremental computation is not <em>just</em> a performance gain: <span class="text-darkSanguine font-semibold">the affordances it creates radically change the ways you can think about a problem.</span> Once you are freed of the complexity of efficiently maintaining some output, you can start building new architectures you would not have dared to dream about before.</p>
+
+    </div>
+</article>
+
+    </main><footer
+    class='w-full mt-48 text-center border-t border-darkGreenBlue border-opacity-10 p-4 text-xs text-darkGreenBlue text-opacity-60'>
+    <p>
+        Made with
+        <a href="https://gohugo.io" class="thick-underline-70 hover-highlight">Hugo</a>
+        and
+        <a href="https://tailwindcss.com" class="thick-underline-70 hover-highlight">TailwindCSS</a>
+    </p>
+    <p class="mt-1">
+        © 2020-present Erwin Kuhn. All rights reserved.
+    </p>
+</footer>
+</body>
+
+</html>

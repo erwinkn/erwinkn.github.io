@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>On software on Erwin Kuhn</title>
+    <link>https://erwinkn.com/tech/</link>
+    <description>Recent content in On software on Erwin Kuhn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 23 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://erwinkn.com/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Getting conflict-free replicated data types to production</title>
+      <link>https://erwinkn.com/getting-crdts-to-production/</link>
+      <pubDate>Sat, 23 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://erwinkn.com/getting-crdts-to-production/</guid>
+      <description>Hi! This is the introduction to a series of working notes on the missing pieces before we can start building offline collaborative apps using replicated data types (RDTs or CRDTs if they are conflict-free).
+So far, the plan is:
+ Introduction: The road to offline collaborative apps (you are here) Conflict-free replicated databases (CRDBs): design Conflict-free replicated databases (CRDBs): implementation Decentralized data migrations Real-world CRDTs: Topogether, an app for outdoor climbing and collaborative cartography Extensible CRDTs: building new data structures and invariants in user-land Secure CRDTs: access control and Byzantine fault tolerance Optimizing CRDTs: make it fast, make it small  This series will take a while, as I will be building an experimental RDT library from scratch and putting it into production on Topogether.</description>
+    </item>
+    
+    <item>
+      <title>Everything is an incremental computation</title>
+      <link>https://erwinkn.com/incremental/</link>
+      <pubDate>Fri, 22 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://erwinkn.com/incremental/</guid>
+      <description>There are some algorithms in computer science that just keep coming up everywhere. There&amp;rsquo;s one that I see everywhere I look, but never heard described as universal: the algorithm behind incremental computation, reactivity, or change propagation - however you want to call it.
+Its most famous implementation is the one that powers spreadsheets like Excel. If you have a large sheet with many formulas and the value of one cell changes, how do you propagate that change in the most efficient manner?</description>
+    </item>
+    
+  </channel>
+</rss>

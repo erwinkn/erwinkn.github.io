@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    
+    
+
+<title>Getting conflict-free replicated data types to production</title>
+<meta property="og:title" content="Getting conflict-free replicated data types to production" >
+<meta name="twitter:title" content="Getting conflict-free replicated data types to production" >
+
+<meta property="og:site_name" content="Erwin Kuhn">
+
+
+<meta name="description" content="I write code for the climate. Previously: food photographer, (involuntary) influencer and data markets researcher." >
+<meta property="og:description" content="I write code for the climate. Previously: food photographer, (involuntary) influencer and data markets researcher." >
+<meta name="twitter:description" content="I write code for the climate. Previously: food photographer, (involuntary) influencer and data markets researcher." >
+
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+
+<meta property="og:type" content="website" >
+
+
+<meta name="author" content="map[]" >
+<meta name="twitter:creator" content="@erwinkhn" >
+<meta name="twitter:site" content="@erwinkhn">
+
+
+  <meta itemprop="image" content="https://erwinkn.com/img/default.png" >
+  <meta property="og:image" content="https://erwinkn.com/img/default.png" >
+  <meta name="twitter:image" content="https://erwinkn.com/img/default.png" >
+  <meta name="twitter:image:alt" content="Homepage of Erwin Kuhn&#39;s website" >
+
+
+<link rel="canonical" href="https://erwinkn.com/getting-crdts-to-production/" >
+<meta property="twitter:url" content="https://erwinkn.com/getting-crdts-to-production/">
+<meta property="og:url" content="https://erwinkn.com/getting-crdts-to-production/" >
+
+
+<meta name="robots" content="index,follow" > 
+<meta name="googlebot" content="index,follow" >
+
+
+
+<meta name="generator" content="Hugo 0.97.3" />
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+
+<meta name="theme-color" content="#fdf6e3">
+
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="/bundle.min.b5d4c8a96ad9be181f29676e390ffc3603ffe02c131912b151535fe06ffbf2ce.css" integrity="">
+    <script type="text/javascript" src="/prism/prism.js"></script>
+    
+    
+    
+
+    
+    
+
+    
+    
+</head><body class="flex flex-col min-h-screen bg-lightBeige xl:text-lg">
+<header class="bg-darkGreenBlue text-lightBeige">
+    <div class="max-w-container mt-12 mb-4">
+        <nav class="content-wrapper">
+            <a href="https://erwinkn.com/" class='font-semibold font-display tracking-wider text-5xl md:text-6xl  '>
+                Erwin Kuhn
+            </a>
+            
+            <div class="text-xl md:text-2xl lg:text-3xl mt-1 font-medium flex flex-wrap space-x-4 justify-items-center">
+                
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/about/">About</a>
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/climate/">Climate</a>
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/now/">Now</a>
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/tech/">Tech</a>
+                
+            </div>
+        </nav>
+    </div>
+    
+    <svg class="wave" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320">
+    <path fill="currentColor" fill-opacity="1"
+        d="M0,128L48,144C96,160,192,192,288,181.3C384,171,480,117,576,90.7C672,64,768,64,864,80C960,96,1056,128,1152,133.3C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+    </path>
+</svg>
+</header><main class="flex-1 w-full text-darkGreenBlue">
+<article class="max-w-container mt-10">
+    <div class="text-wrapper prose xl:prose-lg">
+        <h1>
+            Getting conflict-free replicated data types to production
+        </h1>
+        <div class="text-gray-500 tracking-wide -mt-8">
+            <time class="uppercase">
+                April 23, 2022
+            </time>
+            <span class="">
+                &middot;
+            </span>
+            <span>
+                9 min
+            </span>
+        </div>
+        
+        <div class="bg-darkBeige border-pink-600 border-opacity-80 border-2 rounded py-2 px-4 mt-4 lg:mt-6 font-medium italic text-xl xl:text-2xl">
+            On the road to offline collaborative apps
+        </div>
+        
+        
+        <p><em>Hi! This is the introduction to a series of working notes on the missing pieces before we can start building offline collaborative apps using replicated data types (RDTs or CRDTs if they are conflict-free).</em></p>
+<p><em>So far, the plan is:</em></p>
+<ol>
+<li><em><strong>Introduction: The road to offline collaborative apps</strong> <span class="text-darkSanguine font-semibold">(you are here)</span></em></li>
+<li><em><strong>Conflict-free replicated databases (CRDBs):</strong> design</em></li>
+<li><em><strong>Conflict-free replicated databases (CRDBs):</strong> implementation</em></li>
+<li><em><strong>Decentralized data migrations</strong></em></li>
+<li><em><strong>Real-world CRDTs:</strong> Topogether, an app for outdoor climbing and collaborative cartography</em></li>
+<li><em><strong>Extensible CRDTs:</strong> building new data structures and invariants in user-land</em></li>
+<li><em><strong>Secure CRDTs:</strong> access control and Byzantine fault tolerance</em></li>
+<li><em><strong>Optimizing CRDTs:</strong> make it fast, make it small</em></li>
+</ol>
+<p><em>This series will take a while, as I will be building an experimental RDT library from scratch and putting it into production on <a href="https://topogether.com/">Topogether</a>. It&rsquo;s highly likely these notes evolve over time.</em></p>
+<p>Building <a href="https://www.inkandswitch.com/local-first/">local-first</a> apps, that allow both real-time collaboration and offline work, is still incredibly hard today. Entire companies, like Figma, have been built on the success of their collaborative mode. Until recently, such features were inaccessible without a large team of engineers building a custom synchronisation and conflict resolution engine.</p>
+<p>However, in the past decade, <a href="https://crdt.tech/">conflict-free replicated data types</a> (CRDTs) have emerged as a possible foundation for solving offline-ready collaborative apps. CRDTs are data structures that look like regular objects, arrays, maps or sets, with the additional ability of merging any two replicas that have had different changes applied to them.</p>
+<p>The guarantee that they offer is <strong>strong eventual consistency:</strong> two users that have seen the <strong>same set of operations</strong>, but not necessarily in the same order, will necessarily arrive at the <strong>same end state</strong>.</p>
+<p>This allows users to retain a local copy of their data on their device, work on it for as long as they wish, syncing their changes with other peers in real time, or at a later date. Central servers are not even needed, but may be added to ensure persistence, propagate messages between peers, or store the data for querying purposes.</p>
+<p>For a technical introduction to CRDTs, I recommend <a href="https://lars.hupel.info/topics/crdt/01-intro/">Lars Hupel&rsquo;s series</a> on their mathematical foundations, or any of the resources on <a href="https://crdt.tech/">https://crdt.tech/</a></p>
+<h1 id="are-we-crdt-yet">Are we CRDT yet?</h1>
+<p>It&rsquo;s 2022 and we now have implementations of CRDTs that are <a href="https://github.com/automerge/automerge">expressive</a> (JSON models, text editing), <a href="https://josephg.com/blog/crdts-go-brrr/">fast</a> and <a href="https://github.com/dmonad/crdt-benchmarks">memory efficient</a>. In a <a href="https://blog.kevinjahns.de/are-crdts-suitable-for-shared-editing/#a-real-world-scenario">real-world scenario</a>, a library like <a href="https://github.com/yjs/yjs">Yjs</a> can process a text editing history of 260k operations in 20ms, using 20MB of RAM and with a storage cost of 53% of the original document size.</p>
+<p>So, are CRDTs ready for production? Can we start building our apps on them?</p>
+<p>Well, yes, there are some cool projects built on CRDTs and a handful of them are running in production. But some critical pieces are still missing in my opinion.</p>
+<h2 id="no-schema-no-migration-no-chocolate">No schema, no migration, no chocolate</h2>
+<p><strong>Add example</strong></p>
+<p>While many CRDT libraries support modeling any JSON object, <strong>none of them define a schema.</strong> The problem is, any application that persists or communicates data has an implicit or explicit schema. <strong>The day you want to change the expected shape of the data, you&rsquo;re on your own.</strong></p>
+<p>When that data can live on any user&rsquo;s device, as well as in your own infrastructure, either you handle this systematically through data transformation, or the complexity of your code is going to shoot through the roof very quickly.</p>
+<p>The most promising research I&rsquo;ve seen in the area of decentralised schema evolution is <a href="https://www.inkandswitch.com/cambria/">Cambria</a>, which provides backward <em>and</em> forward compatibility. The project is built on top of the <a href="https://github.com/automerge/automerge">Automerge</a> CRDT.</p>
+<p>Still, in my opinion, the best place to integrate a data schema is into the CRDT library itself. Schema awareness gives you superpowers, and not just for migrations.</p>
+<p>For example, GraphQL clients use the schema to <a href="https://formidable.com/open-source/urql/docs/graphcache/">auto-normalise data</a> and store it in a cache that looks deceptively like a relational database, with a table for each entity.</p>
+<p>In the context of CRDTs, schema awareness and auto-normalisation would enable:</p>
+<ul>
+<li>easier migrations</li>
+<li>representation of arbitrary graph data structures (which is not supported by libraries like Automerge or Yjs)</li>
+<li>direct integration with relational databases (will cover in the next article 😉)</li>
+</ul>
+<h2 id="no-complex-data-structures-or-invariants">No complex data structures or invariants</h2>
+<p>As mentioned above, current CRDT libraries cannot represent arbitrary graphs, which limits their expressive ability. Sure, you can always normalise your data yourself and refer to things by IDs. But ideally, your tools should take care of this for you.</p>
+<p>Going further, you may want to build custom data structures, with invariants specific to your use case.</p>
+<p>Maybe you want to define additional operations on your data model, which perform multiple updates and maintain invariants expected by the application (ex: <a href="https://dl.acm.org/doi/10.1145/3485484">an auction system</a>).</p>
+<p>Maybe you just want to have a replicated balanced binary tree.</p>
+<p>None of those are possible with current CRDT libraries, you&rsquo;ll have to roll your own implementation and tackle all the complexity of concurrency and synchronisation. For example, the <a href="https://www.inkandswitch.com/peritext/">Peritext</a> project had to roll their own CRDT for rich text editing.</p>
+<p>What I want is a framework that allows defining custom RDTs and allows the user to define invariants and conflict resolution strategies, while taking care of the hard parts of distributed semantics, like <a href="https://en.wikipedia.org/wiki/Version_vector">tracking causality</a> or synchronising between peers.</p>
+<p>I&rsquo;m unsure what form such a framework should take, but work in that area includes:</p>
+<ul>
+<li><a href="https://arxiv.org/abs/2004.04303">The semidirect product of op-based CRDTs.</a> That&rsquo;s a mouthful, but it means transforming incoming operations based on concurrent operations already received. For example, you could have an array CRDT with a <code>map</code> operation, which also applies to elements that are added concurrently. This approach is efficient, since you never have to roll back the history, but tricky to get right, since you need to ensure that any ordering of concurrent operations gets you to the same result, despite transforming operations.</li>
+<li><a href="https://dl.acm.org/doi/10.1145/3485484">Explicitly Consistent Replicated Objects</a> (ECROs), which reorder operations based on user-defined invariants. This is the most general approach, but requires the ability to roll back history at any point &amp; replay operations. It also requires some kind of analysis of which operations may result in a conflict or invariant violation. The authors implement this using a Scala DSL that statically analyses invariants that are expressed as logic clauses. That&rsquo;s super cool but, uhm, may not scale to JavaScript and the Web.</li>
+</ul>
+<p>Note that both have strong correspondences to <a href="https://en.wikipedia.org/wiki/Operational_transformation">operational transformation</a>, which is the algorithm used by Google Docs and others and which requires a central server to operate correctly.</p>
+<h2 id="byodb-bring-your-own-database">BYODB: bring your own database</h2>
+<p>I just want to be able to persist my RDTs to a database in a form that I can query. Today, that task is anywhere from hard to impossible, depending on the library you&rsquo;re using. If you want a relational database, that becomes plain impossible: you get no information on which entities were created, updated or deleted.</p>
+<p>Ideally, your CRDT library gives you hooks that allow you to easily sync to your own backend. Here, something like the simple replication endpoints of <a href="https://rxdb.info/">RxDB</a> or <a href="https://nozbe.github.io/WatermelonDB/">WatermelonDB</a> would be ideal.</p>
+<p>If you want to go further, you could encode your CRDT directly into a relational database using <a href="https://munin.uit.no/handle/10037/22344">conflict-free relations</a>.</p>
+<h2 id="security-and-authorization">Security and authorization</h2>
+<p>The whole theory around CRDTs assumes that peers collaborate with each other. In their current versions, anyone that can access a CRDT can emit an operation to modify it as any other peer.</p>
+<p>If you can restrict the access to a piece of data only to those people that can modify it and everyone has the same rights, then it&rsquo;s fine.</p>
+<p>If you need more fine-grained access control, where everyone doesn&rsquo;t have the same permissions, or read-only access then you&rsquo;re going to need more security.</p>
+<p>For this, two ingredients are needed</p>
+<h3 id="byzantine-fault-tolerance">Byzantine fault tolerance</h3>
+<p>Roughly speaking, Byzantine fault tolerance (BFT) is the ability of a protocol to handle defective or malicious nodes. This is crucial if we want to allow a large number of peers to access a CRDT, for wide-scale collaboration or perhaps read-only access.</p>
+<p>CRDTs have the very unique property that they can <strong>tolerate an arbitrary number of corrupted nodes and still maintain strong eventual consistency.</strong> Namely, for two nodes A and B, as long as there is a communication channel from A to B that only goes through non-corrupted nodes, the two of them will converge to the same end state.</p>
+<p>This property is quite surprising, considering that BFT consensus protocols can only tolerate up to 1/3rd of the nodes being corrupted. The key here is that CRDTs do not guarantee any kind of global consensus, only that two participants that have received the same messages always end up in the same state.</p>
+<p>For the details on how to achieve this approach, I&rsquo;ll refer you to Martin Kleppmann&rsquo;s <a href="https://martin.kleppmann.com/papers/bft-crdt-papoc22.pdf"><em>Making CRDTs Byzantine Fault Tolerant</em></a> (spoiler: it involves variants of <a href="https://en.wikipedia.org/wiki/Merkle_tree">Merkle trees</a>).</p>
+<h2 id="access-control">Access control</h2>
+<p>Once our CRDT construction is robust enough to handle corrupted participants, we need a way to encode different access control rights for different participants.</p>
+<p>The logical way of distributing this information is to encode it directly into the CRDT, as is proposed in <a href="https://hal.inria.fr/hal-03584553/file/papoc.pdf"><em>Distributed access control for collaborative applications using CRDTs</em></a> by Pierre-Antoine Rault, Claudia-Lavinia Ignat and Olivier Perrin (2022).</p>
+<p>Roughly speaking, if the CRDT contains authorization information in the form of <code>(public_key, role_or_rights)</code> pairs and each message is signed by its author, then we can enforce rights on a per-participant basis.</p>
+<p>However, no matter the design, some conflict resolution strategies will be tricky and application-specific. In the case of two concurrent operations, one revoking the rights of some participant X and the other one from X performing some now-unauthorized operation, what should the end state be?</p>
+<p>In most cases, it seems like safety would dictate that X&rsquo;s operations should be ignored: for instance, they could have seen that their rights were revoked, decided to lie about receiving the message and started broadcasting malicious operations to delete key parts of the document.</p>
+<p>In that case, the CRDT needs the ability to roll back operations, which can be done in one of three ways:</p>
+<ul>
+<li>operations are all reversible</li>
+<li>the operation log is replayed from the beginning (or the latest snapshot)</li>
+<li>the CRDT is built on persistent data structures and can be rolled back to any previous state instantly (at the cost of global performance, since those structures are more expensive)</li>
+</ul>
+<h1 id="the-master-plan">The master plan</h1>
+<p>Simply put, I&rsquo;m starting to build an experimental CRDT library that will attempt to tackle all the issues outlined above! Many of the solutions require deep integration with the CRDT design, so starting from scratch is quite helpful!</p>
+<p>The fundamental design decision behind it is that it will <strong>require a schema definition.</strong> From there, I have a simple construction for a conflict-free replicated database (CRDB), that can be built on top of any relational database. Starting from the relational model means it&rsquo;s always possible to downgrade to NoSQL / key-value stores as well.</p>
+<p>Once the basic pieces are in place, I&rsquo;ll be putting it into production on <a href="https://topogether.com/">Topogether</a>, an app for outdoor climbing and collaborative cartography I&rsquo;ve been building with friends. The project is based on Postgres and has to handle geographical data, file uploads and access control rights, so it will be a nice playground for the library.</p>
+<p>Stay tuned for more, articles will follow the progress of the implementation!</p>
+
+    </div>
+</article>
+
+    </main><footer
+    class='w-full mt-48 text-center border-t border-darkGreenBlue border-opacity-10 p-4 text-xs text-darkGreenBlue text-opacity-60'>
+    <p>
+        Made with
+        <a href="https://gohugo.io" class="thick-underline-70 hover-highlight">Hugo</a>
+        and
+        <a href="https://tailwindcss.com" class="thick-underline-70 hover-highlight">TailwindCSS</a>
+    </p>
+    <p class="mt-1">
+        © 2020-present Erwin Kuhn. All rights reserved.
+    </p>
+</footer>
+</body>
+
+</html>

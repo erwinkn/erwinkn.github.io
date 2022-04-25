@@ -6,7 +6,28 @@
     <description>Recent content in Homepage on Erwin Kuhn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://erwinkn.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://erwinkn.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Getting conflict-free replicated data types to production</title>
+      <link>https://erwinkn.com/getting-crdts-to-production/</link>
+      <pubDate>Sat, 23 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://erwinkn.com/getting-crdts-to-production/</guid>
+      <description>Hi! This is the introduction to a series of working notes on the missing pieces before we can start building offline collaborative apps using replicated data types (RDTs or CRDTs if they are conflict-free).
+So far, the plan is:
+ Introduction: The road to offline collaborative apps (you are here) Conflict-free replicated databases (CRDBs): design Conflict-free replicated databases (CRDBs): implementation Decentralized data migrations Real-world CRDTs: Topogether, an app for outdoor climbing and collaborative cartography Extensible CRDTs: building new data structures and invariants in user-land Secure CRDTs: access control and Byzantine fault tolerance Optimizing CRDTs: make it fast, make it small  This series will take a while, as I will be building an experimental RDT library from scratch and putting it into production on Topogether.</description>
+    </item>
+    
+    <item>
+      <title>Everything is an incremental computation</title>
+      <link>https://erwinkn.com/incremental/</link>
+      <pubDate>Fri, 22 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://erwinkn.com/incremental/</guid>
+      <description>There are some algorithms in computer science that just keep coming up everywhere. There&amp;rsquo;s one that I see everywhere I look, but never heard described as universal: the algorithm behind incremental computation, reactivity, or change propagation - however you want to call it.
+Its most famous implementation is the one that powers spreadsheets like Excel. If you have a large sheet with many formulas and the value of one cell changes, how do you propagate that change in the most efficient manner?</description>
+    </item>
+    
     <item>
       <title>There&#39;s no plan B for concrete</title>
       <link>https://erwinkn.com/concrete/</link>
@@ -16,15 +37,6 @@
       <description>Introduction Welcome to the first article in a 3-part series about the cement &amp;amp; concrete industries and their place in the climate fight. It provides a general introduction to the subject, with some surprising facts I discovered along the way.
 This is a personal perspective and is subject to change based on feedback and further discussions. Feel free to reach out!
 I&amp;rsquo;ve been working for the past year with  Vicat, (sidenote:  For the anecdote, Louis Vicat is the inventor of one of the first modern cement formulations in 1817!</description>
-    </item>
-    
-    <item>
-      <title>Transfering state from server to client with Blazor WASM and prerendering</title>
-      <link>https://erwinkn.com/code/blazor-rehydration/</link>
-      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://erwinkn.com/code/blazor-rehydration/</guid>
-      <description>I wanted to brush up my Blazor skills. I had been  using the new .NET framework (sidenote:  I&amp;rsquo;ll give an introduction to Blazor and the whole experience of putting it into production in a separate blog post. )    in my work with Vicat, an international cement &amp;amp; concrete group based in France, to develop a modelling tool for long term roadmaps towards carbon neutrality. Coding with it was a joy, but I had doubts about its overall performance.</description>
     </item>
     
     <item>

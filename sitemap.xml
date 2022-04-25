@@ -2,20 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://erwinkn.com/blog/</loc>
-    <lastmod>2021-03-23T00:00:00+00:00</lastmod>
+    <loc>https://erwinkn.com/getting-crdts-to-production/</loc>
+    <lastmod>2022-04-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://erwinkn.com/</loc>
+    <lastmod>2022-04-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://erwinkn.com/tech/</loc>
+    <lastmod>2022-04-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://erwinkn.com/incremental/</loc>
+    <lastmod>2022-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://erwinkn.com/climate/</loc>
     <lastmod>2021-03-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://erwinkn.com/concrete/</loc>
     <lastmod>2021-03-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://erwinkn.com/code/</loc>
-    <lastmod>2021-03-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://erwinkn.com/code/blazor-rehydration/</loc>
-    <lastmod>2021-03-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://erwinkn.com/about/</loc>
   </url><url>
