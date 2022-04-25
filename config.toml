@@ -13,21 +13,25 @@ imageAlt="Homepage of Erwin Kuhn's website"
     identifier = "Climate"
     name = "Climate"
     url = "/climate/"
+    weight = "-20"
+
 
     [[menu.main]]
     identifier = "about"
     name = "About"
     url = "/about/"
+    weight = "0"
 
-    [[menu.main]]
-    identifier = "now"
-    name = "Now"
-    url = "/now/"
+    # [[menu.main]]
+    # identifier = "now"
+    # name = "Now"
+    # url = "/now/"
 
     [[menu.main]]
     identifier="tech"
     name = "Tech"
     url = "/tech/"
+    weight = "-10"
 
 [taxonomies]
 category = "categories"

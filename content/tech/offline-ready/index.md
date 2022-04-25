@@ -4,7 +4,6 @@ subtitle: 'Picking a solution, from caching to client-side databases'
 description: "Most apps could work really well without connectivity, but most of them don't. How do we start solving this problem?"
 author: 'Erwin Kuhn'
 url: /offline-ready/
-draft: true
 toc: true
 date: 2022-04-21
 ---
