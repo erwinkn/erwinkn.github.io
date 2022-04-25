@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    
+    
+
+<title>Building offline ready apps: the scale of offline functionality</title>
+<meta property="og:title" content="Building offline ready apps: the scale of offline functionality" >
+<meta name="twitter:title" content="Building offline ready apps: the scale of offline functionality" >
+
+<meta property="og:site_name" content="Erwin Kuhn">
+
+
+<meta name="description" content="Most apps could work really well without connectivity, but most of them don&#39;t. How do we start solving this problem?" >
+<meta property="og:description" content="Most apps could work really well without connectivity, but most of them don&#39;t. How do we start solving this problem?" >
+<meta name="twitter:description" content="Most apps could work really well without connectivity, but most of them don&#39;t. How do we start solving this problem?" >
+
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+
+<meta property="og:type" content="website" >
+
+
+<meta name="author" content="map[]" >
+<meta name="twitter:creator" content="@erwinkhn" >
+<meta name="twitter:site" content="@erwinkhn">
+
+
+  <meta itemprop="image" content="https://erwinkn.com/img/default.png" >
+  <meta property="og:image" content="https://erwinkn.com/img/default.png" >
+  <meta name="twitter:image" content="https://erwinkn.com/img/default.png" >
+  <meta name="twitter:image:alt" content="Homepage of Erwin Kuhn&#39;s website" >
+
+
+<link rel="canonical" href="https://erwinkn.com/offline-ready/" >
+<meta property="twitter:url" content="https://erwinkn.com/offline-ready/">
+<meta property="og:url" content="https://erwinkn.com/offline-ready/" >
+
+
+<meta name="robots" content="index,follow" > 
+<meta name="googlebot" content="index,follow" >
+
+
+
+<meta name="generator" content="Hugo 0.97.3" />
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+
+<meta name="theme-color" content="#fdf6e3">
+
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="/bundle.min.923b330b2b22da84cd42714c4e009ade562e0002f3d675ca20e328548afc5b79.css" integrity="">
+    <script type="text/javascript" src="/prism/prism.js"></script>
+    
+    
+    
+
+    
+    
+
+    
+    
+</head><body class="flex flex-col min-h-screen bg-lightBeige xl:text-lg">
+<header class="bg-darkGreenBlue text-lightBeige">
+    <div class="max-w-container mt-12 mb-4">
+        <nav class="content-wrapper">
+            <a href="https://erwinkn.com/" class='font-semibold font-display tracking-wider text-5xl md:text-6xl  '>
+                Erwin Kuhn
+            </a>
+            
+            <div class="text-xl md:text-2xl lg:text-3xl mt-1 font-medium flex flex-wrap space-x-4 justify-items-center">
+                
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/climate/">Climate</a>
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/tech/">Tech</a>
+                
+                
+                
+                <a class=" block px-1 py-2 " href="/about/">About</a>
+                
+            </div>
+        </nav>
+    </div>
+    
+    <svg class="wave" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320">
+    <path fill="currentColor" fill-opacity="1"
+        d="M0,128L48,144C96,160,192,192,288,181.3C384,171,480,117,576,90.7C672,64,768,64,864,80C960,96,1056,128,1152,133.3C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+    </path>
+</svg>
+</header><main class="flex-1 w-full text-darkGreenBlue">
+<article class="max-w-container mt-10">
+    <div class="text-wrapper prose xl:prose-lg">
+        <h1>
+            Building offline ready apps: the scale of offline functionality
+        </h1>
+        <div class="text-gray-500 tracking-wide -mt-8">
+            <time class="uppercase">
+                April 21, 2022
+            </time>
+            <span class="">
+                &middot;
+            </span>
+            <span>
+                11 min
+            </span>
+        </div>
+        
+        <div class="bg-darkBeige border-pink-600 border-opacity-80 border-2 rounded py-2 px-4 mt-4 lg:mt-6 font-medium italic text-xl xl:text-2xl">
+            Picking a solution, from caching to client-side databases
+        </div>
+        
+        
+        <aside>
+            <h2>Table of contents</h2>
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#which-capabilities-do-you-need">Which capabilities do you need?</a></li>
+    <li><a href="#prelude-designing-offline-uis">Prelude: designing offline UIs</a></li>
+    <li><a href="#caching-for-offline-reading">Caching for offline reading</a></li>
+    <li><a href="#update-queuing-and-optimistic-ui">Update queuing and optimistic UI</a></li>
+    <li><a href="#going-local-first-client-side-databases">Going local-first: client-side databases</a></li>
+    <li><a href="#offline--collaborative-apps">Offline &amp; collaborative apps</a></li>
+    <li><a href="#sensitive-information">Appendix: Handling sensitive information</a></li>
+  </ol>
+</nav>
+        </aside>
+        
+        <p>It&rsquo;s surprising how many apps simply bail out if you&rsquo;re not online. Make a quick test: grab your phone, turn off the network and open random apps. See how many of them even show you something beyond an error message.</p>
+<p>If we start talking about Web apps, the percentage of them that works offline quickly goes to zero.</p>
+<p>Even though most apps could cache data and provide quite a lot of offline functionality, teams often don&rsquo;t take the time to think through how their software may behave without a server to talk to.</p>
+<p>It&rsquo;s true, the list of challenges when building an offline app can be daunting. Here are some of the difficulties I&rsquo;ve had the pleasure of running into:</p>
+<ul>
+<li>Setting up caching strategies</li>
+<li>Avoiding data duplication across caches</li>
+<li>Setting up local mutations and <a href="https://react-query.tanstack.com/guides/optimistic-updates">optimistic updates</a></li>
+<li>Avoid accepting local mutations that end up being rejected by the server</li>
+<li>Syncing server data with local data</li>
+<li>Adapting existing solutions to your own infrastructure (good luck persisting to a relational database)</li>
+<li>Evolving your schema, while ensuring you don&rsquo;t break apps with older data stored locally</li>
+</ul>
+<p>And some web specific ones:</p>
+<ul>
+<li>Avoiding or removing <a href="https://developer.chrome.com/docs/workbox/remove-buggy-service-workers/">broken service workers</a></li>
+<li>Dealing with <a href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API">IndexedDB</a>, its API and its <a href="https://jlongster.com/future-sql-web">terrible performance</a></li>
+<li>Combining cached <a href="https://www.patterns.dev/posts/server-side-rendering/">server-side rendered</a> pages with local data</li>
+<li>Managing <a href="https://web.dev/storage-for-the-web/#how-much">storage quotas</a> to avoid your app&rsquo;s data being wiped</li>
+</ul>
+<h2 id="which-capabilities-do-you-need">Which capabilities do you need?</h2>
+
+<p>Recently, I&rsquo;ve been building 
+
+<span>
+  <input aria-label="Show sidenote" type="checkbox" id='sn_check-776'
+         class="sn_check hidden">
+  <label tabindex="0" title='A &ldquo;topo&rdquo; is a guide …'
+    aria-describedby='sidenote-776' for='sn_check-776'
+    class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
+           lg:cursor-default lg:border-none lg:text-current"><a href="https://topogether.com/">Topogether</a></label>
+  <small id='sidenote-776'
+         class="sn_content ast-before sr-only flex
+                lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
+                lg:w-52 lg:-mr-56
+                xl:w-64 xl:-mr-72
+                2xl:-mr-80">
+    <span class="sr-only">
+      (sidenote:
+    </span>
+    <span class="lg:ml-1.5 leading-normal">A &ldquo;topo&rdquo; is a guide book for an outdoor climbing spot.</span>
+    <span class="sr-only">
+      )
+    </span>
+  </small>
+</span> an outdoor climbing app. It&rsquo;s intended to be used even in remote places, with no guarantee of Internet access. It also allows offline work for the cartographers (WIP).</p>
+<p>One thing I&rsquo;ve realised while working on Topogether&rsquo;s offline mode is that it&rsquo;s incredibly helpful to know upfront exacty what kind of capability you need.</p>
+<p>However it&rsquo;s an evaluation that requires a clear mental model for thinking about offline readiness. I wish there were more resources to help developers get started on that front, so here is my way of thinking about it.</p>
+<p>My current mental model is that each app wants to fit somewhere on a <strong>scale of offline functionality</strong>, where each step builds on the previous one by adding new capabilities and implementation gets progressively harder.</p>
+<p>Once you know where you stand, I find it becomes actually quite easy to evaluate solutions and you end up building much faster.</p>
+<h2 id="prelude-designing-offline-uis">Prelude: designing offline UIs</h2>
+<p>Before diving into any specific level of offline functionality, there is an UX pattern that is common to all cases below: <strong>the interface should recognize when the application is offline and clearly tell the users which actions are possible, and which are not.</strong></p>
+<p>Anything else will be confusing to the users and may cause them to end up stuck on an endless spinner, when they would have been happy sticking to offline actions.</p>
+<div class=''>
+    <figure class='mx-auto flex flex-col items-center w-full md:w-4/5 lg:w-3/5'>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<img
+  srcset='
+  
+    /offline-ready/images/spotify-example_hu5658a5a0f73f863620a6384bd67838ff_501307_360x0_resize_q75_box.jpg 360w
+  
+  
+    , /offline-ready/images/spotify-example_hu5658a5a0f73f863620a6384bd67838ff_501307_640x0_resize_q75_box.jpg 640w
+  
+  
+    , /offline-ready/images/spotify-example_hu5658a5a0f73f863620a6384bd67838ff_501307_768x0_resize_q75_box.jpg 768w
+  
+  
+    , /offline-ready/images/spotify-example_hu5658a5a0f73f863620a6384bd67838ff_501307_1024x0_resize_q75_box.jpg 1024w
+  
+  
+  '
+  src="/offline-ready/images/spotify-example.jpg" 
+  alt="Screenshot of Spotify tracks, some of them downloaded, some of them greyed out as they cannot be played offline"
+  >
+
+        
+        <figcaption>Spotify&rsquo;s offline UI: downloaded tracks are shown as normal, unavailable tracks as greyed out</figcaption>
+        
+    </figure>
+</div>
+<h2 id="caching-for-offline-reading">Caching for offline reading</h2>
+<p>The first step to making your app work offline is to ensure that it can display content without connecting to a remote server.</p>
+<p>At its simplest, this means showing some <strong>fallback page</strong>, explaining that the app is offline. On the web, browsers handle this for you, but that&rsquo;s not the case for desktop or mobile apps.</p>
+<p>Going further, you may want to <strong>cache some content that the users can browse while offline.</strong></p>
+
+<p>On the web, this means adding a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">service worker</a> and 
+
+<span>
+  <input aria-label="Show sidenote" type="checkbox" id='sn_check-781'
+         class="sn_check hidden">
+  <label tabindex="0" title='Please save yourself the trouble …'
+    aria-describedby='sidenote-781' for='sn_check-781'
+    class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
+           lg:cursor-default lg:border-none lg:text-current">defining strategies,</label>
+  <small id='sidenote-781'
+         class="sn_content ast-before sr-only flex
+                lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
+                lg:w-52 lg:-mr-56
+                xl:w-64 xl:-mr-72
+                2xl:-mr-80">
+    <span class="sr-only">
+      (sidenote:
+    </span>
+    <span class="lg:ml-1.5 leading-normal">Please save yourself the trouble and use <a href="https://developer.chrome.com/docs/workbox/">Workbox</a>.</span>
+    <span class="sr-only">
+      )
+    </span>
+  </small>
+</span> to cache your static assets and pages. For native apps, this means storing the data necessary to render some chosen pages in the backend of your choice.</p>
+<p>Data fetching libraries often end up providing an interesting middle ground, where you can start using them to handle async data loading and caching for performance, then to persist the cache across sessions and provide offline reading, before finally moving to the next tier and allowing offline mutations. Libraries like <a href="https://react-query.tanstack.com/">React Query</a> or GraphQl clients like <a href="https://www.apollographql.com/docs/react/">Apollo</a>, <a href="https://relay.dev/">Relay</a> or <a href="https://formidable.com/open-source/urql/">urql</a> all fit into that category.</p>
+<h2 id="update-queuing-and-optimistic-ui">Update queuing and optimistic UI</h2>
+<div class=''>
+    <figure class='mx-auto flex flex-col items-center w-4/5'>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<img
+  srcset='
+  
+    /offline-ready/images/twitter-example_huec1f434b71501defcf297abb71cf291f_193560_360x0_resize_q75_box.jpg 360w
+  
+  
+    , /offline-ready/images/twitter-example_huec1f434b71501defcf297abb71cf291f_193560_640x0_resize_q75_box.jpg 640w
+  
+  
+    , /offline-ready/images/twitter-example_huec1f434b71501defcf297abb71cf291f_193560_768x0_resize_q75_box.jpg 768w
+  
+  
+    , /offline-ready/images/twitter-example_huec1f434b71501defcf297abb71cf291f_193560_1024x0_resize_q75_box.jpg 1024w
+  
+  
+  '
+  src="/offline-ready/images/twitter-example.jpg" 
+  alt="Twitter&#39;s timeline on their homescreen, with 3 pending tweets at the top, greyed out"
+  >
+
+        
+        <figcaption>Optimistic UI on Twitter: pending tweets are shown, but greyed out</figcaption>
+        
+    </figure>
+</div>
+<p>The next step is probably the one relevant to most applications: if you want to provide full offline functionality, it&rsquo;s highly likely that your users may want to interact with the application in some way. For example, liking an article or submitting a tweet.</p>
+<p>In this case, the simplest approach is to do two things: <strong>queue and persist offline updates</strong>, to send them to the server once the app is back online, and <strong>reflect optimistic updates in the UI</strong>, to let the user see the updates that have been applied, but not sent to the server yet.</p>
+<p>You&rsquo;ll have to be careful regarding <strong>retries, error handling and displaying UI for the updates</strong> based on their status (pending, successful, rejected).</p>
+<p>If your updates require the user to be authenticated to be accepted by the server, you&rsquo;ll also have to think about <strong>what happens if the user comes back online with queued updates, but their session expired.</strong> You don&rsquo;t want their updates to be lost because they are rejected by the server, while they are trying to log back in.</p>
+<p>Let&rsquo;s take a concrete example: a user has updates A, B and C queued and comes back online. All three are sent to the server, but only B actually goes through due to bad connectivity at that time. Here, B is considered successful and either the response provides the new data from the server, or the app can manually refetch it, to make sure the data associated with B is up-to-date.<br>
+<code>Status: B accepted; A, C pending.</code></p>
+<p>To avoid discarding updates too easily, you may have a policy of retrying on network errors and retrying at least twice before considering that an update is being rejected by the server. The app sends A and C again and receives an OK response for A, along with fresh data, and an Unauthorized for C.<br>
+<code>Status: A, B accepted; C pending.</code></p>
+<p>The app sends C one last time and it is rejected as Unauthorized again. At this point, it considers that the update is being rejected by the server (maybe something changed while the user was offline). C is marked as definitely rejected and the user should be notified accordingly.<br>
+<code>Status: A, B accepted; C rejected.</code></p>
+<p>Due to how easy it is to make a mistake in this process, I&rsquo;d highly recommend <strong>adopting a systematic approach.</strong></p>
+<p>Tools for the job include:</p>
+<ul>
+<li>General query clients, like <a href="https://react-query.tanstack.com/">React Query</a></li>
+<li>GraphQL clients: <a href="https://www.apollographql.com/docs/react/">Apollo</a>, <a href="https://relay.dev/">Relay</a> or <a href="https://formidable.com/open-source/urql/">urql</a></li>
+<li><a href="https://github.com/redux-offline/redux-offline">Redux offline</a>, which splits the lifecycle of a queued update into an <em>effect</em> (the network request), a <em>commit</em> (if successful) and a <em>rollback</em> (if rejected)</li>
+</ul>
+<h2 id="going-local-first-client-side-databases">Going local-first: client-side databases</h2>
+<p>Highly interactive apps, like any kind of graphical or text editor, will need to go beyond caching &amp; update queuing. Contrary to an application like Twitter, offline updates are not considered as &ldquo;pending&rdquo; and displayed differently within the UI, but directly merged into the underlying data. When 300 offline updates happen to the same piece of data, only the latest version is sent, instead of replaying every operation on the server.</p>
+<p>For this purpose, what you want is a <strong>client-side database</strong>, that acts as the source of truth for your application and is synced in the background to the main database. In this <a href="https://www.inkandswitch.com/local-first/">local-first</a> model, the remote database ensures persistence of data, provides fresh data to the client-side database and performs conflict resolution, if necessary.</p>
+
+<p>The desired properties of a client-side database are the following (IMO):</p>
+<ul>
+<li><strong>Queryable</strong> and <strong>persistent</strong> are prerequisites for the job.</li>
+<li><strong>Syncable</strong>, ideally with enough flexibility to use any backend you want.</li>
+<li><strong>Reactive:</strong> it provides hooks to automatically update the UI when something changes in the DB.</li>
+<li><strong>Partial:</strong> the client-side database does not need to be a replica of the whole remote database to be able to sync with it.</li>
+<li><strong>Lazy:</strong> the database does not need to load everything into memory on initialization.</li>
+<li><strong>Schema-aware:</strong> changing the shape of data suddenly becomes much harder when that data is split between a remote database and an unknown number of client-side databases. Having a tool that knows your schema and allows specifying migration strategies that can be deployed to your users will save your life and their data.</li>
+</ul>
+<p>Let&rsquo;s do a quick rundown of some client-side databases.</p>
+<h3 id="couchdb--pouchdb">CouchDB / PouchDB</h3>
+<p><a href="https://couchdb.apache.org/">CouchDB</a> is a widely-used document store designed for syncing replicas. <a href="https://pouchdb.com/">PouchDB</a> is a compatible JavaScript implementation that provides a browser / React Native client and Node.js server.</p>
+<p><strong>Pros:</strong> mature and proven in production, simple API, file attachments, lots of plugins.<br>
+<strong>Cons:</strong> can&rsquo;t bring your own infrastructure, <a href="https://github.com/apache/couchdb/issues/1524">no per-document access control</a> (access control = splitting into different databases, which prevents querying across all of them), no built-in reactivity.</p>
+<h3 id="rxdb">RxDB</h3>
+<p><a href="https://rxdb.info/">RxDB</a> is a NoSQL JavaScript database, which was initially built on top of PouchDB, but now supports <a href="https://rxdb.info/rx-storage-lokijs.html">other backends</a>.</p>
+<p><strong>Pros:</strong> reactivity, schemas &amp; migrations, multi-tab sync, realtime features, built-in CouchDB/PouchDB, GraphQL or customisable backends, <a href="https://github.com/pubkey/event-reduce">incrementally updated queries</a>, <a href="https://rxdb.info/rx-storage-worker.html">experimental web worker offloading</a>.<br>
+<strong>Cons:</strong> 100kB minified + gzipped, but that&rsquo;s probably fine for the type of apps that need its features.</p>
+<h3 id="watermelondb">WatermelonDB</h3>
+<p><a href="https://github.com/Nozbe/WatermelonDB">WatermelonDB</a> is a <em>relational</em> database, which is quite rare to find client-side. It was mainly built for React Native, to leverage SQLite and its speed, but also supports IndexedDB on the web now.</p>
+<p><strong>Pros:</strong> reactivity, schemas &amp; migrations, lightweight (36kB minified + gzipped), customisable sync, leverages SQLite for speed &amp; only loading data on demand (React Native only).<br>
+<strong>Cons:</strong> requires both a schema for the database and models for each entity (this is very flexible, but also very repetitive), only table creation / column creation are supported for migrations, advanced docs are still incomplete.</p>
+<h3 id="more-resources">More resources</h3>
+<p>For a deeper dive into client-side databases, I highly recommend Jared Forsyth&rsquo;s <a href="https://jaredforsyth.com/posts/in-search-of-a-local-first-database/"><em>In Search of a Local-First Database</em></a>, as well as the <a href="https://rxdb.info/alternatives.html"><em>Opinions</em></a> section of RxDB&rsquo;s documentation. The author also has a <a href="https://github.com/pubkey/client-side-databases">benchmark for client-side databases</a> in the browser.</p>
+<h2 id="offline--collaborative-apps">Offline &amp; collaborative apps</h2>
+<p>OK, we&rsquo;re now entering experimental territory. Here, we are talking about apps where users can collaborate in real-time, drop into offline mode &amp; continue working, before coming back online and seeing their changes merged with other work that happened in the meantime.</p>
+<p><strong>Upfront warning:</strong> any solution in this area should be considered experimental technology, will likely have major limitations and will require significant tweaking on your behalf.</p>
+<p>Still interested? Good! It&rsquo;s significantly easier to build offline collaborative apps than it was even 5 years ago. By significantly easier, I mean that it&rsquo;s now possible for individuals or small teams, and not just organisations with a lot of engineering power.</p>
+<p>The key to tackling this problem is <a href="https://crdt.tech/">conflict-free replicated data types</a> (CRDTs). They are data structures that look like regular objects, arrays, sets or maps, but are able to synchronise any two replicas together.</p>
+<p>The guarantee they offer is <strong><em>strong eventual consistency</em>: any two replicas that have seen the same changes end up in the same state.</strong></p>
+
+<p>Synchronisation can happen in real time or after an extended period of time, making them perfectly suited for offline collaborative apps. Synchronisation can also happen between any two peers, without requiring a server for conflict resolution.</p>
+<p>In that model, a server is mostly helpful for persistence, propagating messages to peers and querying over all of the existing data (which will likely be split across multiple CRDT documents).</p>
+<p>To learn more about how CRDTs work, I highly recommend James Long&rsquo;s talk <a href="https://www.youtube.com/watch?v=iEFcmfmdh2w"><em>CRDTs for Mortals</em></a>, <a href="https://lars.hupel.info/topics/crdt/01-intro/">Lars Hupel&rsquo;s series</a> on their mathematical foundations, or any of the resources on <a href="https://crdt.tech/">https://crdt.tech/</a></p>
+<p>The two main implementations today are <a href="https://github.com/automerge/automerge">Automerge</a> and <a href="https://github.com/yjs/yjs">Yjs</a>. In their current state, Yjs is <strong>lighter</strong> (24kB), <a href="https://github.com/dmonad/crdt-benchmarks">faster</a> and seems to have more integrations (like IndexedDB, Websocket or WebRTC backends). Automerge has a more flexible API and the ability to expose conflicts, when two users have concurrently modified the same value in a map or an object.</p>
+
+<p>While both support full JSON models &amp; text editing, 
+
+<span>
+  <input aria-label="Show sidenote" type="checkbox" id='sn_check-126'
+         class="sn_check hidden">
+  <label tabindex="0" title='I have also written more …'
+    aria-describedby='sidenote-126' for='sn_check-126'
+    class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
+           lg:cursor-default lg:border-none lg:text-current">some limitations remain:</label>
+  <small id='sidenote-126'
+         class="sn_content ast-before sr-only flex
+                lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
+                lg:w-52 lg:-mr-56
+                xl:w-64 xl:-mr-72
+                2xl:-mr-80">
+    <span class="sr-only">
+      (sidenote:
+    </span>
+    <span class="lg:ml-1.5 leading-normal">I have also <a href="/getting-crdts-to-production/">written more extensively</a> about the limitations of current CRDT implementations (&amp; how they could be addressed).</span>
+    <span class="sr-only">
+      )
+    </span>
+  </small>
+</span></p>
+<ul>
+<li><strong>document size only grows with time</strong>: deleted items are just marked, not removed</li>
+<li><strong>only tree-shaped data</strong>: no graphs, you&rsquo;ll have to normalise yourself</li>
+<li><strong>no move or splice operation</strong> within arrays or text (these are <a href="https://github.com/automerge/automerge/issues/319">really</a> <a href="https://discuss.yjs.dev/t/moving-elements-in-lists/92">hard</a> <a href="https://lord.io/splicing-crdts/">problems</a>)</li>
+<li><strong>no schema awareness</strong>, so you&rsquo;re on your own for managing decentralised data migrations (although <a href="https://www.inkandswitch.com/cambria/">Cambria</a> is promising research on that subject)</li>
+<li><strong>no authorization</strong>, all peers with access to a CRDT can send any operation</li>
+<li><strong>syncing to most databases is hard</strong>, you&rsquo;ll have to write a custom server + adapter</li>
+</ul>
+<p>Whether such limitations are deal breakers is up to you and your use case. There are apps in production running on both <a href="https://crdt.tech/implementations#automerge-users">Automerge</a> and <a href="https://docs.yjs.dev/yjs-in-the-wild">Yjs</a>, so joining that club is definitely possible.</p>
+<h2 id="sensitive-information">Appendix: Handling sensitive information</h2>
+<p>If you&rsquo;re storing sensitive information, like banking or medical data, on the user&rsquo;s device, it would be wise to adopt some security measures.</p>
+
+<p>For instance, instead of keeping the user logged in until they are back online, you may <strong>add an authentication layer on app restart.</strong> This can be a stored password / PIN code or a 
+
+<span>
+  <input aria-label="Show sidenote" type="checkbox" id='sn_check-255'
+         class="sn_check hidden">
+  <label tabindex="0" title='Also available through the Web …'
+    aria-describedby='sidenote-255' for='sn_check-255'
+    class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
+           lg:cursor-default lg:border-none lg:text-current">native authentication method.</label>
+  <small id='sidenote-255'
+         class="sn_content ast-before sr-only flex
+                lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
+                lg:w-52 lg:-mr-56
+                xl:w-64 xl:-mr-72
+                2xl:-mr-80">
+    <span class="sr-only">
+      (sidenote:
+    </span>
+    <span class="lg:ml-1.5 leading-normal">Also available through the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Authentication_API">Web Authentication APIs</a>!</span>
+    <span class="sr-only">
+      )
+    </span>
+  </small>
+</span></p>
+<p>In that case, the user&rsquo;s local data should be <strong>encrypted while at rest</strong> and only <strong>decrypted using a secret coming from the authentication layer</strong>.</p>
+<p>The unfortunate part is that I haven&rsquo;t seen any good library to do this, so you likely will have to implement your own solution, both the authentication layer &amp; the encryption as a wrapper around your storage method.</p>
+
+    </div>
+</article>
+
+    </main><footer
+    class='w-full mt-48 text-center border-t border-darkGreenBlue border-opacity-10 p-4 text-xs text-darkGreenBlue text-opacity-60'>
+    <p>
+        Made with
+        <a href="https://gohugo.io" class="thick-underline-70 hover-highlight">Hugo</a>
+        and
+        <a href="https://tailwindcss.com" class="thick-underline-70 hover-highlight">TailwindCSS</a>
+    </p>
+    <p class="mt-1">
+        © 2020-present Erwin Kuhn. All rights reserved.
+    </p>
+</footer>
+</body>
+
+</html>

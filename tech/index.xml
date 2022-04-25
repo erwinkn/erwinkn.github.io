@@ -28,5 +28,16 @@ So far, the plan is:
 Its most famous implementation is the one that powers spreadsheets like Excel. If you have a large sheet with many formulas and the value of one cell changes, how do you propagate that change in the most efficient manner?</description>
     </item>
     
+    <item>
+      <title>Building offline ready apps: the scale of offline functionality</title>
+      <link>https://erwinkn.com/offline-ready/</link>
+      <pubDate>Thu, 21 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://erwinkn.com/offline-ready/</guid>
+      <description>It&amp;rsquo;s surprising how many apps simply bail out if you&amp;rsquo;re not online. Make a quick test: grab your phone, turn off the network and open random apps. See how many of them even show you something beyond an error message.
+If we start talking about Web apps, the percentage of them that works offline quickly goes to zero.
+Even though most apps could cache data and provide quite a lot of offline functionality, teams often don&amp;rsquo;t take the time to think through how their software may behave without a server to talk to.</description>
+    </item>
+    
   </channel>
 </rss>
