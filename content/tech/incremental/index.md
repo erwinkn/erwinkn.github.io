@@ -50,7 +50,7 @@ Converting a regular computation into an incremental one is essentially a compil
 
 **I think this paradigm is just starting to be embraced and we have barely seen its consequences.** The modern version of the change propagation algorithm has been formalised in academic research around 2014, with [Adapton](http://adapton.org). That's very new! 
 
-Just in the past few years, we've seen new approaches appear in multiple as the result of more efficient incremental computations.
+Just in the past few years, we've seen new approaches appear in multiple domains as a result of the wider adoption of efficient incremental computation.
 
 In the web UI world, [Solid](https://www.solidjs.com/) redefined just how efficient JavaScript frameworks can be: it's a 6kB library, nearly as fast as carefully hand-optimised JavaScript code, with [advanced](https://www.solidjs.com/docs/latest/api#usetransition) [features](https://www.solidjs.com/docs/latest/api#rendertostream) that barely exist in other frameworks. In the same vein, [Svelte](https://svelte.dev/) is becoming famous for its simple syntax, where everything "just works" and the compiler takes care of inserting all the update mechanisms, ensuring your UI is always in sync with your data.
 

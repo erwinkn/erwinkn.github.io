@@ -1,18 +1,18 @@
 ---
 title: "Transfering state from server to client with Blazor WASM and prerendering"
 subtitle: "Or how to solve the \"flash\" problem with Blazor server-side prerendering"
-description: "Blazor's server-side prerendering feels amazing, because you get something on the page instantly. Except the first time I used it, the whole page flashed with every refresh."
+description: "Blazor's server-side prerendering is great to get content on the page immediately. However, it suffers the <i>\"hydration problem\"</i>, where the page flashes after the initial load. Here's how to solve it"
 author: "Erwin Kuhn"
 date: "2021-03-10"
-draft: true
 keywords: ["Blazor", "prerendering", "performance"]
 ---
 
-{{< sidenote-content id=1 >}}I'll give an introduction to Blazor and the whole experience of putting it into production in a separate blog post.{{</ sidenote-content >}}
 
-I wanted to brush up my [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) skills. I had been {{< sidenote id=1 >}}using the new .NET framework{{< /sidenote >}} in my work with [Vicat](https://www.vicat.fr/), an international cement & concrete group based in France, to develop a modelling tool for long term roadmaps towards carbon neutrality. Coding with it was a joy, but I had doubts about its overall performance.
+_Edit: .NET 6 now solves this problem using `persist-component-state` ([docs](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/built-in/persist-component-state?view=aspnetcore-6.0))_
 
-Since there's no better way to put a framework to the test than to build something and optimize the hell out of it, I decided to make a good old Hacker News reader using Blazor WebAssembly. That way, I could compare it with [the myriad of other implementations](https://hnpwa.com/) out there.
+I wanted to brush up my [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) skills. I had been using the new .NET framework in my work with [Vicat](https://www.vicat.fr/), an international cement & concrete group based in France, to develop a modelling tool for long term roadmaps towards carbon neutrality. Coding with it felt really nice, but its overall performance as a client-side framework is not good.
+
+Since there's no better way to put a framework to the test than to build something and optimize it as much as possible, I decided to make a good old Hacker News reader using Blazor WebAssembly. That way, I could compare it with [the myriad of other implementations](https://hnpwa.com/) out there.
 
 You can see the final result of the standalone version, hosted on GitHub Pages, [here](https://erwinkn.com/hnpwa-blazor/).
 

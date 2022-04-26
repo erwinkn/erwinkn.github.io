@@ -8,13 +8,13 @@ toc: true
 date: 2022-04-21
 ---
 
-It's surprising how many apps simply bail out if you're not online. Make a quick test: grab your phone, turn off the network and open random apps. See how many of them even show you something beyond an error message.
+It's surprising how many apps simply bail out if you're not online. Make a quick test: grab your phone, turn off the network and open random apps. See how many of them even show you something, beyond an error message.
 
 If we start talking about Web apps, the percentage of them that works offline quickly goes to zero.
 
 Even though most apps could cache data and provide quite a lot of offline functionality, teams often don't take the time to think through how their software may behave without a server to talk to.
 
-It's true, the list of challenges when building an offline app can be daunting. Here are some of the difficulties I've had the pleasure of running into:
+True, the list of challenges can be daunting. Here are some of the difficulties I've had the pleasure of running into:
 - Setting up caching strategies
 - Avoiding data duplication across caches
 - Setting up local mutations and [optimistic updates](https://react-query.tanstack.com/guides/optimistic-updates)
@@ -135,7 +135,7 @@ For a deeper dive into client-side databases, I highly recommend Jared Forsyth's
 ## Offline & collaborative apps
 OK, we're now entering experimental territory. Here, we are talking about apps where users can collaborate in real-time, drop into offline mode & continue working, before coming back online and seeing their changes merged with other work that happened in the meantime.
 
-**Upfront warning:** any solution in this area should be considered experimental technology, will likely have major limitations and will require significant tweaking on your behalf.
+**Upfront warning:** any solution in this area should be considered experimental technology, will likely have major limitations and will require a lot of tweaking.
 
 Still interested? Good! It's significantly easier to build offline collaborative apps than it was even 5 years ago. By significantly easier, I mean that it's now possible for individuals or small teams, and not just organisations with a lot of engineering power.
 
