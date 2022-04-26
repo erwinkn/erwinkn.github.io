@@ -13,11 +13,13 @@
 <meta property="og:site_name" content="Erwin Kuhn">
 
 
-<meta name="description" content="Incremental computation is an algorithm that comes up everywhere, from spreadsheets to compilers to UI frameworks. We should use it even more broadly." >
-<meta property="og:description" content="Incremental computation is an algorithm that comes up everywhere, from spreadsheets to compilers to UI frameworks. We should use it even more broadly." >
-<meta name="twitter:description" content="Incremental computation is an algorithm that comes up everywhere, from spreadsheets to compilers to UI frameworks. We should use it even more broadly." >
+<meta name="description" content="Incremental computation is an algorithm that comes up everywhere, from spreadsheets to compilers to UI frameworks. Why is not seen as universal?" >
+<meta property="og:description" content="Incremental computation is an algorithm that comes up everywhere, from spreadsheets to compilers to UI frameworks. Why is not seen as universal?" >
+<meta name="twitter:description" content="Incremental computation is an algorithm that comes up everywhere, from spreadsheets to compilers to UI frameworks. Why is not seen as universal?" >
 
 
+
+<meta name="keywords" content="incremental computation,reactivity,change propagation,universal algorithm" >
 
 
 <meta name="twitter:card" content="summary_large_image">
@@ -68,7 +70,7 @@
     
     
     
-    <link rel="stylesheet" href="/bundle.min.9a2235d879447336bb7a5345a2f8c38323ca09352d5f1f3c91407be3e169017e.css" integrity="">
+    <link rel="stylesheet" href="/bundle.min.1e37605d6ab78fd3b178041988a4171dcc5826ad274083bc64f040bc2d8af155.css" integrity="">
     <script type="text/javascript" src="/prism/prism.js"></script>
     
     
@@ -134,7 +136,7 @@
         </div>
         
         
-        <p>There are some algorithms in computer science that just keep coming up everywhere. There&rsquo;s one that I see everywhere I look, but never heard described as universal: the algorithm behind <strong>incremental computation, reactivity, or change propagation</strong> - however you want to call it.</p>
+        <p>There are some algorithms in computer science that just keep coming up in unrelated domains. There&rsquo;s one that I see everywhere I look, but never heard described as universal: the algorithm behind <strong>incremental computation, reactivity, or change propagation</strong> - however you want to call it.</p>
 <p>Its most famous implementation is the one that powers spreadsheets like Excel. If you have a large sheet with many formulas and the value of one cell changes, how do you propagate that change in the most efficient manner?</p>
 <p>The base of the algorithm is always the same. You maintain a computation graph that allows you to answer two questions:</p>
 <ol>
@@ -206,7 +208,7 @@
 </ul>
 <p>After all, the purpose of all programs is simply to <a href="https://www.youtube.com/watch?v=rX0ItVEVjHc#t=12m38s">transform data from one form to another</a>. All examples above do exactly that, whether they are outputting HTML, compiled programs, financial analytics, SQL query results or graphics.</p>
 <p>And at some point, the input data will change. Generally, only a fraction of the input changes, so <strong>how do we update the output without recomputing everything from scratch?</strong> This is exactly the problem of incremental computation.</p>
-<p><strong>Framing the problem this way is also incredibly liberating for designing programs</strong>: for any non-trivial computation, it&rsquo;s <em>much</em> easier to write how to do something from scratch than how to precisely update the output based on any possible change of the input. Being able to automate the update process allows you to just &ldquo;write the spec&rdquo; and get an efficient program out of it.</p>
+<p><strong>Framing the problem this way is also incredibly liberating for designing programs</strong>: for any non-trivial computation, it&rsquo;s <em>much</em> easier to write how to do something from scratch than how to precisely update the output based on any possible change of the input. Being able to automate the update process allows you to just <em>&ldquo;write the spec&rdquo;</em> and get an efficient program out of it.</p>
 <h2 id="compile-the-update-path">Compile the update path</h2>
 <p>Converting a regular computation into an incremental one is essentially a compiler problem. Existing approaches take different forms:</p>
 <ul>
@@ -215,30 +217,31 @@
 <li><strong>Classical compilers,</strong> which can either reuse syntax from their target language (<a href="https://svelte.dev/">Svelte</a>, <a href="https://vuejs.org/">Vue</a>) or implement a completely new language for incremental computation (<a href="https://github.com/skiplang/skip">Skip</a>, <a href="https://github.com/Adapton/fungi-lang.rust">Fungi</a>).</li>
 </ul>
 <h2 id="uis-programming-languages-and-distributed-systems">UIs, programming languages and distributed systems</h2>
-<p><strong>I think this paradigm is just starting to be embraced and we have barely seen its consequences.</strong> The modern version of the change propagation algorithm has been formalised in academic research around 2014, with <a href="http://adapton.org">Adapton</a>. That&rsquo;s very new!</p>
+<p><strong>I think this paradigm is just starting to be embraced and we have barely seen its consequences.</strong></p>
+<p>The modern version of the change propagation algorithm has been formalised in academic research around 2014, with <a href="http://adapton.org">Adapton</a>. That&rsquo;s very new!</p>
 <p>Just in the past few years, we&rsquo;ve seen new approaches appear in multiple domains as a result of the wider adoption of efficient incremental computation.</p>
-<p>In the web UI world, <a href="https://www.solidjs.com/">Solid</a> redefined just how efficient JavaScript frameworks can be: it&rsquo;s a 6kB library, nearly as fast as carefully hand-optimised JavaScript code, with <a href="https://www.solidjs.com/docs/latest/api#usetransition">advanced</a> <a href="https://www.solidjs.com/docs/latest/api#rendertostream">features</a> that barely exist in other frameworks. In the same vein, <a href="https://svelte.dev/">Svelte</a> is becoming famous for its simple syntax, where everything &ldquo;just works&rdquo; and the compiler takes care of inserting all the update mechanisms, ensuring your UI is always in sync with your data.</p>
+<p>In the web UI world, <a href="https://www.solidjs.com/">Solid</a> redefined just how efficient JavaScript frameworks can be: it&rsquo;s a 6kB library, nearly as fast as carefully hand-optimised JavaScript code, with <a href="https://www.solidjs.com/docs/latest/api#usetransition">advanced</a> <a href="https://www.solidjs.com/docs/latest/api#rendertostream">features</a> that barely exist in other frameworks. In the same vein, <a href="https://svelte.dev/">Svelte</a> is becoming famous for its simple syntax, where everything &ldquo;just works&rdquo; and the compiler takes care of inserting all the incremental update mechanisms, ensuring your UI is always in sync with your data.</p>
 <p>In programming languages, <strong>Rust</strong> was the first major compiler to adopt an incremental computation framework for <a href="https://rustc-dev-guide.rust-lang.org/query.html">demand-driven compilation</a>. It also enabled IDE tooling like <a href="https://github.com/rust-lang/rust-analyzer">rust-analyzer</a> to reuse this approach to improve its performance and analysis, as it attempts to provide instantaneous feedback while you are typing in your editor.</p>
 <h2 id="incremental-view-maintenance-from-the-database-to-the-ui">Incremental view maintenance, from the database to the UI</h2>
 <p>An area I&rsquo;m especially interested in is building <a href="/getting-crdts-to-production/">offline + collaborative</a> applications. It&rsquo;s a hard problem, which can be solved using <a href="https://crdt.tech/">conflict-free replicated data types</a> (CRDTs): they are data structures that provide automatic synchronisation &amp; conflict resolution, while being robust to extended periods of offline work.</p>
-<p>They are also notoriously hard to implement efficiently. In practice, the problem often boils down to: <a href="https://josephg.com/blog/crdts-go-brrr/">&ldquo;how do I efficiently insert this new operation into the existing state?&rdquo;</a>. That sounds suspiciously like an incremental update.</p>
-<p>One of the clearest ways to define CRDTs is as <a href="https://arxiv.org/abs/1805.04263">a query over a set of operations</a>. This model makes synchronisation and conflict resolution trivial and was the first to introduce a CRDT operation for moving elements in a tree. Its theoretical simplicity makes it a great foundation for building more complex or domain-specific data types. However, the model provides no way to efficiently update the CRDT query when a new operation comes in.</p>
-<p>Wait a second, <span class="text-darkSanguine font-semibold">that's also an incremental computation problem!</span> If we were able to define this model in a language or framework that automatically provides incremental updates for queries, then we could just define the spec for a CRDT and get an efficient implementation for free!</p>
-<p>Combine this with another idea: <strong>a UI is just a function of data.</strong> There is first an initial render <em>(= query over the data)</em>, then incremental updates as the underlying data changes <em>(= incremental computation)</em>.</p>
-<p>This is the same setup as replicated data types and both are just a <em>view</em> into the underlying data. For this reason, I&rsquo;ll borrow the term <a href="https://wiki.postgresql.org/wiki/Incremental_View_Maintenance">incremental view maintenance</a> and apply it both for CRDTs, as a view of a set of operations, and for UIs as functions of the base application state.</p>
-<p>Going further, the two could likely be merged together into <a href="https://riffle.systems/essays/prelude/#towards-a-more-radical-approach">an application stack expressed as a single query, with incremental updates</a>. In that model, the developer never has to reason about stale data and synchronisation across devices and databases just works automatically.</p>
-<h2 id="shifting-the-paradigm">Shifting the paradigm</h2>
+<p>They are also notoriously hard to implement efficiently. In practice, the problem often boils down to: <a href="https://josephg.com/blog/crdts-go-brrr/">&ldquo;how do I efficiently insert this new operation into the existing state?&rdquo;</a>. <span class="text-darkSanguine font-semibold">That sounds suspiciously like an incremental update...</span></p>
+<p>One of the clearest ways to define CRDTs is as <a href="https://arxiv.org/abs/1805.04263">a query over a set of operations</a>. This model makes synchronisation trivial, leaving only the need to define conflict resolution semantics. It was also the first to introduce a CRDT operation for moving elements in a tree. Its theoretical simplicity makes it a great foundation for building more complex or domain-specific data types. However, the model provides no way to efficiently update the CRDT query when a new operation comes in. <span class="text-darkSanguine font-semibold">Wait a second, that's definitely an incremental computation problem!</span></p>
+<p>If we were able to define this model in a language or framework that automatically provides incremental updates for queries, then we could <strong>just define the spec for a CRDT and get an efficient implementation for free!</strong></p>
+<p>Combine this with another idea: <strong>a UI is just a function of data.</strong> There is an initial render <em>(= query over the data)</em>, then incremental updates as the underlying data changes <em>(= incremental computation)</em>.</p>
+<p>This is the same setup as replicated data types and both are just a <em>view</em> into the underlying data: the CRDT is a view of a set of operations, the UI is a view of the base application state.</p>
+<p>Going further, maybe the two could be expressed in a single query language, given a suitable query language (not SQL). Then, the <a href="https://riffle.systems/essays/prelude/#towards-a-more-radical-approach">whole application stack could be expressed a single incremental query</a> over local data, which syncs automatically across the network. In that paradigm, the data is <strong>unified in a single logical place</strong>, simplifying the mental model by eliminating all concerns around stale data or synchronisation.</p>
+<h2 id="everything-is-an-incremental-query">Everything is an incremental query</h2>
 
 <p>I suspect nearly all programs could be expressed in this paradigm of 
 
 <span>
-  <input aria-label="Show sidenote" type="checkbox" id='sn_check-994'
+  <input aria-label="Show sidenote" type="checkbox" id='sn_check-735'
          class="sn_check hidden">
   <label tabindex="0" title='A popular saying is that all …'
-    aria-describedby='sidenote-994' for='sn_check-994'
+    aria-describedby='sidenote-735' for='sn_check-735'
     class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
-           lg:cursor-default lg:border-none lg:text-current">a query + incremental updates.</label>
-  <small id='sidenote-994'
+           lg:cursor-default lg:border-none lg:text-current">a query & incremental updates.</label>
+  <small id='sidenote-735'
          class="sn_content ast-before sr-only flex
                 lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
                 lg:w-52 lg:-mr-56
@@ -252,8 +255,9 @@
       )
     </span>
   </small>
-</span> What we, as developers, want to write is the &ldquo;from scratch&rdquo; computation. Efficient updates should be handled by a compiler, to spare us both the effort and the incredible amount of bugs that comes with handmade implementations.</p>
-<p>More than that, incremental computation is not <em>just</em> a performance gain: <span class="text-darkSanguine font-semibold">the affordances it creates radically change the ways you can think about a problem.</span> Once you are freed of the complexity of efficiently maintaining some output, you can start building new architectures you would not have dared to dream about before.</p>
+</span> What we, as developers, want to write is the <em>&ldquo;from scratch&rdquo;</em> computation, the query. Efficient updates should be handled by a compiler, to spare us both the effort and the incredible amount of bugs that comes with handmade implementations.</p>
+<p><strong>More than that, incremental computation is not <em>just</em> a performance gain: the affordances it creates radically change the ways you can think about a problem.</strong></p>
+<p>Once you are freed of the complexity of efficiently maintaining some output, you can start building new architectures you would not have dared to dream about before.</p>
 
     </div>
 </article>
