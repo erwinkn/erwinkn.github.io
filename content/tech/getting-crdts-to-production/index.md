@@ -1,12 +1,13 @@
 ---
 title: 'Getting conflict-free replicated data types to production'
-subtitle: 'On the road to offline collaborative apps'
+subtitle: 'Paving the road to ubiquitous offline collaborative apps'
+description: 'Conflict-free replicated data types could make offline & collaborative apps easy to build, but current implementations have important limitations.'
 author: 'Erwin Kuhn'
 date: 2022-04-23
 url: /getting-crdts-to-production/
 ---
 
-_Hi! This is the introduction to a series of working notes on the missing pieces before we can start building offline collaborative apps using replicated data types (RDTs or CRDTs if they are conflict-free)._
+_Hi! This is the introduction to a series of working notes on the missing pieces before we can start building offline collaborative apps using conflict-free replicated data types (CRDTs)._
 
 _So far, the plan is:_
 1. _**Introduction: The road to offline collaborative apps** {{< important >}}(you are here){{< /important >}}_
@@ -41,82 +42,82 @@ So, are CRDTs ready for production? Can we start building our apps on them?
 Well, yes, there are some cool projects built on CRDTs and a handful of them are running in production. But some critical pieces are still missing in my opinion.
 
 ## No schema, no migration
-**Add example**
+While many CRDT libraries support modeling any JSON object, none of them define a schema. The problem is, any application that persists or communicates data has an implicit or explicit schema. **The day you want to change the expected shape of the data, you're on your own.**
 
-While many CRDT libraries support modeling any JSON object, **none of them define a schema.** The problem is, any application that persists or communicates data has an implicit or explicit schema. **The day you want to change the expected shape of the data, you're on your own.**
+Imagine you are building a writing platform for a newspaper based on a CRDT. In your initial design, each document is either a draft or published. However, the newspaper would like a more structured submission process, where each document has a status of _draft_, _submitted_, _validated_ or _published_. How do you implement a data migration strategy that upgrades not only your database, but also every document that lives on all user devices?
 
-When that data can live on any user's device, as well as in your own infrastructure, either you handle this systematically through data transformation, or the complexity of your code is going to shoot through the roof very quickly.
+You can see that doing it by hand can get very complicated, very quickly. A much better approach would be to handle it _systematically_, through a **system for evolving the schema of your CDRT**.
 
 The most promising research I've seen in the area of decentralised schema evolution is [Cambria](https://www.inkandswitch.com/cambria/), which provides backward _and_ forward compatibility. The project is built on top of the [Automerge](https://github.com/automerge/automerge) CRDT.
 
-Still, in my opinion, the best place to integrate a data schema is into the CRDT library itself. Schema awareness gives you superpowers, and not just for migrations. 
+Still, in my opinion, the best place to integrate a data schema is into the CRDT library itself. **Schema awareness gives you superpowers, and not just for migrations.**
 
 For example, GraphQL clients use the schema to [auto-normalise data](https://formidable.com/open-source/urql/docs/graphcache/) and store it in a cache that looks deceptively like a relational database, with a table for each entity.
 
-In the context of CRDTs, schema awareness and auto-normalisation would enable:
-- easier migrations
-- representation of arbitrary graph data structures (which is not supported by Automerge or Yjs)
-- direct integration with relational databases (will cover in the next article 😉)
+In the context of CRDTs, schema awareness and auto-normalisation would enable the coordination data migrations, representation of arbitrary graph data structures (not just JSON) & a first-class integration with relational databases.
 
 ## No custom data structure
-Current CRDT libraries offer types for arrays, maps, sets and registers (= single value container), which let them express the full JSON model.
+Current CRDT libraries offer types for arrays, maps, sets and registers (= single value container), which, taken together, express the full JSON model.
 
-However, if you want to go beyond that and define a custom CRDT, with application-specific operations and invariants, you'll have to **write your own implementation**, with the full complexity that entails. For example, the [Peritext](https://www.inkandswitch.com/peritext/) project had to roll their own CRDT for rich text editing.
+However, if you want to go beyond that and define a new data type, with application-specific operations and invariants, you'll have to **write your own implementation**, with the full complexity that entails. For example, the [Peritext](https://www.inkandswitch.com/peritext/) project had to roll their own CRDT for rich text editing.
 
 What I want is a framework that supports defining custom CRDTs, custom operations and lets the user define invariants and conflict resolution strategies. The framework should take care of the hard parts of distributed semantics, like [tracking causality](https://en.wikipedia.org/wiki/Version_vector) or synchronising between peers, while leaving the logic to the user.
 
 I'm unsure what form such a tool should take, but work in that area includes:
-- [The semidirect product of op-based CRDTs.](https://arxiv.org/abs/2004.04303) That's a mouthful, but it means transforming incoming operations based on concurrent operations already received. For example, you could have an array CRDT with a `map` operation, which also transforms concurrent `insert` operations by applying the `map` function before insertion. This approach is efficient, since you never have to roll back the history, but tricky to get right, since you need to ensure that any ordering of concurrent operations gets you to the same result, despite transforming operations.
-- [Explicitly Consistent Replicated Objects](https://dl.acm.org/doi/10.1145/3485484) (ECROs), which reorder operations based on user-defined invariants. This is the most general approach, but requires the ability to roll back history at any point & replay operations. It also requires some kind of analysis of which operations may result in a conflict or invariant violation. The authors implement this using a Scala DSL that statically analyses invariants that are expressed as logic clauses. That's super cool but, uhm, may not scale to JavaScript and the Web.
+- [The semidirect product of op-based CRDTs.](https://arxiv.org/abs/2004.04303) That's a mouthful, but it means transforming incoming operations based on concurrent operations already received. For example, you could have an array CRDT with a `map` operation, which also transforms concurrent `insert` operations by applying the `map` function before insertion. Efficient, but tricky to get right.
+- [Explicitly Consistent Replicated Objects](https://dl.acm.org/doi/10.1145/3485484) (ECROs), which reorder operations based on user-defined invariants. This is the most general approach, but requires the ability to roll back history at any point & replay operations. It also requires some kind of analysis of which operations may result in a conflict or invariant violation. The authors implement this using a domain-specific language embedded in Scala that statically analyses invariants that are expressed as logic clauses. That's super cool but, _uhm_, may not work for JavaScript and the Web.
 
-Note that both have strong correspondences to [operational transformation](https://en.wikipedia.org/wiki/Operational_transformation), which is the algorithm used by Google Docs and others and which requires a central server to operate correctly.
+Note that both have strong correspondences to [operational transformation](https://en.wikipedia.org/wiki/Operational_transformation), which is the algorithm used by Google Docs (& others), but which usually requires a central server to operate correctly and does not allow long offline.
 
 ## BYODB: bring your own database
 I just want to be able to persist my RDTs to a database in a form that I can query. Today, that task is anywhere from hard to impossible, depending on the library you're using. If you want a relational database, that becomes plain impossible: you get no information on which entities were created, updated or deleted. 
 
-Ideally, your CRDT library gives you hooks that allow you to easily sync to your own backend. Here, something like the simple replication endpoints of [RxDB](https://rxdb.info/) or [WatermelonDB](https://nozbe.github.io/WatermelonDB/) would be ideal.
+Ideally, your CRDT library gives you hooks that allow you to easily sync to your own backend. Here, something like the simple replication endpoints of client-side databases like [RxDB](https://rxdb.info/) or [WatermelonDB](https://nozbe.github.io/WatermelonDB/) would be ideal.
 
 Going further, it may be possible to encode the CRDT directly into a relational database using something along the lines of [conflict-free relations](https://munin.uit.no/handle/10037/22344). 
 
 ## Security and authorization
-The whole theory around CRDTs usually assumes that peers collaborate with each other: it is assumed **anyone that can access a CRDT can emit any valid operation** and all peers .
+The whole theory around CRDTs usually assumes that peers collaborate with each other: **it is generally assumed that all peers have equal rights and no malicious intent.** This means that anyone that can access a CRDT can emit any valid operation and the CRDT will just fall over if it receives any invalid operation.
 
-In real-world systems, this is often a major problem. More fine-grained access control is possible, but requires 
-
-If you can restrict the access to a piece of data only to those people that can modify it and everyone has the same rights, then it's fine.
-
-If you need more fine-grained access control, where everyone doesn't have the same permissions, then you're going to need more security.
+This is not how most real-world systems operate. If you're building a decentralised game on a CRDT, you have to expect cheaters. In practice, you want to prevent invalid operations and enforce more fine-grained access control.
 
 ### Byzantine fault tolerance
-Roughly speaking, Byzantine fault tolerance (BFT) is the ability of a protocol to handle defective or malicious nodes. This is crucial if we want to allow a large number of peers to access a CRDT, for wide-scale collaboration or perhaps read-only access.
+[Byzantine fault tolerance](https://en.wikipedia.org/wiki/Byzantine_fault) (BFT) is the ability of a protocol to handle defective or malicious nodes. This is crucial if we want to allow a large number of peers to access a CRDT, like a wiki, or expect any kind of malicious intent amongst users, like cheaters in a video game.
 
-CRDTs have the very unique property that they can **tolerate an arbitrary number of corrupted nodes and still maintain strong eventual consistency.** Namely, for two nodes A and B, as long as there is a communication channel from A to B that only goes through non-corrupted nodes, the two of them will converge to the same end state.
+CRDTs have the very unique property that they can **tolerate an arbitrary number of corrupted nodes** and still maintain strong eventual consistency. Namely, for two nodes A and B, as long as there is a communication channel from A to B that only goes through non-corrupted nodes, the two of them will converge to the same end state.
 
-This property is quite surprising, considering that BFT consensus protocols can only tolerate up to 1/3rd of the nodes being corrupted. The key here is that CRDTs do not guarantee any kind of global consensus, only that two participants that have received the same messages always end up in the same state.
+This property is quite surprising, considering that BFT consensus protocols can only tolerate up to 1/3rd of the nodes being corrupted. The key here is that **CRDTs do not guarantee any kind of global consensus**, only that two participants that have received the same messages always end up in the same state.
 
-For the details on how to achieve this approach, I'll refer you to Martin Kleppmann's [_Making CRDTs Byzantine Fault Tolerant_](https://martin.kleppmann.com/papers/bft-crdt-papoc22.pdf) (spoiler: it involves variants of [Merkle trees](https://en.wikipedia.org/wiki/Merkle_tree)).
+For details on how to achieve this property, I'll refer you to Martin Kleppmann's [_Making CRDTs Byzantine Fault Tolerant_](https://martin.kleppmann.com/papers/bft-crdt-papoc22.pdf) (spoiler: it involves variants of [Merkle trees](https://en.wikipedia.org/wiki/Merkle_tree)).
 
-## Access control
-Once our CRDT construction is robust enough to handle corrupted participants, we need a way to encode different access control rights for different participants.
+### Access control
+Once our CRDT construction is robust enough to handle corrupted participants, we need a way to **encode different access control rights for different participants.**
 
-The logical way of distributing this information is to encode it directly into the CRDT, as is proposed in [_Distributed access control for collaborative applications using CRDTs_](https://hal.inria.fr/hal-03584553/file/papoc.pdf) by Pierre-Antoine Rault, Claudia-Lavinia Ignat and Olivier Perrin (2022).
+The logical way of distributing this information is to put it directly into the CRDT, as proposed in [_Distributed access control for collaborative applications using CRDTs_](https://hal.inria.fr/hal-03584553/file/papoc.pdf) by Pierre-Antoine Rault, Claudia-Lavinia Ignat and Olivier Perrin (2022).
 
 Roughly speaking, if the CRDT contains authorization information in the form of `(public_key, rights)` pairs and each message is signed by its author, then we can enforce rights on a per-participant basis.
 
-However, no matter the design, some conflict resolution strategies will be tricky and application-specific. In the case of two concurrent operations, one revoking the rights of some participant X and the other one from X performing some now-unauthorized operation, what should the end state be?
+However, no matter the design, **conflict resolution around authorization rights will be tricky and application-specific**.
 
-In most cases, it seems like safety would dictate that X's operations should be ignored: for instance, they could have seen that their rights were revoked, decided to lie about receiving the message and started broadcasting malicious operations to delete key parts of the document.
+Let's take two concurrent operations:
+- `op1` revokes the editing rights of some participant X.
+- `op2` is sent by X to perform some edits.
 
-In that case, the CRDT needs the ability to roll back operations, which can be done in one of three ways:
-- operations are all reversible
-- the operation log is replayed from the beginning (or the latest snapshot)
-- the CRDT is built on persistent data structures and can be rolled back to any previous state instantly (at the cost of global performance, since those structures are more expensive)
+What should the end state be?
+
+In most cases, it seems like safety would dictate that X's operations should be ignored. For instance, they could have seen that their rights were revoked, decided to lie about receiving the message and started broadcasting malicious operations to delete key parts of the document.
+
+In that case, the CRDT needs the ability to **roll back unauthorized operations**, which can be done with reversible operations (not always possible), replaying all operations from the beginning (can be expensive) or using persistent data structures internally (global performance & memory cost).
 
 # The master plan
-Simply put, I'm starting to build an experimental CRDT library that will attempt to tackle all the issues outlined above! Many of the solutions require deep integration with the CRDT design, so starting from scratch is quite helpful!
+None of the problems outlined above are fundamentally unsolvable - quite to the contrary! For each issue, there are academic papers providing a solution. All that remains is implementing them in a general-purpose library.
 
-The fundamental design decision behind it is that it will **require a schema definition.** From there, I have a simple construction for a conflict-free replicated database (CRDB), that can be built on top of any relational database. Starting from the relational model means it's always possible to downgrade to NoSQL / key-value stores as well.
+**That's why I'm starting to build an experimental CRDT library.** The goal is to learn from the fantastic work of projects like Automerge and Yjs, while tackling the limitations decribed in this article by changing some of the fundamental design decisions.
+
+**The first building block behind it will be a schema definition.** I'm of the opinion that all apps have a data schema, whether it is defined properly or not, and that integrating it at the CRDT level would provide many benefits.
+
+From there, I have a construction for a _"conflict-free replicated database"_, that can be built on top of any relational database by leveraging the schema definition. Starting from the relational model means it's always possible to downgrade to NoSQL or key-value stores, while the reverse is hard.
 
 Once the basic pieces are in place, I'll be putting it into production on [Topogether](https://topogether.com/), an app for outdoor climbing and collaborative cartography I've been building with friends. The project is based on Postgres and has to handle geographical data, file uploads and access control rights, so it will be a nice playground for the library.
 
-Stay tuned for more, articles will follow the progress of the implementation!
+Articles will follow the progress of the implementation, so stay tuned for more!

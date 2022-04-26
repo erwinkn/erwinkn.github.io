@@ -1,11 +1,12 @@
 ---
-title: 'Building offline ready apps: the scale of offline functionality'
+title: 'Building offline-ready apps: the scale of offline functionality'
 subtitle: 'Picking a solution, from caching to client-side databases'
-description: "Most apps could work really well without connectivity, but most of them don't. How do we start solving this problem?"
+description: "Most apps could work really well without connectivity, but most of them don't. We should be building more offline-ready software."
 author: 'Erwin Kuhn'
 url: /offline-ready/
 toc: true
 date: 2022-04-21
+keywords: ["offline", "web", "native", "development"]
 ---
 
 It's surprising how many apps simply bail out if you're not online. Make a quick test: grab your phone, turn off the network and open random apps. See how many of them even show you something, beyond an error message.
@@ -66,7 +67,7 @@ On the web, this means adding a [service worker](https://developer.mozilla.org/e
 Data fetching libraries often end up providing an interesting middle ground, where you can start using them to handle async data loading and caching for performance, then to persist the cache across sessions and provide offline reading, before finally moving to the next tier and allowing offline mutations. Libraries like [React Query](https://react-query.tanstack.com/) or GraphQl clients like [Apollo](https://www.apollographql.com/docs/react/), [Relay](https://relay.dev/) or [urql](https://formidable.com/open-source/urql/) all fit into that category.
 
 ## Update queuing and optimistic UI
-{{< figure class="w-4/5" caption="Optimistic UI on Twitter: pending tweets are shown, but greyed out" >}}
+{{< figure class="w-full lg:w-4/5" caption="Optimistic UI on Twitter: pending tweets are shown, but greyed out" >}}
 {{< img src="images/twitter-example.jpg" alt="Twitter's timeline on their homescreen, with 3 pending tweets at the top, greyed out" >}}
 {{< /figure >}}
 

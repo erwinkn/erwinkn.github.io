@@ -1,7 +1,7 @@
 ---
 title: "Transfering state from server to client with Blazor WASM and prerendering"
 subtitle: "Or how to solve the \"flash\" problem with Blazor server-side prerendering"
-description: "Blazor's server-side prerendering is great to get content on the page immediately. However, it suffers the <i>\"hydration problem\"</i>, where the page flashes after the initial load. Here's how to solve it"
+description: "Blazor's server-side prerendering is great to get content on the page immediately. However, it suffers the <i>\"hydration problem\"</i>, where the page flashes after the initial load. Here's how to solve it."
 author: "Erwin Kuhn"
 date: "2021-03-10"
 keywords: ["Blazor", "prerendering", "performance"]
