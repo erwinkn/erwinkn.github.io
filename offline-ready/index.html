@@ -68,7 +68,7 @@
     
     
     
-    <link rel="stylesheet" href="/bundle.min.923b330b2b22da84cd42714c4e009ade562e0002f3d675ca20e328548afc5b79.css" integrity="">
+    <link rel="stylesheet" href="/bundle.min.9a2235d879447336bb7a5345a2f8c38323ca09352d5f1f3c91407be3e169017e.css" integrity="">
     <script type="text/javascript" src="/prism/prism.js"></script>
     
     
@@ -149,10 +149,10 @@
 </nav>
         </aside>
         
-        <p>It&rsquo;s surprising how many apps simply bail out if you&rsquo;re not online. Make a quick test: grab your phone, turn off the network and open random apps. See how many of them even show you something beyond an error message.</p>
+        <p>It&rsquo;s surprising how many apps simply bail out if you&rsquo;re not online. Make a quick test: grab your phone, turn off the network and open random apps. See how many of them even show you something, beyond an error message.</p>
 <p>If we start talking about Web apps, the percentage of them that works offline quickly goes to zero.</p>
 <p>Even though most apps could cache data and provide quite a lot of offline functionality, teams often don&rsquo;t take the time to think through how their software may behave without a server to talk to.</p>
-<p>It&rsquo;s true, the list of challenges when building an offline app can be daunting. Here are some of the difficulties I&rsquo;ve had the pleasure of running into:</p>
+<p>True, the list of challenges can be daunting. Here are some of the difficulties I&rsquo;ve had the pleasure of running into:</p>
 <ul>
 <li>Setting up caching strategies</li>
 <li>Avoiding data duplication across caches</li>
@@ -174,13 +174,13 @@
 <p>Recently, I&rsquo;ve been building 
 
 <span>
-  <input aria-label="Show sidenote" type="checkbox" id='sn_check-776'
+  <input aria-label="Show sidenote" type="checkbox" id='sn_check-709'
          class="sn_check hidden">
   <label tabindex="0" title='A &ldquo;topo&rdquo; is a guide …'
-    aria-describedby='sidenote-776' for='sn_check-776'
+    aria-describedby='sidenote-709' for='sn_check-709'
     class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
            lg:cursor-default lg:border-none lg:text-current"><a href="https://topogether.com/">Topogether</a></label>
-  <small id='sidenote-776'
+  <small id='sidenote-709'
          class="sn_content ast-before sr-only flex
                 lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
                 lg:w-52 lg:-mr-56
@@ -263,13 +263,13 @@
 <p>On the web, this means adding a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">service worker</a> and 
 
 <span>
-  <input aria-label="Show sidenote" type="checkbox" id='sn_check-781'
+  <input aria-label="Show sidenote" type="checkbox" id='sn_check-957'
          class="sn_check hidden">
   <label tabindex="0" title='Please save yourself the trouble …'
-    aria-describedby='sidenote-781' for='sn_check-781'
+    aria-describedby='sidenote-957' for='sn_check-957'
     class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
            lg:cursor-default lg:border-none lg:text-current">defining strategies,</label>
-  <small id='sidenote-781'
+  <small id='sidenote-957'
          class="sn_content ast-before sr-only flex
                 lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
                 lg:w-52 lg:-mr-56
@@ -386,7 +386,7 @@
 <p>For a deeper dive into client-side databases, I highly recommend Jared Forsyth&rsquo;s <a href="https://jaredforsyth.com/posts/in-search-of-a-local-first-database/"><em>In Search of a Local-First Database</em></a>, as well as the <a href="https://rxdb.info/alternatives.html"><em>Opinions</em></a> section of RxDB&rsquo;s documentation. The author also has a <a href="https://github.com/pubkey/client-side-databases">benchmark for client-side databases</a> in the browser.</p>
 <h2 id="offline--collaborative-apps">Offline &amp; collaborative apps</h2>
 <p>OK, we&rsquo;re now entering experimental territory. Here, we are talking about apps where users can collaborate in real-time, drop into offline mode &amp; continue working, before coming back online and seeing their changes merged with other work that happened in the meantime.</p>
-<p><strong>Upfront warning:</strong> any solution in this area should be considered experimental technology, will likely have major limitations and will require significant tweaking on your behalf.</p>
+<p><strong>Upfront warning:</strong> any solution in this area should be considered experimental technology, will likely have major limitations and will require a lot of tweaking.</p>
 <p>Still interested? Good! It&rsquo;s significantly easier to build offline collaborative apps than it was even 5 years ago. By significantly easier, I mean that it&rsquo;s now possible for individuals or small teams, and not just organisations with a lot of engineering power.</p>
 <p>The key to tackling this problem is <a href="https://crdt.tech/">conflict-free replicated data types</a> (CRDTs). They are data structures that look like regular objects, arrays, sets or maps, but are able to synchronise any two replicas together.</p>
 <p>The guarantee they offer is <strong><em>strong eventual consistency</em>: any two replicas that have seen the same changes end up in the same state.</strong></p>
@@ -399,13 +399,13 @@
 <p>While both support full JSON models &amp; text editing, 
 
 <span>
-  <input aria-label="Show sidenote" type="checkbox" id='sn_check-126'
+  <input aria-label="Show sidenote" type="checkbox" id='sn_check-69'
          class="sn_check hidden">
   <label tabindex="0" title='I have also written more …'
-    aria-describedby='sidenote-126' for='sn_check-126'
+    aria-describedby='sidenote-69' for='sn_check-69'
     class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
            lg:cursor-default lg:border-none lg:text-current">some limitations remain:</label>
-  <small id='sidenote-126'
+  <small id='sidenote-69'
          class="sn_content ast-before sr-only flex
                 lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
                 lg:w-52 lg:-mr-56
@@ -435,13 +435,13 @@
 <p>For instance, instead of keeping the user logged in until they are back online, you may <strong>add an authentication layer on app restart.</strong> This can be a stored password / PIN code or a 
 
 <span>
-  <input aria-label="Show sidenote" type="checkbox" id='sn_check-255'
+  <input aria-label="Show sidenote" type="checkbox" id='sn_check-212'
          class="sn_check hidden">
   <label tabindex="0" title='Also available through the Web …'
-    aria-describedby='sidenote-255' for='sn_check-255'
+    aria-describedby='sidenote-212' for='sn_check-212'
     class="text-darkSanguine border-darkSanguine border-b-2 border-dotted -mb-2 cursor-pointer ast-after
            lg:cursor-default lg:border-none lg:text-current">native authentication method.</label>
-  <small id='sidenote-255'
+  <small id='sidenote-212'
          class="sn_content ast-before sr-only flex
                 lg:not-sr-only lg:relative lg:float-right lg:clear-right lg:left-0
                 lg:w-52 lg:-mr-56

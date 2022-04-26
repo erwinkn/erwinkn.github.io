@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>On software on Erwin Kuhn</title>
+    <title>Software issues on Erwin Kuhn</title>
     <link>https://erwinkn.com/tech/</link>
-    <description>Recent content in On software on Erwin Kuhn</description>
+    <description>Recent content in Software issues on Erwin Kuhn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 23 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://erwinkn.com/tech/index.xml" rel="self" type="application/rss+xml" />
@@ -34,9 +34,20 @@ Its most famous implementation is the one that powers spreadsheets like Excel. I
       <pubDate>Thu, 21 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://erwinkn.com/offline-ready/</guid>
-      <description>It&amp;rsquo;s surprising how many apps simply bail out if you&amp;rsquo;re not online. Make a quick test: grab your phone, turn off the network and open random apps. See how many of them even show you something beyond an error message.
+      <description>It&amp;rsquo;s surprising how many apps simply bail out if you&amp;rsquo;re not online. Make a quick test: grab your phone, turn off the network and open random apps. See how many of them even show you something, beyond an error message.
 If we start talking about Web apps, the percentage of them that works offline quickly goes to zero.
 Even though most apps could cache data and provide quite a lot of offline functionality, teams often don&amp;rsquo;t take the time to think through how their software may behave without a server to talk to.</description>
+    </item>
+    
+    <item>
+      <title>Transfering state from server to client with Blazor WASM and prerendering</title>
+      <link>https://erwinkn.com/tech/blazor-rehydration/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://erwinkn.com/tech/blazor-rehydration/</guid>
+      <description>Edit: .NET 6 now solves this problem using persist-component-state (docs)
+I wanted to brush up my Blazor skills. I had been using the new .NET framework in my work with Vicat, an international cement &amp;amp; concrete group based in France, to develop a modelling tool for long term roadmaps towards carbon neutrality. Coding with it felt really nice, but its overall performance as a client-side framework is not good.
+Since there&amp;rsquo;s no better way to put a framework to the test than to build something and optimize it as much as possible, I decided to make a good old Hacker News reader using Blazor WebAssembly.</description>
     </item>
     
   </channel>
