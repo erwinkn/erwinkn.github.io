@@ -20,12 +20,13 @@ imageAlt="Homepage of Erwin Kuhn's website"
     identifier = "about"
     name = "About"
     url = "/about/"
-    weight = "0"
+    weight = "10"
 
-    # [[menu.main]]
-    # identifier = "now"
-    # name = "Now"
-    # url = "/now/"
+    [[menu.main]]
+    identifier = "now"
+    name = "Now"
+    url = "/now/"
+    weight = "20"
 
     [[menu.main]]
     identifier="tech"

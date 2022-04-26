@@ -3,8 +3,10 @@ title: 'Now'
 author: 'Erwin Kuhn'
 ---
 
-I'm currently working with [Vicat](https://www.vicat.fr/) on how to get to **net-zero emissions in the cement industry**. With them, I'm building N-Zero, a modelling tool to create long term roadmaps towards net-zero {{< co2 >}} emissions. While the project is private, I wrote a primer on the cement & concrete industries from a climate lens [here]({{< relref "/climate/concrete" >}}).
+I'm currently on the lookout for opportunities to work on climate solutions, feel free to [reach out](mailto:erwinkn@pm.me)!
 
-I recently caught the deep learning bug as well. Right now, I'm working on **mini-dl**, an educational deep learning framework built on top of [JAX](https://github.com/google/jax), and **simple-grad**, an introduction going from zero to a complete auto-differentiation system, similar to what PyTorch or JAX use under the hood.
+I'm also working on [Topogether](https://topogether.com/) as a side project with friends. It's an app for outdoor climbing and collaborative cartography, as we became tired of poor climbing guide books and the lack of tools to create digital ones.
 
-I'm also very interested in anything related to reducing emissions in the construction industry and additive manufacturing (3D printing). If you're an expert on any of those topics, [please reach out](mailto:erwin.kuhn@protonmail.com)!
+In parallel, it serves as my playground for [experimenting with conflict-free replicated data types](/getting-crdts-to-production/), with the goal of making offline & collaborative apps accessible to everyone.
+
+[See here](/about/) for things I've done in the past :)
