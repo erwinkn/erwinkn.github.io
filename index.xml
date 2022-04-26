@@ -67,7 +67,7 @@ Since there&amp;rsquo;s no better way to put a framework to the test than to bui
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://erwinkn.com/about/</guid>
-      <description>TL;DR   I&#39;m incredibly passionate about climate, computer science, food &amp; wine, climbing, technology and science fiction. Pick any topic in there and I&#39;m happy to talk hours about it.  I&#39;ve worked on data markets and blockchains, been a food photographer and am now focusing on writing code for the climate.  You can reach me at erwin.kuhn@protonmail.com  Things I&#39;ve done   I&#39;m a software builder by vocation, but being of the generalist type, I&#39;ve dabbled in a variety of different areas.</description>
+      <description>TL;DR   I&#39;m incredibly passionate about climate, computer science, food &amp; wine, climbing, technology and science fiction. Pick any topic in there and I&#39;m happy to talk hours about it.  I&#39;m currently on the lookout for opportunities to write code for the climate!  I have also been working on a side project called Topogether, an app for outdoor climbing and collaborative cartography. It doubles up as my playground around how conflict-free replicated data types can make offline collaborative apps easy to build.</description>
     </item>
     
     <item>
@@ -76,8 +76,9 @@ Since there&amp;rsquo;s no better way to put a framework to the test than to bui
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://erwinkn.com/now/</guid>
-      <description>I&amp;rsquo;m currently working with Vicat on how to get to net-zero emissions in the cement industry. With them, I&amp;rsquo;m building N-Zero, a modelling tool to create long term roadmaps towards net-zero CO2 emissions. While the project is private, I wrote a primer on the cement &amp;amp; concrete industries from a climate lens here.
-I recently caught the deep learning bug as well. Right now, I&amp;rsquo;m working on mini-dl, an educational deep learning framework built on top of JAX, and simple-grad, an introduction going from zero to a complete auto-differentiation system, similar to what PyTorch or JAX use under the hood.</description>
+      <description>I&amp;rsquo;m currently on the lookout for opportunities to work on climate solutions, feel free to reach out!
+I&amp;rsquo;m also working on Topogether as a side project with friends. It&amp;rsquo;s an app for outdoor climbing and collaborative cartography, as we became tired of poor climbing guide books and the lack of tools to create digital ones.
+In parallel, it serves as my playground for experimenting with conflict-free replicated data types, with the goal of making offline &amp;amp; collaborative apps accessible to everyone.</description>
     </item>
     
   </channel>
