@@ -48,7 +48,7 @@ Before diving into any specific level of offline functionality, there is an UX p
 
 Anything else will be confusing to the users and may cause them to end up stuck on an endless spinner, when they would have been happy sticking to offline actions.
 
-{{< figure class="w-full md:w-4/5 lg:w-3/5" caption="Spotify's offline UI: downloaded tracks are shown as normal, unavailable tracks as greyed out">}}
+{{< figure class="w-full md:w-4/5 lg:w-3/5" caption="Spotify's offline UI: downloaded tracks are shown as normal, other tracks cannot be interacted with">}}
 {{< img src="images/spotify-example.jpg" alt="Screenshot of Spotify tracks, some of them downloaded, some of them greyed out as they cannot be played offline" >}}
 {{< /figure >}}
 
