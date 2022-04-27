@@ -1,7 +1,7 @@
 ---
 title: 'Getting conflict-free replicated data types to production'
 subtitle: 'Missing pieces and the road to ubiquitous offline collaborative apps'
-description: 'Conflict-free replicated data types could make offline & collaborative apps easy to build, but current implementations are missing.'
+description: 'Conflict-free replicated data types could make offline & collaborative apps easy to build, but current implementations are missing important pieces, like authorisation or data migrations.'
 author: 'Erwin Kuhn'
 date: 2022-04-23
 url: /getting-crdts-to-production/
@@ -78,7 +78,7 @@ Ideally, your CRDT library gives you hooks that allow you to easily sync to your
 
 Going further, it may be possible to encode the CRDT directly into a relational database using something along the lines of [conflict-free relations](https://munin.uit.no/handle/10037/22344). 
 
-## Security and authorization
+## Security and authorisation
 The whole theory around CRDTs usually assumes that peers collaborate with each other: **it is generally assumed that all peers have equal rights and no malicious intent.** This means that anyone that can access a CRDT can emit any valid operation and the CRDT will just fall over if it receives any invalid operation.
 
 This is not how most real-world systems operate. If you're building a decentralised game on a CRDT, you have to expect cheaters. In practice, you want to prevent invalid operations and enforce more fine-grained access control.
@@ -97,9 +97,9 @@ Once our CRDT construction is robust enough to handle corrupted participants, we
 
 The logical way of distributing this information is to put it directly into the CRDT, as proposed in [_Distributed access control for collaborative applications using CRDTs_](https://hal.inria.fr/hal-03584553/file/papoc.pdf) by Pierre-Antoine Rault, Claudia-Lavinia Ignat and Olivier Perrin (2022).
 
-Roughly speaking, if the CRDT contains authorization information in the form of `(public_key, rights)` pairs and each message is signed by its author, then we can enforce rights on a per-participant basis.
+Roughly speaking, if the CRDT contains authorisation information in the form of `(public_key, rights)` pairs and each message is signed by its author, then we can enforce rights on a per-participant basis.
 
-However, no matter the design, **conflict resolution around authorization rights will be tricky and application-specific**.
+However, no matter the design, **conflict resolution around authorisation rights will be tricky and application-specific**.
 
 Let's take two concurrent operations:
 - `op1` revokes the editing rights of some participant X.
