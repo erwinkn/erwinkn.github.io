@@ -13,9 +13,9 @@
 <meta property="og:site_name" content="Erwin Kuhn">
 
 
-<meta name="description" content="Conflict-free replicated data types could make offline &amp; collaborative apps easy to build, but current implementations are missing." >
-<meta property="og:description" content="Conflict-free replicated data types could make offline &amp; collaborative apps easy to build, but current implementations are missing." >
-<meta name="twitter:description" content="Conflict-free replicated data types could make offline &amp; collaborative apps easy to build, but current implementations are missing." >
+<meta name="description" content="Conflict-free replicated data types could make offline &amp; collaborative apps easy to build, but current implementations are missing important pieces, like authorisation or data migrations." >
+<meta property="og:description" content="Conflict-free replicated data types could make offline &amp; collaborative apps easy to build, but current implementations are missing important pieces, like authorisation or data migrations." >
+<meta name="twitter:description" content="Conflict-free replicated data types could make offline &amp; collaborative apps easy to build, but current implementations are missing important pieces, like authorisation or data migrations." >
 
 
 
@@ -185,7 +185,7 @@
 <p>I just want to be able to persist my RDTs to a database in a form that I can query. Today, that task is anywhere from hard to impossible, depending on the library you&rsquo;re using. If you want a relational database, that becomes plain impossible: you get no information on which entities were created, updated or deleted.</p>
 <p>Ideally, your CRDT library gives you hooks that allow you to easily sync to your own backend. Here, something like the simple replication endpoints of client-side databases like <a href="https://rxdb.info/">RxDB</a> or <a href="https://nozbe.github.io/WatermelonDB/">WatermelonDB</a> would be ideal.</p>
 <p>Going further, it may be possible to encode the CRDT directly into a relational database using something along the lines of <a href="https://munin.uit.no/handle/10037/22344">conflict-free relations</a>.</p>
-<h2 id="security-and-authorization">Security and authorization</h2>
+<h2 id="security-and-authorisation">Security and authorisation</h2>
 <p>The whole theory around CRDTs usually assumes that peers collaborate with each other: <strong>it is generally assumed that all peers have equal rights and no malicious intent.</strong> This means that anyone that can access a CRDT can emit any valid operation and the CRDT will just fall over if it receives any invalid operation.</p>
 <p>This is not how most real-world systems operate. If you&rsquo;re building a decentralised game on a CRDT, you have to expect cheaters. In practice, you want to prevent invalid operations and enforce more fine-grained access control.</p>
 <h3 id="byzantine-fault-tolerance">Byzantine fault tolerance</h3>
@@ -196,8 +196,8 @@
 <h3 id="access-control">Access control</h3>
 <p>Once our CRDT construction is robust enough to handle corrupted participants, we need a way to <strong>encode different access control rights for different participants.</strong></p>
 <p>The logical way of distributing this information is to put it directly into the CRDT, as proposed in <a href="https://hal.inria.fr/hal-03584553/file/papoc.pdf"><em>Distributed access control for collaborative applications using CRDTs</em></a> by Pierre-Antoine Rault, Claudia-Lavinia Ignat and Olivier Perrin (2022).</p>
-<p>Roughly speaking, if the CRDT contains authorization information in the form of <code>(public_key, rights)</code> pairs and each message is signed by its author, then we can enforce rights on a per-participant basis.</p>
-<p>However, no matter the design, <strong>conflict resolution around authorization rights will be tricky and application-specific</strong>.</p>
+<p>Roughly speaking, if the CRDT contains authorisation information in the form of <code>(public_key, rights)</code> pairs and each message is signed by its author, then we can enforce rights on a per-participant basis.</p>
+<p>However, no matter the design, <strong>conflict resolution around authorisation rights will be tricky and application-specific</strong>.</p>
 <p>Let&rsquo;s take two concurrent operations:</p>
 <ul>
 <li><code>op1</code> revokes the editing rights of some participant X.</li>
