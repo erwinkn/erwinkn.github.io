@@ -15,11 +15,7 @@ imageAlt: Aerial overview of a cement plant in Montalieu, France
 ---
 
 ## Introduction
-
-_Welcome to the first article in a 3-part series about the cement & concrete industries and their place in the climate fight. It provides a general introduction to the subject, with some surprising facts I discovered along the way._
  
-_This is a personal perspective and is subject to change based on feedback and further discussions. Feel free to [reach out](mailto:erwin.kuhn@protonmail.com)!_
-
 {{< sidenote-content >}}For the anecdote, Louis Vicat is the inventor of one of the first modern cement formulations in 1817! He also released his discovery to the world without any patent, which enabled tremendous improvements in construction efficiency at the time.{{< /sidenote-content >}}
 
 I've been working for the past year with {{< sidenote >}}Vicat,{{< /sidenote >}} a large French cement group, on their climate strategy. More specifically, we are developing N-Zero, a modelling tool to create roadmaps towards carbon neutral cement. Coming from the computer science world, I had to learn everything along the way and I quickly became fascinated. 
@@ -270,10 +266,6 @@ Concrete is one of the most crucial sectors in our transition to a carbon-neutra
 ## Final words and references {#refs}
 
 Thanks for making it this far! Hopefully this proved both informative and enjoyable.
-
-The second article in the series will cover the technologies and actions that could help decarbonise concrete in much more depth, leveraging some of my modelling work.
-
-The third article will be quite different, bordering on science fiction. The goal is to imagine what a carbon neutral construction industry would look like. I'm still not sure of what the answer is, but I'm excited to find out.
 
 I have linked many references in this piece, but a few reports and papers have been crucial to shape my understanding of the subject. If you're interested in diving deeper, here are my recommandations:
 

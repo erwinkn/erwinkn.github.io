@@ -6,6 +6,8 @@ author: 'Erwin Kuhn'
 date: 2022-04-22
 url: /incremental/
 keywords: ["incremental computation", "reactivity", "change propagation", "universal algorithm"]
+image: imgs/cards/incremental-graph.png
+imageAlt: "Schema of a computation graph"
 ---
 
 There are some algorithms in computer science that just keep coming up in unrelated domains. There's one that I see everywhere I look, but never heard described as universal: the algorithm behind **incremental computation, reactivity, or change propagation** - however you want to call it.

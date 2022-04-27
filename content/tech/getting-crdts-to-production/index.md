@@ -1,13 +1,15 @@
 ---
 title: 'Getting conflict-free replicated data types to production'
-subtitle: 'Paving the road to ubiquitous offline collaborative apps'
-description: 'Conflict-free replicated data types could make offline & collaborative apps easy to build, but current implementations have important limitations.'
+subtitle: 'Missing pieces and the road to ubiquitous offline collaborative apps'
+description: 'Conflict-free replicated data types could make offline & collaborative apps easy to build, but current implementations are missing.'
 author: 'Erwin Kuhn'
 date: 2022-04-23
 url: /getting-crdts-to-production/
+image: img/cards/crdt.png
+imageAlt: "Diagram of a CRDT merging states x,y,z into a single state {x,y,z}"
 ---
 
-_Hi! This is the introduction to a series of working notes on the missing pieces before we can start building offline collaborative apps using conflict-free replicated data types (CRDTs)._
+_Hi! This is the introduction to a series of working notes on which pieces I find missing before conflict-free replicated data types (CRDTs) could be considered production-ready for building offline collaborative apps._
 
 _So far, the plan is:_
 1. _**Introduction: The road to offline collaborative apps** {{< important >}}(you are here){{< /important >}}_
@@ -19,7 +21,7 @@ _So far, the plan is:_
 7. _**Secure CRDTs:** access control and Byzantine fault tolerance_
 8. _**Optimizing CRDTs:** make it fast, make it small_
 
-_This series will take a while, as I will be building an experimental RDT library from scratch and putting it into production on [Topogether](https://topogether.com/). It's highly likely these notes evolve over time._
+_This series will take a while, as I will be building an experimental RDT library to fill the gaps I identified and putting it into production on [Topogether](https://topogether.com/). It's highly likely these notes evolve over time._
 
 
 Building [local-first](https://www.inkandswitch.com/local-first/) apps, that allow both real-time collaboration and offline work, is still incredibly hard today. Entire companies, like Figma, have been built on the success of their collaborative mode. Until recently, such features were inaccessible without a large team of engineers building a custom synchronisation and conflict resolution engine.

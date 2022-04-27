@@ -7,6 +7,7 @@ url: /offline-ready/
 toc: true
 date: 2022-04-21
 keywords: ["offline", "web", "native", "development"]
+image: 
 ---
 
 It's surprising how many apps simply bail out if you're not online. Make a quick test: grab your phone, turn off the network and open random apps. See how many of them even show you something, beyond an error message.
@@ -36,7 +37,7 @@ And some web specific ones:
 
 Recently, I've been building {{< sidenote >}}<a href="https://topogether.com/">Topogether</a>{{< /sidenote >}} an outdoor climbing app. It's intended to be used even in remote places, with no guarantee of Internet access. It also allows offline work for the cartographers (WIP).
 
-One thing I've realised while working on Topogether's offline mode is that it's incredibly helpful to know upfront exacty what kind of capability you need.
+One thing I've realised while working on Topogether's offline mode is that it's incredibly helpful to know upfront exactly what capability you need.
 
 However it's an evaluation that requires a clear mental model for thinking about offline readiness. I wish there were more resources to help developers get started on that front, so here is my way of thinking about it.
 

@@ -2,6 +2,7 @@ baseURL = "https://erwinkn.com/"
 languageCode = "en-us"
 title = "Erwin Kuhn"
 author = "Erwin Kuhn"
+enableEmoji = "true"
 
 [params]
 description = "I write code for the climate. Previously: food photographer, (involuntary) influencer and data markets researcher."
