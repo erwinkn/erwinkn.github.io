@@ -13,9 +13,9 @@
 <meta property="og:site_name" content="Erwin Kuhn">
 
 
-<meta name="description" content="Conflict-free replicated data types could make offline &amp; collaborative apps easy to build, but current implementations have important limitations." >
-<meta property="og:description" content="Conflict-free replicated data types could make offline &amp; collaborative apps easy to build, but current implementations have important limitations." >
-<meta name="twitter:description" content="Conflict-free replicated data types could make offline &amp; collaborative apps easy to build, but current implementations have important limitations." >
+<meta name="description" content="Conflict-free replicated data types could make offline &amp; collaborative apps easy to build, but current implementations are missing." >
+<meta property="og:description" content="Conflict-free replicated data types could make offline &amp; collaborative apps easy to build, but current implementations are missing." >
+<meta name="twitter:description" content="Conflict-free replicated data types could make offline &amp; collaborative apps easy to build, but current implementations are missing." >
 
 
 
@@ -29,11 +29,13 @@
 <meta name="twitter:creator" content="@erwinkhn" >
 <meta name="twitter:site" content="@erwinkhn">
 
-
-  <meta itemprop="image" content="https://erwinkn.com/img/default.png" >
-  <meta property="og:image" content="https://erwinkn.com/img/default.png" >
-  <meta name="twitter:image" content="https://erwinkn.com/img/default.png" >
-  <meta name="twitter:image:alt" content="Homepage of Erwin Kuhn&#39;s website" >
+ 
+  <meta itemprop="image" content="https://erwinkn.com/img/cards/crdt.png" >
+  <meta property="og:image" content="https://erwinkn.com/img/cards/crdt.png" > 
+  <meta name="twitter:image" content="https://erwinkn.com/img/cards/crdt.png" >
+  
+  <meta name="twitter:image:alt" content="Diagram of a CRDT merging states x,y,z into a single state {x,y,z}">
+  
 
 
 <link rel="canonical" href="https://erwinkn.com/getting-crdts-to-production/" >
@@ -134,11 +136,11 @@
         </div>
         
         <div class="bg-darkBeige border-pink-600 border-opacity-80 border-2 rounded py-2 px-4 mt-4 lg:mt-6 font-medium italic text-xl xl:text-2xl">
-            Paving the road to ubiquitous offline collaborative apps.
+            Missing pieces and the road to ubiquitous offline collaborative apps.
         </div>
         
         
-        <p><em>Hi! This is the introduction to a series of working notes on the missing pieces before we can start building offline collaborative apps using conflict-free replicated data types (CRDTs).</em></p>
+        <p><em>Hi! This is the introduction to a series of working notes on which pieces I find missing before conflict-free replicated data types (CRDTs) could be considered production-ready for building offline collaborative apps.</em></p>
 <p><em>So far, the plan is:</em></p>
 <ol>
 <li><em><strong>Introduction: The road to offline collaborative apps</strong> <span class="text-darkSanguine font-semibold">(you are here)</span></em></li>
@@ -150,7 +152,7 @@
 <li><em><strong>Secure CRDTs:</strong> access control and Byzantine fault tolerance</em></li>
 <li><em><strong>Optimizing CRDTs:</strong> make it fast, make it small</em></li>
 </ol>
-<p><em>This series will take a while, as I will be building an experimental RDT library from scratch and putting it into production on <a href="https://topogether.com/">Topogether</a>. It&rsquo;s highly likely these notes evolve over time.</em></p>
+<p><em>This series will take a while, as I will be building an experimental RDT library to fill the gaps I identified and putting it into production on <a href="https://topogether.com/">Topogether</a>. It&rsquo;s highly likely these notes evolve over time.</em></p>
 <p>Building <a href="https://www.inkandswitch.com/local-first/">local-first</a> apps, that allow both real-time collaboration and offline work, is still incredibly hard today. Entire companies, like Figma, have been built on the success of their collaborative mode. Until recently, such features were inaccessible without a large team of engineers building a custom synchronisation and conflict resolution engine.</p>
 <p>However, in the past decade, <a href="https://crdt.tech/">conflict-free replicated data types</a> (CRDTs) have emerged as a possible foundation for solving offline collaborative apps. CRDTs are data structures that look like regular objects, arrays, maps or sets, with the additional ability of merging any two replicas that have had different changes applied to them.</p>
 <p>The guarantee that they offer is <strong>strong eventual consistency:</strong> two users that have seen the <strong>same set of operations</strong>, but not necessarily in the same order, will necessarily arrive at the <strong>same end state</strong>.</p>

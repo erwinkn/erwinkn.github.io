@@ -13,9 +13,9 @@
       <pubDate>Sat, 23 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://erwinkn.com/getting-crdts-to-production/</guid>
-      <description>Hi! This is the introduction to a series of working notes on the missing pieces before we can start building offline collaborative apps using conflict-free replicated data types (CRDTs).
+      <description>Hi! This is the introduction to a series of working notes on which pieces I find missing before conflict-free replicated data types (CRDTs) could be considered production-ready for building offline collaborative apps.
 So far, the plan is:
- Introduction: The road to offline collaborative apps (you are here) Conflict-free replicated databases (CRDBs): design Conflict-free replicated databases (CRDBs): implementation Decentralized data migrations Real-world CRDTs: Topogether, an app for outdoor climbing and collaborative cartography Extensible CRDTs: building new data structures and invariants in user-land Secure CRDTs: access control and Byzantine fault tolerance Optimizing CRDTs: make it fast, make it small  This series will take a while, as I will be building an experimental RDT library from scratch and putting it into production on Topogether.</description>
+ Introduction: The road to offline collaborative apps (you are here) Conflict-free replicated databases (CRDBs): design Conflict-free replicated databases (CRDBs): implementation Decentralized data migrations Real-world CRDTs: Topogether, an app for outdoor climbing and collaborative cartography Extensible CRDTs: building new data structures and invariants in user-land Secure CRDTs: access control and Byzantine fault tolerance Optimizing CRDTs: make it fast, make it small  This series will take a while, as I will be building an experimental RDT library to fill the gaps I identified and putting it into production on Topogether.</description>
     </item>
     
     <item>
