@@ -49,7 +49,7 @@ First of all, it's hard to find accurate numbers for the global annual productio
 
 Overall, the global production of cement is around {{< sidenote >}}4 Gt/year.{{< /sidenote >}} Taking 2020 numbers, that's 525 kg of cement per person on the planet per year!
 
-{{< sidenote-content >}}Getting exact numbers for most industries is surprisingly hard. I detailed my sources in [the appendix](https://github.com/erwinkn/erwinkn.github.io/blob/main/content/blog/concrete/appendix.md){{< /sidenote-content >}}
+{{< sidenote-content >}}Getting exact numbers for most industries is surprisingly hard. I detailed my sources in [the appendix](https://github.com/erwinkn/erwinkn.github.io/blob/main/content/climate/concrete/appendix.md){{< /sidenote-content >}}
 
 Estimations for global concrete production put it at over 16 Gt/year. Cement-derived materials, which include a majority of concrete, represent [around 30% of global materials use](https://wedocs.unep.org/bitstream/handle/20.500.11822/25281/eco_efficient_cements.pdf), including fossil fuels. With some {{< sidenote >}}rough estimates,{{< /sidenote >}} here is a chart for the global production of common materials, in gigatonnes per year:
     
